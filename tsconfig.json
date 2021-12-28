@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "outDir": "build",
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "rootDir": "src",
+    "strict": true,
+    "target": "ES2020",
+    "typeRoots": ["./node_modules/@types"],
+    "types": ["node", "@types/jest"]
+  },
+  "exclude": ["node_modules", "src/tests/*.test.ts"],
+  "include": ["src/**/*"]
+}

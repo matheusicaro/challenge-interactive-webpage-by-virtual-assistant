@@ -1,0 +1,16 @@
+{
+  "env": {
+    "browser": true,
+    "jest/globals": true,
+    "node": true,
+    "es6": true
+  },
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier", "jest"],
+  "root": true,
+  "rules": {
+    "no-console": 1,
+    "prettier/prettier": 2
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "name": "template-nodejs-app",
+  "version": "1.0.0",
+  "description": "Template API for projects using Node.js >14 with GraphQL and TypeScript.",
+  "author": "Matheus Icaro",
+  "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matheusicaro/template-nodejs-app/tree/node-14/GraphQL-and-TypeScript"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "main": "src/server.ts",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test && npm run prettier-format && npm run lint"
+    }
+  },
+  "scripts": {
+    "build": "rimraf ./build && tsc",
+    "start:prd": "npm run build && node build/server.js",
+    "start": "nodemon",
+    "lint": "eslint . --ext .ts",
+    "prettier-format": "run-script-os",
+    "prettier-format:win32": "prettier --config .prettierrc \"./src/**/*.ts\" --write",
+    "prettier-format:darwin:linux": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "prettier-format:default": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "prettier-watch": "run-script-os",
+    "prettier-watch:win32": "onchange \"src/**/*.ts\" -- prettier --write {{changed}}",
+    "prettier-watch:darwin:linux": "onchange 'src/**/*.ts' -- prettier --write {{changed}}",
+    "prettier-watch:default": "onchange 'src/**/*.ts' -- prettier --write {{changed}}",
+    "test": "jest",
+    "test:dev": "jest --watchAll"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^17.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
+    "@typescript-eslint/parser": "^5.8.0",
+    "apollo-server-types": "^3.4.0",
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jest": "^25.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "jest": "^27.4.5",
+    "nodemon": "^2.0.15",
+    "onchange": "^7.1.0",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "run-script-os": "^1.1.6"
+  },
+  "dependencies": {
+    "apollo-server": "^3.5.0",
+    "dotenv": "^10.0.0",
+    "graphql": "^16.2.0",
+    "morgan": "^1.10.0",
+    "ts-jest": "^27.1.2",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4",
+    "winston": "^3.3.3"
+  }
+}
