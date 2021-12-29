@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server-core';
 
-import { helloTypeDefs } from './hello/typedefs';
-import { helloResolvers } from './hello/resolvers';
+import { chatbotTypeDefs } from './chatbot/typedefs';
+import { chatbotResolvers } from './chatbot/resolvers';
 
 const rootTypeDefs = gql`
   type Query {
@@ -27,5 +27,5 @@ const rootResolvers = {
   }
 };
 
-export const typeDefs = [rootTypeDefs, helloTypeDefs];
-export const resolvers = [rootResolvers, helloResolvers];
+export const typeDefs = [rootTypeDefs, chatbotTypeDefs];
+export const resolvers = [rootResolvers, chatbotResolvers];
