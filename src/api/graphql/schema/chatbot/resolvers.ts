@@ -1,4 +1,4 @@
-import { Logger } from '../../../config/logger';
+import { Logger } from '../../../../config/logger';
 
 // Mutation resolvers
 const sendMessage = async (_: any, { message }: any) => {
