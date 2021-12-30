@@ -1,19 +1,11 @@
-import { Logger } from '../../../../config/logger';
+import ChabotService from '../../../service/chatbot.service';
+import Message from '../../../service/models/message.model';
 
 // Mutation resolvers
-const sendMessage = async (_: any, { message }: any) => {
-  Logger.info('receiving msg');
+const sendMessage = async (_: any, { message }: any): Promise<Message> => {
+  const answer = ChabotService.sendMessage(message);
 
-  return {
-    user: message,
-    bot: 'I receive your message.',
-    context: {
-      command: {
-        type: 'REDIRECT_TO_PAGE',
-        value: 'google.com'
-      }
-    }
-  };
+  return answer;
 };
 
 export const chatbotResolvers = {
