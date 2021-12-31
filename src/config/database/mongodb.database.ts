@@ -2,10 +2,18 @@ import { MongoClient, Db, OptionalId, ObjectId } from 'mongodb';
 import { Database, DataSaved, DataWithId } from '.';
 import environment from '../environment';
 
+/**
+ * Implementation of connection with MongoDB
+ *
+ * @reference https://docs.mongodb.com/drivers/node/current/quick-start/
+ */
 export default class DatabaseMongo implements Database {
   private client: MongoClient;
   private database: Db;
 
+  /**
+   * Collection name in MongoDB
+   */
   readonly TABLE_NAME_OF_CHATBOT_CONVERSATION = 'conversation';
 
   constructor() {

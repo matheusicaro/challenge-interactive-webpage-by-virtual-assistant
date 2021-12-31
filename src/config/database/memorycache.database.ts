@@ -2,76 +2,115 @@ import NodeCache from 'node-cache';
 import { Database, DataSaved, DataWithId } from '.';
 import environment from '../environment';
 
-interface KeySplitted {
-  time: number;
-  id: string;
-}
-
+/**
+ * Implementation of in-memory cache using the NodeCache lib, to be used in case of demonstrations
+ * where a database is not available. The memory size of this bank is possible to be informed via the environment variable.
+ *
+ * @field {cacheSizeLimit}: size available for the instance with the default value of 20 megabytes.
+ *
+ * @reference  https://github.com/node-cache/node-cache
+ */
 export default class DatabaseMemoryCache implements Database {
-  private cache: NodeCache;
-  private cacheLimitInMb: number;
+  private database: NodeCache;
+  private cacheSizeLimit: number;
 
-  private readonly DEFAULT_MEMORY_SIZE = 20;
-  private readonly SECRET_TO_KEY_JOIN = '-#SECRET#-';
+  private readonly DEFAULT_MEMORY_SIZE_IN_MEGABYTE = 20;
   readonly TABLE_NAME_OF_CHATBOT_CONVERSATION = 'none';
 
   constructor() {
-    this.cache = new NodeCache();
-    this.cacheLimitInMb = environment.DATABASE_SIZE_OF_MEMORY_CACHE_IN_MB || this.DEFAULT_MEMORY_SIZE;
+    const sizeInMegabytes = environment.DATABASE_SIZE_OF_MEMORY_CACHE_IN_MB || this.DEFAULT_MEMORY_SIZE_IN_MEGABYTE;
+    const convertMegabytesToBytes = (megabytes: number) => megabytes * 1048576;
+
+    this.cacheSizeLimit = convertMegabytesToBytes(sizeInMegabytes);
+    this.database = new NodeCache();
   }
 
-  save<T extends DataWithId>(data: T, tableName: string): Promise<DataSaved> {
+  save<T extends DataWithId>(data: T): Promise<DataSaved> {
     return new Promise((resolve, reject) => {
       try {
         if (this.isReachedTheMemoryLimit()) this.deleteTheLastOldRecords();
 
-        const key = this.joinTheKeyThroughTheSecret(Date.now(), data.getId());
-        const saveInCache = () => this.cache.set(key, data);
+        const key = data.getId();
+        const value = new Data<T>(Date.now(), data);
 
-        resolve({ saved: saveInCache() });
+        const saved = this.database.set(key, value);
+
+        console.log('[db-memorycache] - status:', this.database.getStats());
+
+        resolve({ saved: saved });
       } catch (error) {
         reject(error);
       }
     });
   }
 
-  get<T extends DataWithId>(id: string, tableName: string): Promise<T | null> {
+  get<T extends DataWithId>(id: string): Promise<T | null> {
     return new Promise<T | null>((resolve, reject) => {
       try {
-        resolve(this.cache.get(id) || null);
+        resolve(this.findData<T>(id)?.getValue() || null);
       } catch (error) {
         reject(error);
       }
     });
   }
 
+  private findData<T>(key: string): Data<T> | null {
+    return this.database.get<Data<T>>(key) || null;
+  }
+
+  /**
+   * Method responsible to verify if limit configured for the database size was reached
+   *
+   * @returns {boolean}
+   *
+   * @property {database.getStats().vsize}: return the data value salved in bytes.
+   * @reference  https://github.com/node-cache/node-cache#statistics-stats
+   */
   private isReachedTheMemoryLimit(): boolean {
-    console.log('CACHE MEMORY', this.cache.getStats());
-    return this.cache.getStats().ksize > this.cacheLimitInMb;
+    return this.database.getStats().vsize > this.cacheSizeLimit;
   }
 
+  /**
+   * Method responsible to delete the oldest data by the date it was saved in the database.
+   *
+   * @param {number} total: total old items to be deleted
+   * @returns {void}
+   *
+   * @property {database.getStats().vsize}: return the data value salved in bytes.
+   * @reference  https://github.com/node-cache/node-cache#statistics-stats
+   */
   private deleteTheLastOldRecords(total = 5): void {
-    const keysSplitted = this.cache.keys().map((e) => this.splitTheKeyThroughTheSecret(e));
+    const keys = this.database.keys().map((key) => ({ key, savedAt: this.findData(key)?.getSaveAt() || 0 }));
 
-    const ascendingOrder = (a: KeySplitted, b: KeySplitted) => a.time - b.time;
+    const ascendingOrder = (a: number, b: number) => a - b;
 
-    const oldestKeysInCache = keysSplitted
-      .sort(ascendingOrder)
+    const oldestKeysInCache = keys
+      .sort((a, b) => ascendingOrder(a.savedAt, b.savedAt))
       .slice(0, total)
-      .map((e) => e.id);
+      .map((e) => e.key);
 
-    this.cache.del(oldestKeysInCache);
+    this.database.del(oldestKeysInCache);
+  }
+}
+
+/**
+ * Model responsible to represent the data scheme salved in the database MemoryCache.
+ *
+ */
+class Data<T> {
+  private saveAt: number;
+  private value: T;
+
+  constructor(saveAt: number, value: T) {
+    this.saveAt = saveAt;
+    this.value = value;
   }
 
-  private joinTheKeyThroughTheSecret(timestamp: number, id: string): string {
-    return `${timestamp}${this.SECRET_TO_KEY_JOIN}${id}`;
+  public getSaveAt(): number {
+    return this.saveAt;
   }
 
-  private splitTheKeyThroughTheSecret(key: string): KeySplitted {
-    const splitted = key.split(this.SECRET_TO_KEY_JOIN);
-    return {
-      time: parseInt(splitted[0]),
-      id: splitted[1]
-    };
+  public getValue(): T {
+    return this.value;
   }
 }
