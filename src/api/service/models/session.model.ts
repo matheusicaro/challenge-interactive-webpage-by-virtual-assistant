@@ -4,7 +4,12 @@ type ConversationMessage = {
 };
 
 /**
- * represent the conversation session to be saved in the database and transacted by the entire application on each request.
+ * Session represents the state of with all the metadata necessary to maintain a dialog with a virtual assistant.
+ *
+ * @field {id}: unique id of the logged in session
+ * @field {conversation}: message history between user and chatbot.
+ * @field {context}: metadata extracted from the conversation by business rules or by the virtual assistant
+ * through NLP (natural language processing).
  */
 export default class Session {
   private id: string;

@@ -14,6 +14,9 @@ const errorLog = join(DIRECTORY_NAME_TO_LOG, 'error.log');
 const combinedLog = join(DIRECTORY_NAME_TO_LOG, 'combined.log');
 const exceptionsLog = join(DIRECTORY_NAME_TO_LOG, 'exceptions.log');
 
+/**
+ * Application trance logger service.
+ */
 export const Logger = createLogger({
   level: 'info',
   format: format.combine(

@@ -1,6 +1,10 @@
 /**
- * Model responsible to save session to maintain the same conversation flow where the bot will know in what position
- * of the tree, the last message is.
+ * Message represents the API contract with the consumer client.
+ *
+ * @field {answer}: list of chatbot answers in ascending order for question sent
+ * @field {question}: text message sent to Chatbot.
+ * @field {context}: metadata extracted from the conversation by business rules or by the virtual assistant
+ * @field {conversationId}: unique identification of the conversation between the user and the chatbot.
  */
 export default class Message {
   private answer: Array<string>;
