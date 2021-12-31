@@ -8,11 +8,12 @@ export const chatbotTypeDefs = gql`
   "Message is the contract to have a messaging interaction with the bot."
   type Message {
     "Message sent by the client"
-    messageSent: String!
+    question: String!
     "Answer is the bot's answer"
-    answer: String!
+    answer: [String]!
     "Context is the conversation context of the bot"
     context: MessageContext!
+    conversationId: String!
   }
 
   """

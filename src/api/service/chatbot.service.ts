@@ -1,31 +1,36 @@
 import Message from './models/message.model';
-import { Logger } from '../../config/logger';
-import ChatbotIntegration from '../integration/chatbot.integration';
-import ChatBotMessage from '../integration/models/bot-message.model';
+import ChatbotIntegration from '../integration/chatbot-assistant.integration';
+import Session from './models/session.model';
+import ChatbotDatabase from '../integration/chatbot-database.integration';
 
 /**
- * Class intended to return Animal Feeding services
- *
+ * Class to handle business rule and provide layer between inputs and outputs.
  */
 class ChabotService {
   /**
-   * Method to return animal feedings from animal informed
+   * Method responsible for sending the message received by the client/user
    *
+   * @param  {string} message: message sent by user/client to the Chatbot
+   * @param  {string} conversationId: id of session which control the context and the conversation flow.
+   *
+   * @returns {Promise<Message>}: promise to return list of AnimalFeeding
    */
-  public static async sendMessage(message: string): Promise<Message> {
-    const chatbotMessage = new ChatBotMessage(message, new Map(), '');
+  public static async sendMessage(message: string, conversationId?: string): Promise<Message> {
+    const sessionId = conversationId || (await ChatbotIntegration.createSessionId());
+    let session = await ChatbotDatabase.getSession(sessionId);
 
-    if (chatbotMessage.getSessionId() === '') {
-      chatbotMessage.setSessionId(await ChatbotIntegration.createSessionId());
+    if (!session) {
+      session = new Session(sessionId);
     }
 
-    Logger.info('ChabotService===> before > ' + JSON.stringify(chatbotMessage));
+    const answer = await ChatbotIntegration.send(message, sessionId, session.getContext());
 
-    const answer = await ChatbotIntegration.send(chatbotMessage);
+    session.setContext(answer.getContext());
+    session.addMessage(message, answer.getTextMessages());
 
-    Logger.info('ChabotService===>', answer);
+    ChatbotDatabase.saveSession(session);
 
-    return new Message(message, answer.getText(), new Map());
+    return new Message(sessionId, message, answer.getTextMessages(), answer.getContext());
   }
 }
 

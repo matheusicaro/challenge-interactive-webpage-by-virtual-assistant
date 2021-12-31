@@ -1,4 +1,4 @@
-import ChatBotMessage from '../api/integration/models/bot-message.model';
+import ChatBotMessage from '../api/integration/models/chatbot-message.model';
 import AssistantV2 from 'ibm-watson/assistant/v2';
 import { IamAuthenticator } from 'ibm-watson/auth';
 
@@ -24,17 +24,28 @@ class VirtualAssistantInstance {
    * @param  {AnimalEnum} animalName: type of animal
    * @returns {Promise<Array<AnimalFeeding>>}: promise to return list of AnimalFeeding
    */
-  public async send(message: ChatBotMessage): Promise<ChatBotMessage> {
-    const answer = await this.Assistant.message({
+  public async send(message: string, currentContext: Map<string, object>, sessionId: string): Promise<ChatBotMessage> {
+    const { result } = await this.Assistant.message({
       assistantId: 'dd4a29ca-2624-4fcd-b63e-da4958a62ee7',
-      sessionId: message.getSessionId(),
+      sessionId,
+      context: {
+        skills: {
+          user_defined: currentContext
+        }
+      },
       input: {
         message_type: 'text',
-        text: message.getText()
+        text: message,
+        options: {
+          return_context: true
+        }
       }
     });
 
-    return message;
+    const answers = this.getAnswers(result.output.generic);
+    const context = this.converterToMap(result.context?.skills);
+
+    return new ChatBotMessage(answers, context);
   }
 
   public async createSession(): Promise<string> {
@@ -43,6 +54,14 @@ class VirtualAssistantInstance {
     });
 
     return response.result.session_id;
+  }
+
+  private converterToMap(context?: AssistantV2.JsonObject): Map<string, object> {
+    return context ? new Map(Object.entries(context)) : new Map();
+  }
+
+  private getAnswers(answers?: Array<AssistantV2.RuntimeResponseGeneric>): Array<string> {
+    return answers?.map((e: any) => e?.text) || [];
   }
 }
 
