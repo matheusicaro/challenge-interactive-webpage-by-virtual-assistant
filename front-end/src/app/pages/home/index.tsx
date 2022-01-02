@@ -5,11 +5,9 @@ import styled from 'styled-components';
 
 import { useTheme } from '../../styles/provider';
 import { Banner, Footer, Text } from '../../components';
-import MovieGenders from './MovieGenders';
+import Chat from '../../components/chat';
 
 const HomePage: React.FC = (props) => {
-  const [mustFetchMovieGenders, setMustFetchMovieGenders] = useState(false);
-
   const { theme, toggleTheme } = useTheme();
 
   const ToggleTheme = () => {
@@ -22,21 +20,16 @@ const HomePage: React.FC = (props) => {
     );
   };
 
-  const ButtonFetchMovieGenders = () => (
-    <Button color="warning" variant="outlined" onClick={() => setMustFetchMovieGenders(true)}>
-      Load GraphQL data
-    </Button>
-  );
-
   return (
     <Container>
       <Banner />
       <ToggleTheme />
 
       <article>
-        {!mustFetchMovieGenders && <ButtonFetchMovieGenders />}
-        {mustFetchMovieGenders && <MovieGenders />}
+        <h1> home page</h1>
       </article>
+
+      <Chat />
 
       <Footer />
     </Container>

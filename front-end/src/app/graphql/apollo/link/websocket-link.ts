@@ -7,7 +7,7 @@ import environments from '../../../environments';
  * @reference: https://www.apollographql.com/docs/react/api/link/apollo-link-ws/
  */
 export const webSocketLink = new WebSocketLink({
-  uri: `ws://${environments.hostBaseURL}`,
+  uri: `ws://${environments.HOST_BASE_URL}`,
 
   options: {
     reconnect: true,
