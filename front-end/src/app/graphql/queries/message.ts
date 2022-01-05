@@ -5,7 +5,6 @@ export const SEND_MESSAGE = gql`
     sendMessage(message: $message, conversationId: $conversationId) {
       answer
       conversationId
-      question
       context {
         commands {
           type
@@ -15,3 +14,14 @@ export const SEND_MESSAGE = gql`
     }
   }
 `;
+
+export interface Message {
+  answer: string;
+  conversationId: string;
+  context: {
+    commands: {
+      type: string;
+      value: string;
+    };
+  };
+}
