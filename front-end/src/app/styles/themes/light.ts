@@ -8,6 +8,7 @@ export type LightThemeName = 'light';
 
 const BACKGROUND_PRIMARY = '#fff';
 const TEXT_PRIMARY = 'rgb(10, 10, 10, 1)';
+const TEXT_PRIMARY_REVERSE = 'rgb(245, 245, 245, 1)';
 
 const typography: TypographyOptions = {
   fontFamily: FONT_FAMILY,
@@ -36,10 +37,24 @@ const styledComponents: DefaultTheme = {
   colors: {
     background: {
       primary: BACKGROUND_PRIMARY,
+      chat: {
+        messages: {
+          container: '#F9F9F9',
+          bot: '#f3f3f3',
+        },
+        launcher: {
+          container: 'red',
+        },
+      },
+      primaryReverse: '#000000',
     },
     text: {
       paragraph: TEXT_PRIMARY,
       title: TEXT_PRIMARY,
+      chat: {
+        userMessage: TEXT_PRIMARY_REVERSE,
+        header: TEXT_PRIMARY_REVERSE,
+      },
     },
   },
 };

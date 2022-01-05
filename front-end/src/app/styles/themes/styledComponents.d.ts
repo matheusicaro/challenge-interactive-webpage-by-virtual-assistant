@@ -7,11 +7,25 @@ export module 'styled-components' {
     colors: {
       background: {
         primary: string;
+        chat: {
+          messages: {
+            container: string;
+            bot: string;
+          };
+          launcher: {
+            container: string;
+          };
+        };
+        primaryReverse: string;
       };
 
       text: {
         title: string;
         paragraph: string;
+        chat: {
+          header: string;
+          userMessage: string;
+        };
       };
     };
   }
