@@ -8,6 +8,7 @@ import { Banner, Footer, Text } from '../../components';
 import Chat from '../../components/chat';
 import AppBar from '../components/AppBar';
 import { SUB_PAGES, SUB_PAGES_LABELS } from './subpages';
+import SubpageRouter from './subpages/SubpageRouter';
 
 const HomePage: React.FC = (props) => {
   const [subpage, setSubpage] = useState(SUB_PAGES.WHO_WE_ARE.label);
@@ -26,11 +27,10 @@ const HomePage: React.FC = (props) => {
   return (
     <Container>
       <Banner />
-      <AppBar routes={SUB_PAGES_LABELS} onSelectedRoute={setSubpage} />
-      <ToggleTheme />
+      <AppBar routes={SUB_PAGES_LABELS} onSelectedRoute={setSubpage} routeSelected={subpage} />
 
       <article>
-        <h1> {subpage}</h1>
+        <SubpageRouter subpage={subpage} />
       </article>
 
       <Chat />
@@ -42,13 +42,4 @@ const HomePage: React.FC = (props) => {
 
 export default HomePage;
 
-const Container = styled.main`
-  section {
-    justify-content: center;
-  }
-
-  article {
-    text-align: center;
-    padding: 5%;
-  }
-`;
+const Container = styled.main``;

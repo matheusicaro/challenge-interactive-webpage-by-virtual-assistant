@@ -11,6 +11,7 @@ type Props = {
   children?: never;
   routes: Array<string>;
   onSelectedRoute: (route: string) => void;
+  routeSelected?: string;
 };
 
 const AppBar: React.FC<Props> = (props) => {
@@ -29,7 +30,7 @@ const AppBar: React.FC<Props> = (props) => {
 
           <Box sx={BoxStyleSX}>
             {props.routes.map((route) => (
-              <BoxItem key={route} value={route} onClick={onClick} sx={ButtonStyleSX}>
+              <BoxItem key={route} value={route} onClick={onClick} sx={ButtonStyleSX} activated={props.routeSelected === route}>
                 {route}
               </BoxItem>
             ))}
@@ -49,8 +50,10 @@ const AppBarContainer = styled(AppBarMui)`
   }
 `;
 
-const BoxItem = styled(Button)`
+const BoxItem = styled(Button)<{ activated: boolean }>`
+  margin: 16px;
   padding: 10px 20px !important;
+  font-weight: ${({ activated }) => (activated ? '900' : '400')} !important;
 `;
 
 const Figure = styled.figure`

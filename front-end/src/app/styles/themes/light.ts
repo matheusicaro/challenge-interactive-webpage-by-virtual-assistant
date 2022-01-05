@@ -50,6 +50,7 @@ const styledComponents: DefaultTheme = {
     },
     text: {
       paragraph: TEXT_PRIMARY,
+      paragraphReverse: TEXT_PRIMARY_REVERSE,
       title: TEXT_PRIMARY,
       chat: {
         userMessage: TEXT_PRIMARY_REVERSE,

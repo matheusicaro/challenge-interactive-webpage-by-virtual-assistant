@@ -22,6 +22,7 @@ export module 'styled-components' {
       text: {
         title: string;
         paragraph: string;
+        paragraphReverse: string;
         chat: {
           header: string;
           userMessage: string;
