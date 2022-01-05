@@ -30,7 +30,6 @@ export default Banner;
 const Container = styled.section`
   padding: 40px 5vw;
   padding-top: 60px;
-  margin-bottom: 40px;
   border: none;
 
   background-image: url(${LogoBackground});

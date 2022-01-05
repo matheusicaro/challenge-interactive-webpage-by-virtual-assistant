@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 
-import { Button, Stack, Switch } from '@mui/material';
+import { Stack, Switch } from '@mui/material';
 import styled from 'styled-components';
 
 import { useTheme } from '../../styles/provider';
 import { Banner, Footer, Text } from '../../components';
 import Chat from '../../components/chat';
+import AppBar from '../components/AppBar';
+import { SUB_PAGES, SUB_PAGES_LABELS } from './subpages';
 
 const HomePage: React.FC = (props) => {
+  const [subpage, setSubpage] = useState(SUB_PAGES.WHO_WE_ARE.label);
   const { theme, toggleTheme } = useTheme();
 
   const ToggleTheme = () => {
@@ -23,10 +26,11 @@ const HomePage: React.FC = (props) => {
   return (
     <Container>
       <Banner />
+      <AppBar routes={SUB_PAGES_LABELS} onSelectedRoute={setSubpage} />
       <ToggleTheme />
 
       <article>
-        <h1> home page</h1>
+        <h1> {subpage}</h1>
       </article>
 
       <Chat />
