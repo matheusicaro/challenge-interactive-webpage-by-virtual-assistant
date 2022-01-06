@@ -47,9 +47,14 @@ const styledComponents: DefaultTheme = {
         },
       },
       primaryReverse: '#000000',
+      banner: {
+        primary: '#2f2f2f',
+        primaryReverse: '#2f2f2f',
+      },
     },
     text: {
       paragraph: TEXT_PRIMARY,
+      paragraphReverse: TEXT_PRIMARY_REVERSE,
       title: TEXT_PRIMARY,
       chat: {
         userMessage: TEXT_PRIMARY_REVERSE,

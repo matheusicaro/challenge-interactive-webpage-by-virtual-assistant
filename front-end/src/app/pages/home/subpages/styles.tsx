@@ -36,7 +36,7 @@ export const Paragraph = (props: { text: string; id?: string }) => (
 );
 
 export const List = styled.ul`
-  padding: 10%;
+  padding: 8% 10%;
   padding-bottom: 0;
 
   list-style-type: none;

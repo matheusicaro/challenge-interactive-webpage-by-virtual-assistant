@@ -67,7 +67,7 @@ const Container = styled.section`
   }
 
   .rcw-launcher {
-    background-color: ${({ theme }) => theme.colors.background.primaryReverse};
+    background-color: ${({ theme }) => theme.colors.background.primary};
 
     & > img {
       width: 40px;

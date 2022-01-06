@@ -1,11 +1,10 @@
 import React from 'react';
-import AppBarMui from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
 import Logo from '../../assets/images/logo_neo_full.png';
-import styled from 'styled-components';
+import { useTheme } from '../../styles/provider';
+import { AppBarContainer, BoxItem, BoxStyleSX, ButtonStyleSX, DarkIcon, Figure, LightIcon, ThemeContainer } from './styles';
 
 type Props = {
   children?: never;
@@ -15,9 +14,23 @@ type Props = {
 };
 
 const AppBar: React.FC<Props> = (props) => {
+  const { theme, toggleTheme } = useTheme();
+
+  const isLightTheme = theme === 'light';
+
   const onClick = (e: any) => {
     e.preventDefault();
     props.onSelectedRoute(e.target.value);
+  };
+
+  const ToggleTheme = () => {
+    return (
+      <ThemeContainer>
+        <LightIcon activated={isLightTheme} onClick={toggleTheme} />
+        <span>{' | '}</span>
+        <DarkIcon activated={!isLightTheme} onClick={toggleTheme} />
+      </ThemeContainer>
+    );
   };
 
   return (
@@ -28,41 +41,19 @@ const AppBar: React.FC<Props> = (props) => {
             <img src={Logo} alt="Logo" />
           </Figure>
 
-          <Box sx={BoxStyleSX}>
+          <Box component="section" sx={BoxStyleSX}>
             {props.routes.map((route) => (
               <BoxItem key={route} value={route} onClick={onClick} sx={ButtonStyleSX} activated={props.routeSelected === route}>
                 {route}
               </BoxItem>
             ))}
           </Box>
+
+          <ToggleTheme />
         </Toolbar>
       </Container>
     </AppBarContainer>
   );
 };
+
 export default AppBar;
-
-const AppBarContainer = styled(AppBarMui)`
-  background-color: ${({ theme }) => theme.colors.background.primaryReverse} !important;
-
-  .MuiBox-root {
-    margin-left: 80px;
-  }
-`;
-
-const BoxItem = styled(Button)<{ activated: boolean }>`
-  margin: 16px;
-  padding: 10px 20px !important;
-  font-weight: ${({ activated }) => (activated ? '900' : '400')} !important;
-`;
-
-const Figure = styled.figure`
-  display: contents;
-
-  img {
-    width: 130px;
-  }
-`;
-
-const BoxStyleSX = { flexGrow: 1, display: { xs: 'none', md: 'flex' } };
-const ButtonStyleSX = { my: 2, color: 'white', display: 'block' };

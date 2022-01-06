@@ -32,7 +32,7 @@ const PlusWere: React.FC<Props> = (props) => {
           {FREE_TEXT}
         </Text>
 
-        <LinkButton id="plus-were-button" label="Get the Neo Card" href="https://member.neofinancial.com/signup" />
+        <LinkButton reverseColor id="plus-were-button" label="Get the Neo Card" href="https://member.neofinancial.com/signup" />
       </PlusWereSection>
     </Fragment>
   );

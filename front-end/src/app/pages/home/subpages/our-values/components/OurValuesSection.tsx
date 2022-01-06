@@ -70,10 +70,12 @@ export default OurValuesSection;
 
 const Container = styled.section`
   padding: 0vw 25vw;
-  padding-bottom: 15vh;
+  padding-bottom: 5vh;
 
   #our-values-title {
     margin: 50px 0;
     margin-bottom: 0;
+
+    text-align: center;
   }
 `;

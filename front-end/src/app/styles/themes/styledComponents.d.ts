@@ -17,6 +17,10 @@ export module 'styled-components' {
           };
         };
         primaryReverse: string;
+        banner: {
+          primary: string;
+          primaryReverse: string;
+        };
       };
 
       text: {

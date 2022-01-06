@@ -47,6 +47,10 @@ const styledComponents: DefaultTheme = {
         },
       },
       primaryReverse: '#000000',
+      banner: {
+        primary: '#2f2f2f',
+        primaryReverse: '#2f2f2f',
+      },
     },
     text: {
       paragraph: TEXT_PRIMARY,

@@ -24,7 +24,7 @@ const WhyNeoSection: React.FC<Props> = (props) => {
         {WHY_NEO_PARAGRAPH}
       </Text>
 
-      <LinkButton label="Join Now" href="https://member.neofinancial.com/signup" />
+      <LinkButton reverseColor label="Join Now" href="https://member.neofinancial.com/signup" />
     </Container>
   );
 };
