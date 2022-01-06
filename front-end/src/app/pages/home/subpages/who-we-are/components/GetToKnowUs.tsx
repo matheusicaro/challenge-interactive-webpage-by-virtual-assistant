@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { Text } from '../../../../../components';
-import { Figure, PositionContainer, Subtitle, Title } from '../styles';
+import { List, PositionContainer, Title } from '../../styles';
 import styled from 'styled-components';
 
 import MadeInCanadaImage from '../assets/made-in-canada.png';
 import TechInnovationMeetsFinanceImage from '../assets/tech-innovation.png';
 import NeoIsLocalImage from '../assets/neo-is-local.png';
 import NeoIsCommunityImage from '../assets/neo-is-community.png';
+import ItemList from '../../../../../components/ItemList';
 
 const GET_TO_KNOW_US_TITLE = 'Get to know us';
 
@@ -57,36 +57,16 @@ const GetToKnowUs: React.FC<Props> = (props) => {
     <Container>
       <Title id="get-to-know-us-title" text={GET_TO_KNOW_US_TITLE} />
 
-      <ul>
+      <List>
         {items.map((i) => (
-          <Item key={i.title} picture={i.picture} title={i.title} paragraph={i.paragraph} topic={i.topic} />
+          <ItemList key={i.title} picture={i.picture} title={i.title} paragraph={i.paragraph} topic={i.topic} />
         ))}
-      </ul>
+      </List>
     </Container>
   );
 };
 
 export default GetToKnowUs;
-
-const Item = (props: { key: string; picture: string; title: string; paragraph: string; topic?: string }) => (
-  <li key={props.key}>
-    <Figure>
-      <img src={props.picture} alt={props.title} />
-    </Figure>
-
-    <Subtitle text={props.title} />
-
-    <Text component="p" variant="body2">
-      {props.paragraph}
-    </Text>
-
-    {props.topic && (
-      <Text className="Text-paragraph-alert" component="p" variant="body2">
-        {props.topic}
-      </Text>
-    )}
-  </li>
-);
 
 const Container = styled.section`
   ${PositionContainer}
@@ -95,29 +75,7 @@ const Container = styled.section`
     text-align: center;
   }
 
-  & > ul {
-    padding: 10%;
-    padding-bottom: 0;
-
-    list-style-type: none;
-
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 50px;
-    grid-row-gap: 50px;
-
-    h6,
-    p {
-      line-height: 2em;
-    }
-
-    p {
-      font-size: 0.7em;
-    }
-  }
-
-  .Text-paragraph-alert {
+  .item-list-topic {
     font-size: 0.5em;
   }
 `;

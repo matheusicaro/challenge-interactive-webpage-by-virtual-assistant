@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import styled from 'styled-components';
 
 import { Text } from '../../../../../components';
-import LinkButton from './LinkButton';
+import LinkButton from '../../../../../components/LinkButton';
 
 const TITLE = "Plus, we're: ";
 const INSTANT_TEXT_PREFIX = 'Instant: ';

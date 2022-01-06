@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Text } from '../../../../../components';
 
 import CashbackHighlightImage from '../assets/cashback-highlight.png';
-import LinkButton from './LinkButton';
+import LinkButton from '../../../../../components/LinkButton';
 
 const WHY_NEO_TITLE = 'Why Neo?';
 const WHY_NEO_PARAGRAPH = `Why Neo?

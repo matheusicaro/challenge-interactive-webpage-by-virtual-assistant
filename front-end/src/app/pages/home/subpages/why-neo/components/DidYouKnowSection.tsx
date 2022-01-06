@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Text } from '../../../../../components';
+import { ItemList, Text } from '../../../../../components';
 
 import ShopLocalImage from '../assets/shop-local.png';
 import EarnBigImage from '../assets/earn-big.png';
@@ -56,7 +56,7 @@ const DidYouKnowSection: React.FC<Props> = (props) => {
 
       <ul>
         {items.map((item) => (
-          <Item key={item.title} picture={item.picture} title={item.title} paragraph={item.paragraph} />
+          <ItemList key={item.title} picture={item.picture} title={item.title} paragraph={item.paragraph} />
         ))}
       </ul>
     </Container>
@@ -64,20 +64,6 @@ const DidYouKnowSection: React.FC<Props> = (props) => {
 };
 
 export default DidYouKnowSection;
-
-const Item = (props: { key: string; picture: string; title: string; paragraph: string; topic?: string }) => (
-  <li key={props.key}>
-    <Figure>
-      <img src={props.picture} alt={props.title} />
-    </Figure>
-
-    <Text variant="h6">{props.title}</Text>
-
-    <Text component="p" variant="body2">
-      {props.paragraph}
-    </Text>
-  </li>
-);
 
 const Container = styled.section`
   text-align: center;
@@ -100,13 +86,5 @@ const Container = styled.section`
         line-height: 1.8em;
       }
     }
-  }
-`;
-
-const Figure = styled.figure`
-  display: contents;
-
-  img {
-    width: 50px;
   }
 `;

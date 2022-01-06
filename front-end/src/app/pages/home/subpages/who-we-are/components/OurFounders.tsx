@@ -7,7 +7,7 @@ import { Text } from '../../../../../components';
 import FounderAndrewAvatar from '../assets/founder-andrew.jpg';
 import FounderJeffAvatar from '../assets/founder-jeff.jpg';
 import FounderKrisAvatar from '../assets/founder-kris.jpg';
-import { PositionContainer, Subtitle, Title } from '../styles';
+import { PositionContainer, Subtitle, Title } from '../../styles';
 
 type Props = {
   children?: never;

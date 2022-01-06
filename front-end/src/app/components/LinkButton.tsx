@@ -8,11 +8,12 @@ type Props = {
   label: string;
   href: string;
   id?: string;
+  reverseColor?: boolean;
 };
 
-const LinkButton: React.FC<Props> = ({ label, href, id }) => {
+const LinkButton: React.FC<Props> = ({ label, href, id, reverseColor }) => {
   return (
-    <Link id={id} href={href} target="_blank" rel="noreferrer noopener">
+    <Link reverseColor={reverseColor} id={id} href={href} target="_blank" rel="noreferrer noopener">
       <Button>{label}</Button>
     </Link>
   );
@@ -20,13 +21,14 @@ const LinkButton: React.FC<Props> = ({ label, href, id }) => {
 
 export default LinkButton;
 
-const Link = styled.a`
+const Link = styled.a<{ reverseColor?: boolean }>`
   width: fit-content !important;
 
   &,
   button {
-    color: ${({ theme }) => theme.colors.text.paragraphReverse} !important;
-    background-color: ${({ theme }) => theme.colors.background.primaryReverse} !important;
+    color: ${({ theme, reverseColor }) => (reverseColor ? theme.colors.text.paragraphReverse : theme.colors.text.paragraph)} !important;
+    background-color: ${({ theme, reverseColor }) =>
+      reverseColor ? theme.colors.background.primaryReverse : theme.colors.background.primary} !important;
 
     :hover {
       background: #1ea57d !important;

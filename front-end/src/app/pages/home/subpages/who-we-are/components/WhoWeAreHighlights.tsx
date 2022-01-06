@@ -4,7 +4,7 @@ import { Text } from '../../../../../components';
 import styled from 'styled-components';
 
 import HighlightImage from '../assets/highlight.png';
-import { PositionContainer, Title } from '../styles';
+import { PositionContainer, Title } from '../../styles';
 
 const WHO_WE_ARE_TITLE = 'Who we are';
 
