@@ -1,10 +1,8 @@
 import React, { Fragment } from 'react';
 
-import { Text } from '../../../../components';
-import GetToKnowUs from './GetToKnowUs';
-import WhoWeAreHighlights from './WhoWeAreHighlights';
-
-const OUR_FOUNDERS_TITLE = 'Our founders';
+import GetToKnowUs from './components/GetToKnowUs';
+import OurFounders from './components/OurFounders';
+import WhoWeAreHighlights from './components/WhoWeAreHighlights';
 
 type Props = {
   children?: never;
@@ -15,10 +13,7 @@ const WhoWeAre: React.FC<Props> = (props) => {
     <Fragment>
       <WhoWeAreHighlights />
       <GetToKnowUs />
-
-      <section>
-        <Text variant="h1">{OUR_FOUNDERS_TITLE}</Text>
-      </section>
+      <OurFounders />
     </Fragment>
   );
 };

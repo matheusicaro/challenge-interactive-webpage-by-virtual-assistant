@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Text } from '../../../../components';
+import { Text } from '../../../../../components';
 import styled from 'styled-components';
 
-import HighlightImage from './assets/highlight.png';
-import { PositionContainer } from './styles';
+import HighlightImage from '../assets/highlight.png';
+import { PositionContainer, Title } from '../styles';
 
 const WHO_WE_ARE_TITLE = 'Who we are';
 
@@ -19,7 +19,8 @@ type Props = {
 const WhoWeAreHighlights: React.FC<Props> = (props) => {
   return (
     <Container>
-      <Text variant="h4">{WHO_WE_ARE_TITLE}</Text>
+      <Title text={WHO_WE_ARE_TITLE} />
+
       <Text id="who-we-are-paragraph" component="p" variant="body2">
         {WHO_WE_ARE_PARAGRAPH}
       </Text>
