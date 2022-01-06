@@ -5,18 +5,21 @@ export module 'styled-components' {
   export interface DefaultTheme {
     title: ThemeNamesType;
     colors: {
+      darkColor: string;
+      lightColor: string;
+
       background: {
         primary: string;
+        secondary: string;
+
         chat: {
           messages: {
             container: string;
             bot: string;
           };
-          launcher: {
-            container: string;
-          };
         };
         primaryReverse: string;
+        appBar: string;
         banner: {
           primary: string;
           primaryReverse: string;

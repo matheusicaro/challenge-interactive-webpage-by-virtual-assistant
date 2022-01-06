@@ -5,7 +5,8 @@ import { Brightness2, WbSunny } from '@material-ui/icons';
 import Button from '@mui/material/Button';
 
 export const AppBarContainer = styled(AppBarMui)`
-  background-color: ${({ theme }) => theme.colors.background.primaryReverse} !important;
+  background-color: ${({ theme }) => theme.colors.background.appBar} !important;
+  background-image: none !important;
 
   .MuiBox-root {
     margin-left: 80px;

@@ -72,9 +72,11 @@ const Container = styled.section`
   padding: 0vw 25vw;
   padding-bottom: 5vh;
 
+  background-color: ${({ theme }) => theme.colors.background.secondary};
+
   #our-values-title {
-    margin: 50px 0;
-    margin-bottom: 0;
+    padding: 50px 0;
+    padding-bottom: 0;
 
     text-align: center;
   }

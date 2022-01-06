@@ -9,6 +9,8 @@ export type LightThemeName = 'light';
 const BACKGROUND_PRIMARY = '#fff';
 const TEXT_PRIMARY = 'rgb(10, 10, 10, 1)';
 const TEXT_PRIMARY_REVERSE = 'rgb(245, 245, 245, 1)';
+const DARK = '#000000';
+const LIGHT = '#fff';
 
 const typography: TypographyOptions = {
   fontFamily: FONT_FAMILY,
@@ -35,29 +37,33 @@ const materialUi = createTheme({
 const styledComponents: DefaultTheme = {
   title: LIGHT_THEME_NAME,
   colors: {
+    darkColor: DARK,
+    lightColor: LIGHT,
+
     background: {
       primary: BACKGROUND_PRIMARY,
+      secondary: BACKGROUND_PRIMARY,
+
       chat: {
         messages: {
           container: '#F9F9F9',
           bot: '#f3f3f3',
         },
-        launcher: {
-          container: 'red',
-        },
       },
-      primaryReverse: '#000000',
+      primaryReverse: DARK,
+      appBar: DARK,
       banner: {
         primary: '#2f2f2f',
         primaryReverse: '#2f2f2f',
       },
     },
+
     text: {
       paragraph: TEXT_PRIMARY,
       paragraphReverse: TEXT_PRIMARY_REVERSE,
       title: TEXT_PRIMARY,
       chat: {
-        userMessage: TEXT_PRIMARY_REVERSE,
+        userMessage: '#fff',
         header: TEXT_PRIMARY_REVERSE,
       },
     },

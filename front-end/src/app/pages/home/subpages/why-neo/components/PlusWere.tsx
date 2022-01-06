@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Text } from '../../../../../components';
 import LinkButton from '../../../../../components/LinkButton';
+import { useTheme } from '../../../../../styles/provider';
 
 const TITLE = "Plus, we're: ";
 const INSTANT_TEXT_PREFIX = 'Instant: ';
@@ -15,6 +16,8 @@ type Props = {
 };
 
 const PlusWere: React.FC<Props> = (props) => {
+  const { theme } = useTheme();
+
   return (
     <Fragment>
       <PlusWereSection>
@@ -32,7 +35,12 @@ const PlusWere: React.FC<Props> = (props) => {
           {FREE_TEXT}
         </Text>
 
-        <LinkButton reverseColor id="plus-were-button" label="Get the Neo Card" href="https://member.neofinancial.com/signup" />
+        <LinkButton
+          reverseColor={theme === 'light'}
+          id="plus-were-button"
+          label="Get the Neo Card"
+          href="https://member.neofinancial.com/signup"
+        />
       </PlusWereSection>
     </Fragment>
   );
@@ -41,6 +49,11 @@ const PlusWere: React.FC<Props> = (props) => {
 export default PlusWere;
 
 const PlusWereSection = styled.section`
+  h4,
+  h6 {
+    color: ${({ theme }) => theme.colors.darkColor};
+  }
+
   background: rgb(149, 190, 194);
   text-align: center;
   padding: 5vh 0vw;

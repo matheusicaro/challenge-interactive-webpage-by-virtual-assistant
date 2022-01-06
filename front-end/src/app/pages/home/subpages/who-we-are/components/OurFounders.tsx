@@ -71,13 +71,13 @@ const founders = [
 const Container = styled.section`
   ${PositionContainer}
 
-  background-color: ${({ theme }) => theme.colors.background.primaryReverse};
+  background-color: ${({ theme }) => theme.colors.darkColor};
 
   h4,
   h6,
   p,
   li {
-    color: ${({ theme }) => theme.colors.text.paragraphReverse};
+    color: ${({ theme }) => theme.colors.lightColor};
   }
 
   ul {

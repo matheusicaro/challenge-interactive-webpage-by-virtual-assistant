@@ -13,7 +13,7 @@ type Props = {
 
 const LinkButton: React.FC<Props> = ({ label, href, id, reverseColor }) => {
   return (
-    <Link reverseColor={reverseColor} id={id} href={href} target="_blank" rel="noreferrer noopener">
+    <Link className="link-button" reverseColor={reverseColor} id={id} href={href} target="_blank" rel="noreferrer noopener">
       <Button>{label}</Button>
     </Link>
   );

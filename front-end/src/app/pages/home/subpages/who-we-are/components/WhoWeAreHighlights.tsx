@@ -35,7 +35,7 @@ const Container = styled.section`
 
   text-align: start;
   height: 300px;
-  background-color: ${({ theme }) => theme.colors.background.primaryReverse};
+  background-color: ${({ theme }) => theme.colors.darkColor};
 
   background-image: url(${HighlightImage});
   background-repeat: no-repeat;
@@ -49,6 +49,6 @@ const Container = styled.section`
 
   h4,
   p {
-    color: ${({ theme }) => theme.colors.text.paragraphReverse};
+    color: ${({ theme }) => theme.colors.lightColor};
   }
 `;

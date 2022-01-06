@@ -38,7 +38,9 @@ const AppBar: React.FC<Props> = (props) => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Figure>
-            <img src={Logo} alt="Logo" />
+            <a href="https://www.neofinancial.com/" rel="noopener noreferrer" target="_blank" title="Neo Financial Official Webpage">
+              <img src={Logo} alt="Logo" />
+            </a>
           </Figure>
 
           <Box component="section" sx={BoxStyleSX}>

@@ -32,7 +32,7 @@ const Container = styled.section`
   }
 
   .rcw-sender > button {
-    background-color: ${({ theme }) => theme.colors.background.primaryReverse};
+    background-color: ${({ theme }) => theme.colors.darkColor};
 
     align-self: center;
     & > img {
@@ -44,15 +44,18 @@ const Container = styled.section`
     .rcw-header,
     .rcw-sender,
     .rcw-close-button {
-      background-color: ${({ theme }) => theme.colors.background.primaryReverse} !important;
-    }
-    .rcw-header {
-      color: ${({ theme }) => theme.colors.text.chat.header};
+      background-color: ${({ theme }) => theme.colors.darkColor} !important;
     }
   }
 
+  .rcw-new-message,
   .rcw-messages-container {
     background-color: ${({ theme }) => theme.colors.background.chat.messages.container};
+  }
+
+  .rcw-messages-container {
+    font-size: 0.8em;
+    line-height: 1.2em;
   }
 
   .rcw-message {
@@ -61,13 +64,13 @@ const Container = styled.section`
     }
 
     .rcw-client .rcw-message-text {
-      background-color: ${({ theme }) => theme.colors.background.primaryReverse};
+      background-color: ${({ theme }) => theme.colors.darkColor};
       color: ${({ theme }) => theme.colors.text.chat.userMessage};
     }
   }
 
   .rcw-launcher {
-    background-color: ${({ theme }) => theme.colors.background.primary};
+    background-color: ${({ theme }) => theme.colors.darkColor};
 
     & > img {
       width: 40px;

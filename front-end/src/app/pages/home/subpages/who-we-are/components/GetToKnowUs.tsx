@@ -71,6 +71,8 @@ export default GetToKnowUs;
 const Container = styled.section`
   ${PositionContainer}
 
+  background-color: ${({ theme }) => theme.colors.background.secondary};
+
   #get-to-know-us-title {
     text-align: center;
   }

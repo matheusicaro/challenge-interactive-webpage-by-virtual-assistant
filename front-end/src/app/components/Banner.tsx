@@ -17,7 +17,7 @@ const Banner: React.FC = () => {
       <p className="banner-topics">{`- Developed with ${tags.join(', ')}`}</p>
       <p className="banner-topics">
         - Repository at:
-        <a href={repository.url} rel="noopener noreferrer" target="_blank" title="Project repository">
+        <a href={repository.url} rel="noopener noreferrer" target="_blank" title="----">
           {' Github'}
         </a>
       </p>
@@ -37,18 +37,18 @@ const Container = styled.section`
   background-position: 90% 80%;
   background-size: 360px;
 
-  background-color: ${({ theme }) => (theme.title === 'light' ? '#2f2f2f' : '#f1f1f1')};
+  background-color: ${({ theme }) => theme.colors.background.banner.primary};
 
   &,
   .banner-contrast {
-    color: ${({ theme }) => theme.colors.background.primary};
+    color: ${({ theme }) => theme.colors.lightColor};
   }
 
   .banner-topics {
-    color: ${({ theme }) => (theme.title === 'light' ? '#a3d0f1' : '#098beb')};
+    color: #098debab;
 
     & > a {
-      color: ${({ theme }) => (theme.title === 'light' ? 'aquamarine' : '#e90dce')};
+      color: #e90dcfc8;
     }
   }
 

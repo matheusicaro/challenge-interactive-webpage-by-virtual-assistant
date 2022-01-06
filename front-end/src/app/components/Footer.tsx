@@ -31,7 +31,7 @@ const Container = styled.footer`
     color: black;
 
     span {
-      color: ${({ theme }) => theme.colors.text.paragraphReverse};
+      color: ${({ theme }) => theme.colors.lightColor};
     }
 
     :hover {

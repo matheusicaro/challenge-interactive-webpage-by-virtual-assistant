@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { LinkButton } from '../../../../../components';
+import { useTheme } from '../../../../../styles/provider';
 import { Paragraph, Title } from '../../styles';
 
 import highlightsImage from '../assets/join-the-neo-team-highlights.png';
@@ -17,13 +18,15 @@ type Props = {
 };
 
 const JoinTheNeoTeamSection: React.FC<Props> = (props) => {
+  const { theme } = useTheme();
+
   return (
     <Container>
       <Title text={JOIN_THE_NEO_TEAM_TITLE} />
 
       <Paragraph text={JOIN_THE_NEO_TEAM_PARAGRAPH} />
 
-      <LinkButton href="https://careers-neofinancial.icims.com/" label={BUTTON_LABEL} />
+      <LinkButton reverseColor={theme === 'dark'} href="https://careers-neofinancial.icims.com/" label={BUTTON_LABEL} />
     </Container>
   );
 };
@@ -33,14 +36,14 @@ export default JoinTheNeoTeamSection;
 const Container = styled.section`
   padding: 10vh 25vw;
   padding-right: 50vw;
-  height: 500px;
+  height: 498px;
 
-  background-color: ${({ theme }) => theme.colors.background.primaryReverse};
+  background-color: ${({ theme }) => theme.colors.darkColor};
 
   &,
   h4,
   p {
-    color: ${({ theme }) => theme.colors.text.paragraphReverse};
+    color: ${({ theme }) => theme.colors.lightColor};
   }
 
   h4,

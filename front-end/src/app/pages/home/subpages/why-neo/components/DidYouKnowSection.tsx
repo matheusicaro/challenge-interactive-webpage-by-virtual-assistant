@@ -4,9 +4,15 @@ import styled from 'styled-components';
 import { ItemList, Text } from '../../../../../components';
 
 import ShopLocalImage from '../assets/shop-local.png';
+import ShopLocalImageForDark from '../assets/shop-local-white.png';
 import EarnBigImage from '../assets/earn-big.png';
+import EarnBigImageForDark from '../assets/earn-big-white.png';
 import SaveMoreImage from '../assets/save-more.png';
+import SaveMoreImageForDark from '../assets/save-more-white.png';
 import DiscoverImage from '../assets/discover.png';
+import DiscoverImageForDark from '../assets/discover-white.png';
+
+import { useTheme } from '../../../../../styles/provider';
 
 const DID_YOU_KNOW_TITLE = 'Did you know? Neo helps you:';
 
@@ -24,22 +30,34 @@ const DISCOVER_PARAGRAPH = 'We’re the local experts. Simply explore our app to
 
 const items = [
   {
-    picture: ShopLocalImage,
+    picture: {
+      dark: ShopLocalImageForDark,
+      light: ShopLocalImage,
+    },
     title: SHOP_LOCAL_TOPIC,
     paragraph: SHOP_LOCAL_PARAGRAPH,
   },
   {
-    picture: EarnBigImage,
+    picture: {
+      dark: EarnBigImageForDark,
+      light: EarnBigImage,
+    },
     title: EARN_BIG_TOPIC,
     paragraph: EARN_BIG_PARAGRAPH,
   },
   {
-    picture: SaveMoreImage,
+    picture: {
+      dark: SaveMoreImageForDark,
+      light: SaveMoreImage,
+    },
     title: SAVE_MORE_TOPIC,
     paragraph: SAVE_MORE_PARAGRAPH,
   },
   {
-    picture: DiscoverImage,
+    picture: {
+      dark: DiscoverImageForDark,
+      light: DiscoverImage,
+    },
     title: DISCOVER_TOPIC,
     paragraph: DISCOVER_PARAGRAPH,
   },
@@ -50,13 +68,22 @@ type Props = {
 };
 
 const DidYouKnowSection: React.FC<Props> = (props) => {
+  const { theme } = useTheme();
+
+  const isDarkTheme = theme === 'dark';
+
   return (
     <Container>
       <Text variant="h4">{DID_YOU_KNOW_TITLE}</Text>
 
       <ul>
         {items.map((item) => (
-          <ItemList key={item.title} picture={item.picture} title={item.title} paragraph={item.paragraph} />
+          <ItemList
+            key={item.title}
+            picture={isDarkTheme ? item.picture.dark : item.picture.light}
+            title={item.title}
+            paragraph={item.paragraph}
+          />
         ))}
       </ul>
     </Container>
