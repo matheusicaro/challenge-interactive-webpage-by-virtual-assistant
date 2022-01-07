@@ -3,52 +3,49 @@ import styled from 'styled-components';
 
 import { Text } from '../../../../../components';
 import LinkButton from '../../../../../components/LinkButton';
+import { LanguageState } from '../../../../../store/actions/language';
 import { useTheme } from '../../../../../styles/provider';
-
-const TITLE = "Plus, we're: ";
-const INSTANT_TEXT_PREFIX = 'Instant: ';
-const INSTANT_TEXT = `See how much you've made on each purchase in real-time`;
-const FREE_TEXT_PREFIX = 'Free: ';
-const FREE_TEXT = 'No annual or monthly fees';
+import PLUS_WERE_CONSTANTS from '../constants/plus-were.constants';
 
 type Props = {
   children?: never;
+  language: LanguageState;
 };
 
-const PlusWere: React.FC<Props> = (props) => {
+const PlusWereSection: React.FC<Props> = (props) => {
   const { theme } = useTheme();
 
   return (
     <Fragment>
-      <PlusWereSection>
+      <Container>
         <Text id="plus-were-title" variant="h4">
-          {TITLE}
+          {PLUS_WERE_CONSTANTS.TEXT.TITLE[props.language]}
         </Text>
 
         <Text variant="h6">
-          <b>{INSTANT_TEXT_PREFIX}</b>
-          {INSTANT_TEXT}
+          <b>{PLUS_WERE_CONSTANTS.TEXT.INSTANT_TEXT_PREFIX[props.language]}</b>
+          {PLUS_WERE_CONSTANTS.TEXT.INSTANT_TEXT[props.language]}
         </Text>
 
         <Text variant="h6">
-          <b>{FREE_TEXT_PREFIX}</b>
-          {FREE_TEXT}
+          <b>{PLUS_WERE_CONSTANTS.TEXT.FREE_TEXT_PREFIX[props.language]}</b>
+          {PLUS_WERE_CONSTANTS.TEXT.FREE_TEXT[props.language]}
         </Text>
 
         <LinkButton
           reverseColor={theme === 'light'}
           id="plus-were-button"
-          label="Get the Neo Card"
+          label={PLUS_WERE_CONSTANTS.TEXT.BUTTON[props.language]}
           href="https://member.neofinancial.com/signup"
         />
-      </PlusWereSection>
+      </Container>
     </Fragment>
   );
 };
 
-export default PlusWere;
+export default PlusWereSection;
 
-const PlusWereSection = styled.section`
+const Container = styled.section`
   h4,
   h6 {
     color: ${({ theme }) => theme.colors.darkColor};

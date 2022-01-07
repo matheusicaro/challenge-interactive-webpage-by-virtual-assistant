@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
+import { globalContext } from '../../../../store';
 import JoinTheNeoTeamSection from './components/JoinTheNeoTeamSection';
 import OurValuesSection from './components/OurValuesSection';
 
@@ -7,10 +8,12 @@ type Props = {
 };
 
 const OurValues: React.FC<Props> = (props) => {
+  const { globalState } = useContext(globalContext);
+
   return (
     <Fragment>
-      <JoinTheNeoTeamSection />
-      <OurValuesSection />
+      <JoinTheNeoTeamSection language={globalState.language} />
+      <OurValuesSection language={globalState.language} />
     </Fragment>
   );
 };

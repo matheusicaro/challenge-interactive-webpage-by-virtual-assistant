@@ -5,26 +5,23 @@ import { Text } from '../../../../../components';
 
 import CashbackHighlightImage from '../assets/cashback-highlight.png';
 import LinkButton from '../../../../../components/LinkButton';
-
-const WHY_NEO_TITLE = 'Why Neo?';
-const WHY_NEO_PARAGRAPH = `Why Neo?
-We get it, the words “rewards” and “cashback” have been so overused that even we roll our eyes, that’s why we’re
-redefining what a card can do for YOU and your community.
-`;
+import WHY_NEO_CONSTANTS from '../constants/why-neo-section.constants';
+import { LanguageState } from '../../../../../store/actions/language';
 
 type Props = {
   children?: never;
+  language: LanguageState;
 };
 
 const WhyNeoSection: React.FC<Props> = (props) => {
   return (
     <Container>
-      <Text variant="h4">{WHY_NEO_TITLE}</Text>
+      <Text variant="h4">{WHY_NEO_CONSTANTS.TEXT.WHY_NEO_TITLE[props.language]}</Text>
       <Text component="p" variant="body2">
-        {WHY_NEO_PARAGRAPH}
+        {WHY_NEO_CONSTANTS.TEXT.WHY_NEO_PARAGRAPH[props.language]}
       </Text>
 
-      <LinkButton reverseColor label="Join Now" href="https://member.neofinancial.com/signup" />
+      <LinkButton reverseColor label={WHY_NEO_CONSTANTS.TEXT.BUTTON[props.language]} href="https://member.neofinancial.com/signup" />
     </Container>
   );
 };

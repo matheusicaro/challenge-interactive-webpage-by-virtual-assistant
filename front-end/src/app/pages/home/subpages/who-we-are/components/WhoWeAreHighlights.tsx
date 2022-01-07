@@ -5,24 +5,21 @@ import styled from 'styled-components';
 
 import HighlightImage from '../assets/highlight.png';
 import { PositionContainer, Title } from '../../styles';
-
-const WHO_WE_ARE_TITLE = 'Who we are';
-
-const WHO_WE_ARE_PARAGRAPH = `We’re reimagining spending, savings, and rewards by using technology to simplify finances,
-create rewarding experiences, and build community for all Canadians.
-`;
+import WHO_WE_ARE_HIGHLIGHTS_CONSTANTS from '../constants/who-we-are-highlights.constants';
+import { LanguageState } from '../../../../../store/actions/language';
 
 type Props = {
   children?: never;
+  language: LanguageState;
 };
 
 const WhoWeAreHighlights: React.FC<Props> = (props) => {
   return (
     <Container>
-      <Title text={WHO_WE_ARE_TITLE} />
+      <Title text={WHO_WE_ARE_HIGHLIGHTS_CONSTANTS.TEXT.TITLE[props.language]} />
 
       <Text id="who-we-are-paragraph" component="p" variant="body2">
-        {WHO_WE_ARE_PARAGRAPH}
+        {WHO_WE_ARE_HIGHLIGHTS_CONSTANTS.TEXT.PARAGRAPH[props.language]}
       </Text>
     </Container>
   );

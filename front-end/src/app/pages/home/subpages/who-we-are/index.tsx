@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
+import { globalContext } from '../../../../store';
 
 import GetToKnowUs from './components/GetToKnowUs';
 import OurFounders from './components/OurFounders';
@@ -9,11 +10,13 @@ type Props = {
 };
 
 const WhoWeAre: React.FC<Props> = (props) => {
+  const { globalState } = useContext(globalContext);
+
   return (
     <Fragment>
-      <WhoWeAreHighlights />
-      <GetToKnowUs />
-      <OurFounders />
+      <WhoWeAreHighlights language={globalState.language} />
+      <GetToKnowUs language={globalState.language} />
+      <OurFounders language={globalState.language} />
     </Fragment>
   );
 };

@@ -4,15 +4,18 @@ import { BrowserRouter } from 'react-router-dom';
 import apolloClient from './graphql/apollo';
 
 import Routes from './routes';
+import GlobalStore from './store';
 import { ThemeGlobalProvider } from './styles/provider';
 
 const App: React.FC = () => (
   <ApolloProvider client={apolloClient}>
-    <ThemeGlobalProvider>
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
-    </ThemeGlobalProvider>
+    <GlobalStore>
+      <ThemeGlobalProvider>
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
+      </ThemeGlobalProvider>
+    </GlobalStore>
   </ApolloProvider>
 );
 

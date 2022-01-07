@@ -1,65 +1,30 @@
 import React from 'react';
 import { List, Title } from '../../styles';
-
-import IntegrityImage from '../assets/integrity.png';
-import InclusivityImage from '../assets/inclusivity.png';
-import CommunityImage from '../assets/community.png';
-import EmpowermentImage from '../assets/empowerment.png';
 import styled from 'styled-components';
 import { ItemList } from '../../../../../components';
-
-const OUR_VALUES_TITLE = 'Our values';
-
-const INTEGRITY_TITLE = 'Integrity';
-const INTEGRITY_PARAGRAPH = `We hold ourselves accountable to our members, partners and communities.
-We’re trusted with more than just their money, we advocate for their well-being.`;
-
-const EMPLOYMENT_TITLE = 'Inclusivity';
-const EMPLOYMENT_PARAGRAPH = `We believe in equal access for all to the best financial tools regardless of people’s
-history and financial literacy. We let people choose what’s right for them.`;
-
-const EMPOWERMENT_TITLE = 'Empowerment';
-const EMPOWERMENT_PARAGRAPH = `We provide people with the knowledge and tools they need to get more out of their time
-and money, so they can go after what they want.`;
-
-const COMMUNITY_TITLE = 'Community';
-const COMMUNITY_PARAGRAPH = `We build relationships with our members, partners and communities in ways that are meaningful to them.`;
-
-const items = [
-  {
-    picture: IntegrityImage,
-    title: INTEGRITY_TITLE,
-    paragraph: INTEGRITY_PARAGRAPH,
-  },
-  {
-    picture: InclusivityImage,
-    title: EMPLOYMENT_TITLE,
-    paragraph: EMPLOYMENT_PARAGRAPH,
-  },
-  {
-    picture: EmpowermentImage,
-    title: EMPOWERMENT_TITLE,
-    paragraph: EMPOWERMENT_PARAGRAPH,
-  },
-  {
-    picture: CommunityImage,
-    title: COMMUNITY_TITLE,
-    paragraph: COMMUNITY_PARAGRAPH,
-  },
-];
+import OUR_VALUES_CONSTANTS from '../constants/our-values-section';
+import { LanguageState } from '../../../../../store/actions/language';
 
 type Props = {
   children?: never;
+  language: LanguageState;
 };
 
 const OurValuesSection: React.FC<Props> = (props) => {
+  const items = OUR_VALUES_CONSTANTS.items;
+
   return (
     <Container>
-      <Title id="our-values-title" text={OUR_VALUES_TITLE} />
+      <Title id="our-values-title" text={OUR_VALUES_CONSTANTS.TEXT.TITLE[props.language]} />
 
       <List>
         {items.map((item) => (
-          <ItemList key={item.title} picture={item.picture} title={item.title} paragraph={item.paragraph} />
+          <ItemList
+            key={item.title[props.language]}
+            picture={item.picture}
+            title={item.title[props.language]}
+            paragraph={item.paragraph[props.language]}
+          />
         ))}
       </List>
     </Container>

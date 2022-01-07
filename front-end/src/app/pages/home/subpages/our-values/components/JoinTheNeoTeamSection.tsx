@@ -1,20 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { LinkButton } from '../../../../../components';
+import { LanguageState } from '../../../../../store/actions/language';
 import { useTheme } from '../../../../../styles/provider';
 import { Paragraph, Title } from '../../styles';
 
 import highlightsImage from '../assets/join-the-neo-team-highlights.png';
-
-const BUTTON_LABEL = 'See Open Positions';
-
-const JOIN_THE_NEO_TEAM_TITLE = 'Join the Neo team';
-const JOIN_THE_NEO_TEAM_PARAGRAPH = `We are a community of employees, customers, and merchants who are hungry for change.
-We are looking for ambitious, talented and passionate people who want to move fast, drive forward fresh ideas and create
-a lasting impact.`;
+import JOIN_THE_NEO_TEAM_CONSTANTS from '../constants/join-the-neo-team-section';
 
 type Props = {
   children?: never;
+  language: LanguageState;
 };
 
 const JoinTheNeoTeamSection: React.FC<Props> = (props) => {
@@ -22,11 +18,15 @@ const JoinTheNeoTeamSection: React.FC<Props> = (props) => {
 
   return (
     <Container>
-      <Title text={JOIN_THE_NEO_TEAM_TITLE} />
+      <Title text={JOIN_THE_NEO_TEAM_CONSTANTS.TEXT.TITLE[props.language]} />
 
-      <Paragraph text={JOIN_THE_NEO_TEAM_PARAGRAPH} />
+      <Paragraph text={JOIN_THE_NEO_TEAM_CONSTANTS.TEXT.PARAGRAPH[props.language]} />
 
-      <LinkButton reverseColor={theme === 'dark'} href="https://careers-neofinancial.icims.com/" label={BUTTON_LABEL} />
+      <LinkButton
+        reverseColor={theme === 'dark'}
+        href="https://careers-neofinancial.icims.com/"
+        label={JOIN_THE_NEO_TEAM_CONSTANTS.TEXT.BUTTON[props.language]}
+      />
     </Container>
   );
 };

@@ -1,9 +1,10 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import styled from 'styled-components';
+import { globalContext } from '../../../../store';
 
 import YellowTriangleImage from './assets/yellow-triangle.png';
 import DidYouKnowSection from './components/DidYouKnowSection';
-import PlusWereSection from './components/PlusWere';
+import PlusWereSection from './components/PlusWereSection';
 import WhyNeoSection from './components/WhyNeoSection';
 
 type Props = {
@@ -11,14 +12,15 @@ type Props = {
 };
 
 const WhyNeo: React.FC<Props> = (props) => {
+  const { globalState } = useContext(globalContext);
+
   return (
     <Fragment>
       <Highlights>
-        <WhyNeoSection />
-        <DidYouKnowSection />
+        <WhyNeoSection language={globalState.language} />
+        <DidYouKnowSection language={globalState.language} />
       </Highlights>
-
-      <PlusWereSection />
+      <PlusWereSection language={globalState.language} />
     </Fragment>
   );
 };

@@ -1,16 +1,34 @@
+import { LanguageState } from '../../../store/actions/language';
+
 export const SUB_PAGES = {
   WHO_WE_ARE: {
-    label: 'Who We Are',
+    id: '1',
+    label: {
+      EN: 'Who We Are',
+      FR: 'Qui nous sommes',
+    },
   },
   WHY_NEO: {
-    label: 'Why Neo',
+    id: '2',
+    label: {
+      EN: 'Why Neo',
+      FR: 'Pourquoi Néo',
+    },
   },
   OUR_VALUES: {
-    label: 'Our Values',
+    id: '3',
+    label: {
+      EN: 'Our Values',
+      FR: 'Nos valeurs',
+    },
   },
   TECHNOLOGIES_USED: {
-    label: 'Technologies Used',
+    id: '4',
+    label: {
+      EN: 'Technologies Used',
+      FR: 'Technologies utilisées',
+    },
   },
 };
 
-export const SUB_PAGES_LABELS = Object.values(SUB_PAGES).map((e) => e.label);
+export const SUB_PAGES_LABELS = (language: LanguageState) => Object.values(SUB_PAGES).map((e) => e.label[language]);

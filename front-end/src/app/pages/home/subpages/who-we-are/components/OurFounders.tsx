@@ -4,27 +4,24 @@ import styled from 'styled-components';
 
 import { Text } from '../../../../../components';
 
-import FounderAndrewAvatar from '../assets/founder-andrew.jpg';
-import FounderJeffAvatar from '../assets/founder-jeff.jpg';
-import FounderKrisAvatar from '../assets/founder-kris.jpg';
 import { PositionContainer, Subtitle, Title } from '../../styles';
+import OUR_FOUNDERS_CONSTANTS from '../constants/our-founders.constants';
+import { LanguageState } from '../../../../../store/actions/language';
 
 type Props = {
   children?: never;
+  language: LanguageState;
 };
 
-const OUR_FOUNDERS_TITLE = 'Our founders';
-const OUR_FOUNDERS_PARAGRAPH = `We know how technology can be used to improve everyday life. After building SkipTheDishes
-into a top 10 brand in Canada, we’re now set on challenging conventions with a smarter spending, saving and rewards
-experience for Canadians.`;
-
 const OurFounders: React.FC<Props> = (props) => {
+  const founders = OUR_FOUNDERS_CONSTANTS.founders;
+
   return (
     <Container>
-      <Title text={OUR_FOUNDERS_TITLE} />
+      <Title text={OUR_FOUNDERS_CONSTANTS.TEXT.TITLE[props.language]} />
 
       <Text id="our-founders-paragraph" component="p" variant="body2">
-        {OUR_FOUNDERS_PARAGRAPH}
+        {OUR_FOUNDERS_CONSTANTS.TEXT.PARAGRAPH[props.language]}
       </Text>
 
       <ul>
@@ -49,24 +46,6 @@ const OurFounders: React.FC<Props> = (props) => {
 };
 
 export default OurFounders;
-
-const founders = [
-  {
-    picture: FounderAndrewAvatar,
-    name: 'Andrew Chau',
-    positions: ['Co-founder &', 'CEO'],
-  },
-  {
-    picture: FounderJeffAvatar,
-    name: 'Jeff Adamson',
-    positions: ['Co-founder &', 'Head of Partnerships'],
-  },
-  {
-    picture: FounderKrisAvatar,
-    name: 'Kris Read',
-    positions: ['Co-founder &', 'Head of Engineering'],
-  },
-];
 
 const Container = styled.section`
   ${PositionContainer}

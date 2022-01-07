@@ -5,9 +5,12 @@ import 'react-chat-widget/lib/styles.css';
 import styled from 'styled-components';
 import AvatarImg from '../../assets/images/avatar.png';
 import AvatarSmallImg from '../../assets/images/avatar-small.png';
+import { LanguageState } from '../../store/actions/language';
+import CHAT_CONSTANTS from './constants';
 
 type Props = {
   handleNewUserMessage: (message: string) => void;
+  language: LanguageState;
 };
 
 const ChatView: React.FC<Props> = (props) => {
@@ -17,8 +20,9 @@ const ChatView: React.FC<Props> = (props) => {
         titleAvatar={AvatarImg}
         launcherOpenImg={AvatarSmallImg}
         handleNewUserMessage={props.handleNewUserMessage}
-        title="Neo Assistant"
-        subtitle="Neo Financial Help Centre"
+        title={CHAT_CONSTANTS.TITLE[props.language]}
+        subtitle={CHAT_CONSTANTS.SUBTITLE[props.language]}
+        senderPlaceHolder={CHAT_CONSTANTS.SENDER_PLACE_HOLDER[props.language]}
       />
     </Container>
   );

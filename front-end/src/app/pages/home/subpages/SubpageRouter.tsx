@@ -6,16 +6,16 @@ import WhyNeo from './why-neo';
 
 type Props = {
   children?: never;
-  subpage: string;
+  subpageId: string;
 };
 
-const SubpageRouter: React.FC<Props> = ({ subpage }) => {
-  switch (subpage) {
-    case SUB_PAGES.WHO_WE_ARE.label:
+const SubpageRouter: React.FC<Props> = ({ subpageId }) => {
+  switch (subpageId) {
+    case SUB_PAGES.WHO_WE_ARE.id:
       return <WhoWeAre />;
-    case SUB_PAGES.WHY_NEO.label:
+    case SUB_PAGES.WHY_NEO.id:
       return <WhyNeo />;
-    case SUB_PAGES.OUR_VALUES.label:
+    case SUB_PAGES.OUR_VALUES.id:
       return <OurValues />;
     default:
       return <WhoWeAre />;
