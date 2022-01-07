@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Title } from '../../styles';
+import { List, PositionContainer, Title } from '../../styles';
 import styled from 'styled-components';
 import { ItemList } from '../../../../../components';
 import OUR_VALUES_CONSTANTS from '../constants/our-values-section';
@@ -36,6 +36,8 @@ const OurValuesSection: React.FC<Props> = (props) => {
 export default OurValuesSection;
 
 const Container = styled.section`
+  ${PositionContainer}
+
   padding: 0vw 25vw;
   padding-bottom: 5vh;
 

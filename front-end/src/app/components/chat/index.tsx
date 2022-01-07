@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { addResponseMessage } from 'react-chat-widget';
 
 import 'react-chat-widget/lib/styles.css';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Message, SEND_MESSAGE } from '../../graphql/queries/message';
 import { globalContext } from '../../store';
 import ChatView from './Chat';

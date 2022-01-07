@@ -29,9 +29,13 @@ export default LanguageButton;
 const Container = styled(Fab)`
   z-index: 99991 !important;
   position: fixed !important;
-  top: 92.5vh;
-  left: 85vw;
+  /* top: 92.5vh;
+  left: 85vw; */
   grid-gap: 5px;
+
+  bottom: 0;
+  margin: 0 100px 25px 0 !important;
+  right: 0;
 
   background-color: ${({ theme }) => theme.colors.background.primary} !important;
   color: ${({ theme }) => theme.colors.text.paragraph} !important;
@@ -40,6 +44,10 @@ const Container = styled(Fab)`
 
   & > svg {
     margin-right: 10px;
+  }
+
+  @media (max-width: 800px) {
+    z-index: 998 !important;
   }
 `;
 

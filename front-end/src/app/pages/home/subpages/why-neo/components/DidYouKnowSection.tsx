@@ -66,4 +66,25 @@ const Container = styled.section`
       }
     }
   }
+
+  @media (max-width: 1300px) {
+    padding: 15vh 5vw;
+  }
+
+  @media (max-width: 800px) {
+    padding: 5vh 2vw;
+  }
+
+  @media (max-width: 600px) {
+    padding-top: 15vh;
+
+    & > ul {
+      flex-direction: column;
+      padding: 0 15vw;
+    }
+  }
+
+  @media (max-width: 290px) {
+    padding-top: 35vh;
+  }
 `;

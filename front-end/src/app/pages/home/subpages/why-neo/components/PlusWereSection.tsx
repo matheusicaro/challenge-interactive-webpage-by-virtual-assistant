@@ -70,4 +70,8 @@ const Container = styled.section`
   #plus-were-button {
     margin: 30px 0;
   }
+
+  @media (max-width: 900px) {
+    padding: 5vh 5vw;
+  }
 `;

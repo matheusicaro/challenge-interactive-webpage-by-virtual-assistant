@@ -6,6 +6,18 @@ import { Text } from '../../../components';
 
 export const PositionContainer = css`
   padding: 5vh 25vw;
+
+  @media (max-width: 1600px) {
+    padding: 5vh 15vw;
+  }
+
+  @media (max-width: 1200px) {
+    padding: 5vh 5vw;
+  }
+
+  @media (max-width: 800px) {
+    padding: 5vh 1vw;
+  }
 `;
 
 export const Figure = styled.figure`
@@ -54,5 +66,12 @@ export const List = styled.ul`
 
   p {
     font-size: 0.7em;
+  }
+
+  @media (max-width: 500px) {
+    padding: 5vh 20vw;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
   }
 `;

@@ -23,6 +23,7 @@ export default LinkButton;
 
 const Link = styled.a<{ reverseColor?: boolean }>`
   width: fit-content !important;
+  height: fit-content !important;
 
   &,
   button {

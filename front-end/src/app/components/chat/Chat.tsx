@@ -17,6 +17,7 @@ const ChatView: React.FC<Props> = (props) => {
   return (
     <Container>
       <Widget
+        profileAvatar={AvatarImg}
         titleAvatar={AvatarImg}
         launcherOpenImg={AvatarSmallImg}
         handleNewUserMessage={props.handleNewUserMessage}
@@ -49,6 +50,25 @@ const Container = styled.section`
     .rcw-sender,
     .rcw-close-button {
       background-color: ${({ theme }) => theme.colors.darkColor} !important;
+    }
+
+    @media (max-width: 380px) {
+      min-width: 98vw;
+
+      .rcw-title {
+        font-size: 0.9em;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .rcw-title {
+        font-size: 0.7em;
+      }
+      .rcw-header {
+        & > span {
+          font-size: 0.9em;
+        }
+      }
     }
   }
 

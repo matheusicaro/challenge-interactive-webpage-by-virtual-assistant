@@ -36,5 +36,9 @@ const Main = styled.main`
     z-index: 99999;
     position: fixed;
     top: 0;
+
+    @media (max-width: 800px) {
+      z-index: 999;
+    }
   }
 `;

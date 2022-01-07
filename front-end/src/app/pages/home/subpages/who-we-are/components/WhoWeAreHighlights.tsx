@@ -52,4 +52,50 @@ const Container = styled.section`
   p {
     color: ${({ theme }) => theme.colors.lightColor};
   }
+
+  @media (max-width: 1600px) {
+    background-position: 90% 78%;
+  }
+
+  @media (max-width: 1200px) {
+    padding: 5vh 5vw;
+    background-position: 100% 78%;
+
+    p {
+      padding-right: 10%;
+    }
+  }
+
+  @media (max-width: 900px) {
+    background-size: 380px;
+    background-position: 100% 100%;
+  }
+
+  @media (max-width: 600px) {
+    padding-top: 45vh;
+    height: 70vh;
+    background-position: 50% 10%;
+    background-size: 500px;
+
+    p {
+      width: 100% !important;
+      margin: 15px 0 !important;
+    }
+  }
+
+  @media (max-height: 800px) {
+    background-size: 400px;
+  }
+
+  @media (max-height: 690px) {
+    background-size: 300px;
+    height: 90vh;
+    align-content: center;
+    display: grid;
+  }
+
+  @media (max-height: 460px) {
+    height: 120vh;
+    align-content: end;
+  }
 `;

@@ -22,10 +22,22 @@ export const BoxItem = styled(Button)<{ active: boolean }>`
 `;
 
 export const Figure = styled.figure`
-  display: contents;
+  a {
+    display: contents;
+  }
 
   img {
     width: 130px;
+  }
+
+  @media (max-width: 900px) {
+    a {
+      display: flex;
+    }
+
+    img {
+      width: 100px;
+    }
   }
 `;
 
@@ -39,6 +51,12 @@ export const ThemeContainer = styled.section`
   svg:hover {
     cursor: pointer !important;
     opacity: 1 !important;
+  }
+
+  @media (max-width: 900px) {
+    margin-left: auto;
+
+    width: 100px;
   }
 `;
 

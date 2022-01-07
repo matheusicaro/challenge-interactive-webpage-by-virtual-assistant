@@ -18,5 +18,10 @@ export const GlobalStyle = createGlobalStyle`
   :root {
     font-size: 21px;
     line-height: 32px;
+
+    @media (max-width: 768px) {
+      font-size: 18px;
+      line-height: 29px;
+    }
   }
 `;

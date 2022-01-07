@@ -5,6 +5,8 @@ import Container from '@mui/material/Container';
 import Logo from '../../assets/images/logo_neo_full.png';
 import { useTheme } from '../../styles/provider';
 import { AppBarContainer, BoxItem, BoxStyleSX, ButtonStyleSX, DarkIcon, Figure, LightIcon, ThemeContainer } from './styles';
+import Menu from './Menu';
+import styled from 'styled-components';
 
 type Props = {
   children?: never;
@@ -19,10 +21,12 @@ const AppBar: React.FC<Props> = (props) => {
 
   const isLightTheme = theme === 'light';
 
-  const onClick = (e: any) => {
+  const onClickHeaderMenu = (e: any): void => {
     e.preventDefault();
     props.onSelectedRoute(e.target.value);
   };
+
+  const onSelectOption = (option: string) => props.onSelectedRoute(option);
 
   const ToggleTheme = () => {
     return (
@@ -37,7 +41,9 @@ const AppBar: React.FC<Props> = (props) => {
   return (
     <AppBarContainer id={props.id} position="static">
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <ToolbarContainer disableGutters>
+          <Menu id="menu-appbar" options={props.routes} onSelectOption={onSelectOption} />
+
           <Figure>
             <a href="https://www.neofinancial.com/" rel="noopener noreferrer" target="_blank" title="Neo Financial Official Webpage">
               <img src={Logo} alt="Logo" />
@@ -49,7 +55,7 @@ const AppBar: React.FC<Props> = (props) => {
               <BoxItem
                 key={route}
                 value={route}
-                onClick={onClick}
+                onClick={onClickHeaderMenu}
                 sx={ButtonStyleSX}
                 active={route === props.routeSelected}
                 disabled={route === props.routeSelected}
@@ -60,10 +66,18 @@ const AppBar: React.FC<Props> = (props) => {
           </Box>
 
           <ToggleTheme />
-        </Toolbar>
+        </ToolbarContainer>
       </Container>
     </AppBarContainer>
   );
 };
 
 export default AppBar;
+
+const ToolbarContainer = styled(Toolbar)`
+  @media (min-width: 900px) {
+    #menu-appbar {
+      display: none;
+    }
+  }
+`;

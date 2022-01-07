@@ -98,4 +98,22 @@ const Container = styled.section`
     font-weight: 400;
     opacity: 0.7;
   }
+
+  @media (max-width: 1024px) {
+    .our-founders-avatar {
+      width: 180px;
+      height: 180px;
+    }
+  }
+
+  @media (max-width: 800px) {
+    & > ul {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(auto, 1fr);
+      grid-row-gap: 30px;
+
+      justify-items: center;
+    }
+  }
 `;

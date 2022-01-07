@@ -57,4 +57,45 @@ const Container = styled.section`
     text-decoration: none;
     color: inherit;
   }
+
+  h4 {
+    padding: 0 10px;
+  }
+
+  @media (max-width: 1600px) {
+    background-position: 5vw 10vh;
+  }
+
+  @media (max-width: 1024px) {
+    background-position: 0vw 15vh;
+    background-size: 360px;
+
+    padding-right: 10vw;
+  }
+
+  @media (max-width: 800px) {
+    background-size: 300px;
+  }
+
+  @media (max-width: 640px) {
+    background-position: 30vw 15vh;
+    padding: 20vh 20vw;
+    padding-top: 60vh;
+    height: 90vh;
+    padding-bottom: 0vh;
+  }
+
+  @media (max-width: 500px) {
+    background-position: 20vw 15vh;
+  }
+
+  @media (max-width: 360px) {
+    background-position: 2vw 15vh;
+    background-size: 260px;
+  }
+
+  @media (max-height: 720px) and (max-width: 640px) {
+    padding-top: 70vh;
+    height: 110vh;
+  }
 `;
