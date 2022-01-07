@@ -1,23 +1,27 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-import { Text } from '../../../../../components';
+import { Text, Transition } from '../../../../../components';
 import LinkButton from '../../../../../components/LinkButton';
 import { LanguageState } from '../../../../../store/actions/language';
 import { useTheme } from '../../../../../styles/provider';
+import RouterUtils from '../../../../../utils/RouterUtils';
 import PLUS_WERE_CONSTANTS from '../constants/plus-were.constants';
+import WHY_NEO_ROUTES from '../constants/route.constants';
 
 type Props = {
   children?: never;
   language: LanguageState;
 };
 
+const CSS_ID_PLUS_WE_ARE = RouterUtils.convertDeepLinkToCssId(WHY_NEO_ROUTES.deepLinks.PLUS_WE_ARE);
+
 const PlusWereSection: React.FC<Props> = (props) => {
   const { theme } = useTheme();
 
   return (
-    <Fragment>
-      <Container>
+    <Transition>
+      <Container id={CSS_ID_PLUS_WE_ARE}>
         <Text id="plus-were-title" variant="h4">
           {PLUS_WERE_CONSTANTS.TEXT.TITLE[props.language]}
         </Text>
@@ -39,7 +43,7 @@ const PlusWereSection: React.FC<Props> = (props) => {
           href="https://member.neofinancial.com/signup"
         />
       </Container>
-    </Fragment>
+    </Transition>
   );
 };
 

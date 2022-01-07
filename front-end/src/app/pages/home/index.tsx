@@ -1,42 +1,68 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
-import styled from 'styled-components';
+import { RouteType } from '../../routes';
 
-import { Banner, Footer, AppBar } from '../../components';
-import Chat from '../../components/chat';
-import LanguageButton from '../../components/LanguageButton';
 import { globalContext } from '../../store';
-import { SUB_PAGES, SUB_PAGES_LABELS } from './subpages';
-import SubpageRouter from './subpages/SubpageRouter';
+import BrowserUtils from '../../utils/BrowserUtils';
+import RouterUtils from '../../utils/RouterUtils';
+import HomeView, { CSS_FIXING_CLASS_NAME, HEADER_CSS_ID } from './HomeView';
+import { SUB_PAGES_ROUTES, SUB_PAGES_LABELS } from './subpages';
 
-const HomePage: React.FC = (props) => {
-  const [subpage, setSubpage] = useState(SUB_PAGES.WHO_WE_ARE);
+type Props = {
+  deepLink?: string;
+  routeId: string;
+};
+
+const HomePage: React.FC<Props> = (props) => {
+  const [subpage, setSubpage] = useState<RouteType>(getSubPageById(props.routeId));
   const { globalState } = useContext(globalContext);
 
   const labels = SUB_PAGES_LABELS(globalState.language);
 
   const onSelectedRoute = (label: string) => {
-    const subpageSelected = Object.values(SUB_PAGES).find((e) => e.label[globalState.language] === label);
-    setSubpage(subpageSelected || SUB_PAGES.WHO_WE_ARE);
+    const subpageSelected = Object.values(SUB_PAGES_ROUTES).find((e) => e.label[globalState.language] === label);
+    setSubpage(subpageSelected || SUB_PAGES_ROUTES.WHO_WE_ARE);
   };
 
+  useEffect(() => {
+    setTimeout(() => setSubpage(getSubPageById(props.routeId)), 2000);
+  }, [props.routeId]);
+
+  useEffect(() => {
+    if (props.deepLink) {
+      // setTimeout(() => BrowserUtils.scrollUp(), 2000);
+      const cssId = RouterUtils.convertDeepLinkToCssId(props.deepLink);
+      setTimeout(() => BrowserUtils.scrollCenterId(cssId), 3000);
+    }
+  }, [props.deepLink]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', pinHeader);
+    return () => {
+      window.removeEventListener('scroll', pinHeader);
+    };
+  });
+
   return (
-    <Container>
-      <Banner />
-      <AppBar routes={labels} onSelectedRoute={onSelectedRoute} routeSelected={subpage.label[globalState.language]} />
-
-      <article>
-        <SubpageRouter subpageId={subpage.id} />
-      </article>
-
-      <LanguageButton />
-      <Chat />
-
-      <Footer />
-    </Container>
+    <HomeView
+      routes={labels}
+      onSelectedRoute={onSelectedRoute}
+      routeSelected={subpage.label[globalState.language]}
+      subpageId={subpage.id}
+    />
   );
 };
 
 export default HomePage;
 
-const Container = styled.main``;
+const getSubPageById = (routeId: string): RouteType => {
+  return Object.values(SUB_PAGES_ROUTES).find((e) => e.id === routeId) || SUB_PAGES_ROUTES.WHO_WE_ARE;
+};
+
+const pinHeader = () => {
+  const header = document.getElementById(HEADER_CSS_ID);
+  const scrollTop = window.scrollY;
+
+  if (scrollTop >= 190) header?.classList.add(CSS_FIXING_CLASS_NAME);
+  else header?.classList.remove(CSS_FIXING_CLASS_NAME);
+};

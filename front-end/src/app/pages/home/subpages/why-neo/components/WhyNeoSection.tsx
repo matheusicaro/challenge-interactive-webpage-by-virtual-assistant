@@ -7,16 +7,21 @@ import CashbackHighlightImage from '../assets/cashback-highlight.png';
 import LinkButton from '../../../../../components/LinkButton';
 import WHY_NEO_CONSTANTS from '../constants/why-neo-section.constants';
 import { LanguageState } from '../../../../../store/actions/language';
+import RouterUtils from '../../../../../utils/RouterUtils';
+import WHY_NEO_ROUTES from '../constants/route.constants';
 
 type Props = {
   children?: never;
   language: LanguageState;
 };
 
+const CSS_ID_WHY_NEO_TITLE = RouterUtils.convertDeepLinkToCssId(WHY_NEO_ROUTES.deepLinks.WHY_NEO);
+
 const WhyNeoSection: React.FC<Props> = (props) => {
   return (
-    <Container>
+    <Container id={CSS_ID_WHY_NEO_TITLE}>
       <Text variant="h4">{WHY_NEO_CONSTANTS.TEXT.WHY_NEO_TITLE[props.language]}</Text>
+
       <Text component="p" variant="body2">
         {WHY_NEO_CONSTANTS.TEXT.WHY_NEO_PARAGRAPH[props.language]}
       </Text>

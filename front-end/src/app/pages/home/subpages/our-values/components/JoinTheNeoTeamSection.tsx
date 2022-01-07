@@ -3,21 +3,25 @@ import styled from 'styled-components';
 import { LinkButton } from '../../../../../components';
 import { LanguageState } from '../../../../../store/actions/language';
 import { useTheme } from '../../../../../styles/provider';
+import RouterUtils from '../../../../../utils/RouterUtils';
 import { Paragraph, Title } from '../../styles';
 
 import highlightsImage from '../assets/join-the-neo-team-highlights.png';
 import JOIN_THE_NEO_TEAM_CONSTANTS from '../constants/join-the-neo-team-section';
+import OUR_VALUES_ROUTES from '../constants/route.constants';
 
 type Props = {
   children?: never;
   language: LanguageState;
 };
 
+const CSS_ID_JOIN_THE_NEO_TEAM = RouterUtils.convertDeepLinkToCssId(OUR_VALUES_ROUTES.deepLinks.JOIN_THE_NEO_TEAM);
+
 const JoinTheNeoTeamSection: React.FC<Props> = (props) => {
   const { theme } = useTheme();
 
   return (
-    <Container>
+    <Container id={CSS_ID_JOIN_THE_NEO_TEAM}>
       <Title text={JOIN_THE_NEO_TEAM_CONSTANTS.TEXT.TITLE[props.language]} />
 
       <Paragraph text={JOIN_THE_NEO_TEAM_CONSTANTS.TEXT.PARAGRAPH[props.language]} />

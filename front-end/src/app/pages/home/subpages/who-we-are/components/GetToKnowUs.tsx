@@ -6,31 +6,38 @@ import styled from 'styled-components';
 import ItemList from '../../../../../components/ItemList';
 import GET_TO_KNOW_US_CONSTANTS from '../constants/get-to-know-us.constants';
 import { LanguageState } from '../../../../../store/actions/language';
+import RouterUtils from '../../../../../utils/RouterUtils';
+import WHO_WE_ARE_ROUTES from '../constants/route.constants';
+import { Transition } from '../../../../../components';
 
 type Props = {
   children?: never;
   language: LanguageState;
 };
 
+const CSS_ID_GET_TO_KNOW_US = RouterUtils.convertDeepLinkToCssId(WHO_WE_ARE_ROUTES.deepLinks.GET_TO_KNOW_US);
+
 const GetToKnowUs: React.FC<Props> = (props) => {
   const items = GET_TO_KNOW_US_CONSTANTS.items;
 
   return (
-    <Container>
-      <Title id="get-to-know-us-title" text={GET_TO_KNOW_US_CONSTANTS.TEXT.TITLE[props.language]} />
+    <Transition>
+      <Container id={CSS_ID_GET_TO_KNOW_US}>
+        <Title id="get-to-know-us-title" text={GET_TO_KNOW_US_CONSTANTS.TEXT.TITLE[props.language]} />
 
-      <List>
-        {items.map((i) => (
-          <ItemList
-            key={i.title[props.language]}
-            picture={i.picture}
-            title={i.title[props.language]}
-            paragraph={i.paragraph[props.language]}
-            topic={i.topic ? i.topic[props.language] : i.topic}
-          />
-        ))}
-      </List>
-    </Container>
+        <List>
+          {items.map((item, index) => (
+            <ItemList
+              key={index}
+              picture={item.picture}
+              title={item.title[props.language]}
+              paragraph={item.paragraph[props.language]}
+              topic={item.topic ? item.topic[props.language] : item.topic}
+            />
+          ))}
+        </List>
+      </Container>
+    </Transition>
   );
 };
 

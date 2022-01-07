@@ -20,6 +20,14 @@ export default GlobalStore;
 
 export const globalContext = createContext({} as ContextType);
 
-export const INITIAL_STATE: GlobalStateInterface = {
-  language: 'EN',
-};
+export const INITIAL_STATE: GlobalStateInterface = (() => {
+  try {
+    const pageLanguage = window.navigator.language;
+    const browserLanguage = pageLanguage.slice(0, pageLanguage.indexOf('-')).toUpperCase();
+    const language = browserLanguage === 'FR' ? 'FR' : 'EN';
+
+    return { language };
+  } catch (error: any) {
+    return { language: 'EN' };
+  }
+})();

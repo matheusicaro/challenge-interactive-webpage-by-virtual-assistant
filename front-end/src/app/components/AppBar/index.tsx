@@ -11,6 +11,7 @@ type Props = {
   routes: Array<string>;
   onSelectedRoute: (route: string) => void;
   routeSelected?: string;
+  id?: string;
 };
 
 const AppBar: React.FC<Props> = (props) => {
@@ -34,7 +35,7 @@ const AppBar: React.FC<Props> = (props) => {
   };
 
   return (
-    <AppBarContainer position="static">
+    <AppBarContainer id={props.id} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Figure>
@@ -45,7 +46,14 @@ const AppBar: React.FC<Props> = (props) => {
 
           <Box component="section" sx={BoxStyleSX}>
             {props.routes.map((route) => (
-              <BoxItem key={route} value={route} onClick={onClick} sx={ButtonStyleSX} activated={props.routeSelected === route}>
+              <BoxItem
+                key={route}
+                value={route}
+                onClick={onClick}
+                sx={ButtonStyleSX}
+                active={route === props.routeSelected}
+                disabled={route === props.routeSelected}
+              >
                 {route}
               </BoxItem>
             ))}

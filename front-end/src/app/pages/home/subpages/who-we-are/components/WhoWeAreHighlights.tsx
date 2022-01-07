@@ -7,15 +7,19 @@ import HighlightImage from '../assets/highlight.png';
 import { PositionContainer, Title } from '../../styles';
 import WHO_WE_ARE_HIGHLIGHTS_CONSTANTS from '../constants/who-we-are-highlights.constants';
 import { LanguageState } from '../../../../../store/actions/language';
+import RouterUtils from '../../../../../utils/RouterUtils';
+import WHO_WE_ARE_ROUTES from '../constants/route.constants';
 
 type Props = {
   children?: never;
   language: LanguageState;
 };
 
+const CSS_ID_WHO_WE_ARE = RouterUtils.convertDeepLinkToCssId(WHO_WE_ARE_ROUTES.deepLinks.WHO_WE_ARE);
+
 const WhoWeAreHighlights: React.FC<Props> = (props) => {
   return (
-    <Container>
+    <Container id={CSS_ID_WHO_WE_ARE}>
       <Title text={WHO_WE_ARE_HIGHLIGHTS_CONSTANTS.TEXT.TITLE[props.language]} />
 
       <Text id="who-we-are-paragraph" component="p" variant="body2">

@@ -4,7 +4,7 @@ import { Figure, Subtitle } from '../pages/home/subpages/styles';
 
 type Props = {
   children?: never;
-  key: string;
+  key: string | number;
   picture: string;
   title: string;
   paragraph: string;

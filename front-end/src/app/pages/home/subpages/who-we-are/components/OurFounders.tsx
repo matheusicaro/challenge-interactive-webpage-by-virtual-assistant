@@ -2,46 +2,52 @@ import { Avatar } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
-import { Text } from '../../../../../components';
+import { Text, Transition } from '../../../../../components';
 
 import { PositionContainer, Subtitle, Title } from '../../styles';
 import OUR_FOUNDERS_CONSTANTS from '../constants/our-founders.constants';
 import { LanguageState } from '../../../../../store/actions/language';
+import RouterUtils from '../../../../../utils/RouterUtils';
+import WHO_WE_ARE_ROUTES from '../constants/route.constants';
 
 type Props = {
   children?: never;
   language: LanguageState;
 };
 
+const CSS_ID_OUR_FOUNDERS = RouterUtils.convertDeepLinkToCssId(WHO_WE_ARE_ROUTES.deepLinks.OUR_FOUNDERS);
+
 const OurFounders: React.FC<Props> = (props) => {
   const founders = OUR_FOUNDERS_CONSTANTS.founders;
 
   return (
-    <Container>
-      <Title text={OUR_FOUNDERS_CONSTANTS.TEXT.TITLE[props.language]} />
+    <Transition>
+      <Container id={CSS_ID_OUR_FOUNDERS}>
+        <Title text={OUR_FOUNDERS_CONSTANTS.TEXT.TITLE[props.language]} />
 
-      <Text id="our-founders-paragraph" component="p" variant="body2">
-        {OUR_FOUNDERS_CONSTANTS.TEXT.PARAGRAPH[props.language]}
-      </Text>
+        <Text id="our-founders-paragraph" component="p" variant="body2">
+          {OUR_FOUNDERS_CONSTANTS.TEXT.PARAGRAPH[props.language]}
+        </Text>
 
-      <ul>
-        {founders.map((founder) => (
-          <li key={founder.name}>
-            <Avatar component="figure" className="our-founders-avatar" alt={founder.name} src={founder.picture} />
+        <ul>
+          {founders.map((founder) => (
+            <li key={founder.name}>
+              <Avatar component="figure" className="our-founders-avatar" alt={founder.name} src={founder.picture} />
 
-            <Subtitle text={founder.name} />
+              <Subtitle text={founder.name} />
 
-            <ul>
-              {founder.positions.map((position) => (
-                <Text key={position} className="our-founders-position" component="li" variant="subtitle2">
-                  {position}
-                </Text>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul>
-    </Container>
+              <ul>
+                {founder.positions.map((position) => (
+                  <Text key={position} className="our-founders-position" component="li" variant="subtitle2">
+                    {position}
+                  </Text>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </Container>
+    </Transition>
   );
 };
 

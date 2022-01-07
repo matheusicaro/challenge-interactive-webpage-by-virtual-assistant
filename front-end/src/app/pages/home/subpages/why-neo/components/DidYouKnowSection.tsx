@@ -1,16 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { ItemList, Text } from '../../../../../components';
+import { ItemList, Text, Transition } from '../../../../../components';
 
 import { useTheme } from '../../../../../styles/provider';
 import { LanguageState } from '../../../../../store/actions/language';
 import DID_YOU_KNOW_CONSTANTS from '../constants/did-you-know-section.constants';
+import RouterUtils from '../../../../../utils/RouterUtils';
+import WHY_NEO_ROUTES from '../constants/route.constants';
 
 type Props = {
   children?: never;
   language: LanguageState;
 };
+
+const CSS_ID_DID_YOU_KNOW = RouterUtils.convertDeepLinkToCssId(WHY_NEO_ROUTES.deepLinks.DID_YOU_KNOW);
 
 const DidYouKnowSection: React.FC<Props> = (props) => {
   const { theme } = useTheme();
@@ -19,20 +23,22 @@ const DidYouKnowSection: React.FC<Props> = (props) => {
   const items = DID_YOU_KNOW_CONSTANTS.items;
 
   return (
-    <Container>
-      <Text variant="h4">{DID_YOU_KNOW_CONSTANTS.TEXT.DID_YOU_KNOW_TITLE[props.language]}</Text>
+    <Transition>
+      <Container id={CSS_ID_DID_YOU_KNOW}>
+        <Text variant="h4">{DID_YOU_KNOW_CONSTANTS.TEXT.DID_YOU_KNOW_TITLE[props.language]}</Text>
 
-      <ul>
-        {items.map((item) => (
-          <ItemList
-            key={item.title[props.language]}
-            picture={isDarkTheme ? item.picture.dark : item.picture.light}
-            title={item.title[props.language]}
-            paragraph={item.paragraph[props.language]}
-          />
-        ))}
-      </ul>
-    </Container>
+        <ul>
+          {items.map((item, index) => (
+            <ItemList
+              key={index}
+              picture={isDarkTheme ? item.picture.dark : item.picture.light}
+              title={item.title[props.language]}
+              paragraph={item.paragraph[props.language]}
+            />
+          ))}
+        </ul>
+      </Container>
+    </Transition>
   );
 };
 

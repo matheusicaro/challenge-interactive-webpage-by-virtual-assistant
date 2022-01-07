@@ -13,10 +13,12 @@ export const AppBarContainer = styled(AppBarMui)`
   }
 `;
 
-export const BoxItem = styled(Button)<{ activated: boolean }>`
+export const BoxItem = styled(Button)<{ active: boolean }>`
   margin: 16px;
   padding: 10px 20px !important;
-  font-weight: ${({ activated }) => (activated ? '900' : '400')} !important;
+  font-weight: ${({ active }) => (active ? '900' : '400')} !important;
+
+  color: ${({ theme }) => theme.colors.lightColor} !important;
 `;
 
 export const Figure = styled.figure`
