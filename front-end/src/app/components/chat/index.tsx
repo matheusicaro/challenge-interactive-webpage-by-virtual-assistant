@@ -7,9 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { Message, SEND_MESSAGE } from '../../graphql/queries/message';
 import { globalContext } from '../../store';
 import ChatView from './Chat';
-
-const ERROR_SEND_MESSAGE = `I encountered an error while trying to process your message.
-Let's try again? please tell me how can i help you`;
+import CHAT_CONSTANTS from './constants';
 
 /*
  *
@@ -21,24 +19,16 @@ const Chat: React.FC = () => {
   const history = useHistory();
 
   useEffect(() => {
-    addResponseMessage('Welcome to this **awesome** chat!');
+    addResponseMessage(CHAT_CONSTANTS.WELCOME[globalState.language]);
   }, []);
 
   const handleNewUserMessage = (message: string) => {
-    if (message === '1') history.push('/why-neo');
-    if (message === '2') history.push('/why-neo/did-you-know');
-    if (message === '3') history.push('/why-neo/plus-we-are');
-    if (message === '4') history.push('/who-we-are/');
-    if (message === '5') history.push('/who-we-are/get-to-know-us');
-    if (message === '6') history.push('/who-we-are/our-founders');
-    if (message === '7') history.push('/our-values');
-    if (message === '8') history.push('/our-values/join-the-neo-team');
-    else sendMessage({ variables: { message } });
+    sendMessage({ variables: { message, conversationId: data?.conversationId } });
   };
 
-  if (error || !data || !data.answer) {
-    addResponseMessage(ERROR_SEND_MESSAGE);
-  } else {
+  if (error) {
+    addResponseMessage(CHAT_CONSTANTS.ERROR.SEND_MESSAGE[globalState.language]);
+  } else if (data && data.answer) {
     addResponseMessage(data.answer);
   }
 

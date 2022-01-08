@@ -4,10 +4,17 @@ require('dotenv').config();
 import { ApolloServer } from 'apollo-server';
 import environment from './config/environment';
 import { resolvers, typeDefs } from './api/graphql/schema';
+import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  introspection: true,
+  plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
+  cors: {
+    origin: '*',
+    credentials: true
+  }
 });
 
 server.listen(environment.PORT).then(({ url }) => {
