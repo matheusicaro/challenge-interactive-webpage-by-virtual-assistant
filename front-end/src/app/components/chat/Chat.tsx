@@ -11,11 +11,12 @@ import CHAT_CONSTANTS from './constants';
 type Props = {
   handleNewUserMessage: (message: string) => void;
   language: LanguageState;
+  onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 };
 
 const ChatView: React.FC<Props> = (props) => {
   return (
-    <Container>
+    <Container onClick={props.onClick}>
       <Widget
         profileAvatar={AvatarImg}
         titleAvatar={AvatarImg}
@@ -24,6 +25,7 @@ const ChatView: React.FC<Props> = (props) => {
         title={CHAT_CONSTANTS.TITLE[props.language]}
         subtitle={CHAT_CONSTANTS.SUBTITLE[props.language]}
         senderPlaceHolder={CHAT_CONSTANTS.SENDER_PLACE_HOLDER[props.language]}
+        handleQuickButtonClicked={console.log}
       />
     </Container>
   );
@@ -83,6 +85,8 @@ const Container = styled.section`
   }
 
   .rcw-message {
+    display: none !important;
+
     .rcw-response .rcw-message-text {
       background-color: ${({ theme }) => theme.colors.background.chat.messages.bot};
     }
@@ -103,5 +107,13 @@ const Container = styled.section`
     .rcw-close-launcher {
       width: 20px;
     }
+  }
+
+  .rcw-message-client {
+    display: flex !important;
+  }
+
+  .enabled {
+    display: flex !important;
   }
 `;

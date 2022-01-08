@@ -15,13 +15,15 @@ export const SEND_MESSAGE = gql`
   }
 `;
 
-export interface Message {
-  answer: string;
-  conversationId: string;
-  context: {
-    commands: {
-      type: string;
-      value: string;
+export interface SendMessageData {
+  sendMessage: {
+    answer: Array<string>;
+    conversationId: string;
+    context: {
+      commands: {
+        type: string;
+        value: string;
+      };
     };
   };
 }
