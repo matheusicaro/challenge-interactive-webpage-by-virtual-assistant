@@ -50,7 +50,7 @@ const Chat: React.FC = () => {
 
   const handleNewUserMessage = (message: string) => {
     if (state.errorInformed) setState((prev) => ({ ...prev, errorInformed: false }));
-    sendMessage({ variables: { message, conversationId: getConversationId(data) } });
+    sendMessage({ variables: { message, conversationId: getConversationId(data), language: globalState.language } });
     enableLoader();
   };
 

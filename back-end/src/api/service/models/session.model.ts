@@ -13,7 +13,7 @@ type ConversationMessage = {
  */
 export default class Session {
   private id: string;
-  private context: Map<string, object>;
+  private context: Map<string, any>;
   private conversation: Array<ConversationMessage>;
 
   constructor(id: string, conversationContext?: Map<string, object>) {
@@ -44,5 +44,11 @@ export default class Session {
 
   public addMessages(messages: Array<ConversationMessage>): void {
     this.conversation = this.conversation.concat(messages);
+  }
+
+  public addInContext<T>(key: string, value: T): void {
+    if (this.context.has(key)) this.context.delete(key);
+
+    this.context.set(key, value);
   }
 }

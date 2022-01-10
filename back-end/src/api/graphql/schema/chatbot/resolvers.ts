@@ -6,8 +6,8 @@ import Message from '../../../service/models/message.model';
  *
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const sendMessage = async (_: unknown, { message, conversationId }: any): Promise<Message> => {
-  const answer = ChabotService.sendMessage(message, conversationId);
+const sendMessage = async (_: unknown, { message, conversationId, language }: any): Promise<Message> => {
+  const answer = ChabotService.sendMessage(message, conversationId, language);
   return answer;
 };
 

@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-core';
 
 export const chatbotTypeDefs = gql`
   type Mutation {
-    sendMessage(message: String!, conversationId: String): Message!
+    sendMessage(message: String!, conversationId: String, language: String): Message!
   }
 
   "Message is the contract to have a messaging interaction with the bot."
@@ -12,6 +12,9 @@ export const chatbotTypeDefs = gql`
 
     "Bot's answer for the question sent"
     answer: [String]!
+
+    "Message language"
+    language: String!
 
     "Context is the the metadata extracted from the question sent and the all conversation"
     context: MessageContext!

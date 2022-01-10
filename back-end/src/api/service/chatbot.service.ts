@@ -2,6 +2,7 @@ import Message from './models/message.model';
 import ChatbotIntegration from '../integration/chatbot-assistant.integration';
 import Session from './models/session.model';
 import ChatbotDatabase from '../integration/chatbot-database.integration';
+import CONTEXT_KEYS from './constants/bot-context.constants';
 
 /**
  * Class to handle business rule and provide layer between inputs and outputs.
@@ -15,13 +16,15 @@ class ChabotService {
    *
    * @returns {Promise<Message>}
    */
-  public static async sendMessage(textMessage: string, conversationId?: string): Promise<Message> {
+  public static async sendMessage(textMessage: string, conversationId?: string, language?: string): Promise<Message> {
     const sessionId = conversationId || (await ChatbotIntegration.createSessionId());
     let session = await ChatbotDatabase.getSession(sessionId);
 
     if (!session) {
       session = new Session(sessionId);
     }
+
+    if (language) session.addInContext(CONTEXT_KEYS.LANGUAGE, language);
 
     const answer = await ChatbotIntegration.send(textMessage, sessionId, session.getContext());
 

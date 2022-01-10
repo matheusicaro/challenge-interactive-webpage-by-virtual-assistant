@@ -1,3 +1,5 @@
+import CONTEXT_KEYS from '../constants/bot-context.constants';
+
 /**
  * Message represents the API contract with the consumer client.
  *
@@ -8,22 +10,31 @@
  */
 export default class Message {
   private answer: Array<string>;
-  private context: Map<string, object>;
+  private context: Map<string, any>;
   private conversationId: string;
   private question: string;
+  private language: Language;
 
-  constructor(conversationId: string, question: string, answer: Array<string>, context: Map<string, object>) {
+  constructor(conversationId: string, question: string, answer: Array<string>, context: Map<string, any>) {
     this.answer = answer;
     this.context = context;
     this.conversationId = conversationId;
     this.question = question;
+
+    const newLanguage = this.context.has(CONTEXT_KEYS.LANGUAGE) ? (this.context.get(CONTEXT_KEYS.LANGUAGE) as keyof typeof Language) : null;
+
+    if (newLanguage && Language[newLanguage]) {
+      this.language = Language[newLanguage];
+    } else {
+      this.language = Language.EN;
+    }
   }
 
   public getAnswer(): Array<string> {
     return this.answer;
   }
 
-  public getContext(): Map<string, object> {
+  public getContext(): Map<string, any> {
     return this.context;
   }
 
@@ -34,4 +45,13 @@ export default class Message {
   public getQuestion(): string {
     return this.question;
   }
+
+  public getLanguage(): Language {
+    return this.language;
+  }
+}
+
+export enum Language {
+  EN,
+  FR
 }
