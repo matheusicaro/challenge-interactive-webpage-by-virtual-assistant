@@ -11,12 +11,12 @@ import CHAT_CONSTANTS from './constants';
 type Props = {
   handleNewUserMessage: (message: string) => void;
   language: LanguageState;
-  onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  handleOpenChat?: (chatIsOpen: boolean) => void;
 };
 
 const ChatView: React.FC<Props> = (props) => {
   return (
-    <Container onClick={props.onClick}>
+    <Container>
       <Widget
         profileAvatar={AvatarImg}
         titleAvatar={AvatarImg}
@@ -25,7 +25,7 @@ const ChatView: React.FC<Props> = (props) => {
         title={CHAT_CONSTANTS.TITLE[props.language]}
         subtitle={CHAT_CONSTANTS.SUBTITLE[props.language]}
         senderPlaceHolder={CHAT_CONSTANTS.SENDER_PLACE_HOLDER[props.language]}
-        handleQuickButtonClicked={console.log}
+        handleToggle={props.handleOpenChat}
       />
     </Container>
   );
