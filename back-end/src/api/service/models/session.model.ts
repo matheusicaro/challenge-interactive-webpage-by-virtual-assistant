@@ -13,12 +13,12 @@ type ConversationMessage = {
  */
 export default class Session {
   private id: string;
-  private context: Map<string, any>;
+  private context: object;
   private conversation: Array<ConversationMessage>;
 
   constructor(id: string, conversationContext?: Map<string, object>) {
     this.id = id;
-    this.context = conversationContext || new Map();
+    this.context = conversationContext ? Object.fromEntries(conversationContext) : {};
     this.conversation = [];
   }
 
@@ -26,16 +26,16 @@ export default class Session {
     return this.id;
   }
 
-  public getContext(): Map<string, object> {
-    return this.context;
+  public getContext(): Map<string, any> {
+    return new Map(Object.entries(this.context));
   }
 
   public setId(id: string): void {
     this.id = id;
   }
 
-  public setContext(context: Map<string, object>): void {
-    this.context = context;
+  public setContext(context: Map<string, any>): void {
+    this.context = Object.fromEntries(context);
   }
 
   public addMessage(question: string, answer: Array<string>): void {
@@ -47,8 +47,11 @@ export default class Session {
   }
 
   public addInContext<T>(key: string, value: T): void {
-    if (this.context.has(key)) this.context.delete(key);
+    const contextAsMap = new Map(Object.entries(this.context));
 
-    this.context.set(key, value);
+    if (!contextAsMap.has(key)) contextAsMap.delete(key);
+
+    contextAsMap.set(key, value);
+    this.context = Object.fromEntries(contextAsMap);
   }
 }

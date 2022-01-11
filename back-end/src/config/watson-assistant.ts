@@ -48,7 +48,13 @@ class WatsonAssistant {
    * @reference https://cloud.ibm.com/apidocs/assistant/assistant-v2?code=node#message-request
    */
   public send(text: string, currentContext: Map<string, object>, sessionId: string): Promise<WatsonResponse> {
-    const context = { skills: { user_defined: currentContext } };
+    const contextAsObject = Object.fromEntries(currentContext);
+    const context = {
+      skills: {
+        'main skill': { user_defined: contextAsObject },
+        main_skill: { user_defined: contextAsObject }
+      }
+    };
     const input = { message_type: 'text', text, options: { return_context: true } };
 
     return this.instance.message({ assistantId: this.assistantId, sessionId, context, input });

@@ -33,11 +33,11 @@ export default class ChatbotIntegration {
   }
 
   private static converterToMap(context?: WatsonResponseContext): Map<string, object> {
-    if (!context) return new Map();
+    const mainSkill = context ? context['main skill'] || context.main_skill : null;
 
-    const mainSkill = context['main skill'] || context.main_skill;
+    if (!(mainSkill && mainSkill.user_defined)) return new Map();
 
-    return mainSkill.user_defined || new Map();
+    return new Map(Object.entries(mainSkill.user_defined)) || new Map();
   }
 
   private static getAnswers(answers?: WatsonResponseAnswers): Array<string> {

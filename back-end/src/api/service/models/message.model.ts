@@ -10,7 +10,7 @@ import CONTEXT_KEYS from '../constants/bot-context.constants';
  */
 export default class Message {
   private answer: Array<string>;
-  private context: Map<string, any>;
+  private context: object;
   private conversationId: string;
   private question: string;
   private language: Language;
@@ -21,13 +21,17 @@ export default class Message {
     this.conversationId = conversationId;
     this.question = question;
 
-    const newLanguage = this.context.has(CONTEXT_KEYS.LANGUAGE) ? (this.context.get(CONTEXT_KEYS.LANGUAGE) as keyof typeof Language) : null;
+    let language: Language = Language.EN;
 
-    if (newLanguage && Language[newLanguage]) {
-      this.language = Language[newLanguage];
+    if (context && context.has(CONTEXT_KEYS.LANGUAGE)) {
+      const keyLanguage = context.get(CONTEXT_KEYS.LANGUAGE) as keyof typeof Language;
+      language = keyLanguage ? Language[keyLanguage] : language;
     } else {
-      this.language = Language.EN;
+      context.set(CONTEXT_KEYS.LANGUAGE, language);
     }
+
+    this.language = language;
+    this.context = Object.fromEntries(context);
   }
 
   public getAnswer(): Array<string> {
@@ -35,7 +39,7 @@ export default class Message {
   }
 
   public getContext(): Map<string, any> {
-    return this.context;
+    return new Map(Object.entries(this.context));
   }
 
   public getConversationId(): string {
@@ -52,6 +56,6 @@ export default class Message {
 }
 
 export enum Language {
-  EN,
-  FR
+  EN = 'EN',
+  FR = 'FR'
 }

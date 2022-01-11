@@ -3,7 +3,7 @@
     "allowJs": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "commonjs",
+    "module": "CommonJS",
     "noImplicitAny": true,
     "outDir": "build",
     "preserveConstEnums": true,
