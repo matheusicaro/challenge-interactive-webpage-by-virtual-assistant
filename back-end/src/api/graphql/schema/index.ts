@@ -5,25 +5,21 @@ import { chatbotResolvers } from './chatbot/resolvers';
 
 const rootTypeDefs = gql`
   type Query {
-    _empty: Boolean
+    health: Health
   }
 
-  type Mutation {
-    _empty: Boolean
-  }
-
-  type Subscription {
-    _empty: Boolean
+  type Health {
+    status: String!
+    time: String!
   }
 `;
 
 const rootResolvers = {
   Query: {
-    _empty: () => true
-  },
-
-  Mutation: {
-    _empty: () => true
+    health: () => ({
+      status: 'ONLINE',
+      time: new Date().toJSON()
+    })
   }
 };
 
