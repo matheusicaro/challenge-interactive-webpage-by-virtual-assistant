@@ -6,13 +6,13 @@ import { Text } from '../../../../../components';
 import CashbackHighlightImage from '../assets/cashback-highlight.png';
 import LinkButton from '../../../../../components/LinkButton';
 import WHY_NEO_CONSTANTS from '../constants/why-neo-section.constants';
-import { LanguageState } from '../../../../../store/actions/language';
+import { Language } from '../../../../../store/language/types';
 import RouterUtils from '../../../../../utils/RouterUtils';
 import WHY_NEO_ROUTES from '../constants/route.constants';
 
 type Props = {
   children?: never;
-  language: LanguageState;
+  language: Language;
 };
 
 const CSS_ID_WHY_NEO_TITLE = RouterUtils.convertDeepLinkToCssId(WHY_NEO_ROUTES.deepLinks.WHY_NEO);

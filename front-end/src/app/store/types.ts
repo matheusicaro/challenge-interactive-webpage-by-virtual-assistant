@@ -1,15 +1,27 @@
+import { LanguageStoreState } from './language/types';
 import { Dispatch } from 'react';
+import ChatStoreState from './chat/types';
 
-export interface GlobalStateInterface {
-  language: 'EN' | 'FR';
+/**
+ * Global state of the store
+ */
+export interface GlobalState {
+  language: LanguageStoreState;
+  chat: ChatStoreState;
 }
 
-export type ActionType = {
-  type: string;
-  payload?: any;
+/**
+ * Context type of the store
+ */
+export type ContextType = {
+  globalState: GlobalState;
+  dispatch: Dispatch<ActionType<any>>;
 };
 
-export type ContextType = {
-  globalState: GlobalStateInterface;
-  dispatch: Dispatch<ActionType>;
+/**
+ * Action type to be called in dispatches
+ */
+export type ActionType<K> = {
+  type: string;
+  payload?: K;
 };

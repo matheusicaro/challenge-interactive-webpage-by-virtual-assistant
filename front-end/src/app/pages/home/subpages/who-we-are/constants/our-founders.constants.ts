@@ -20,24 +20,36 @@ const TEXT = {
 type Founder = {
   picture: string;
   name: string;
-  positions: Array<string>;
+  positions: {
+    EN: Array<string>;
+    FR: Array<string>;
+  };
 };
 
 const founders: Array<Founder> = [
   {
     picture: FounderAndrewAvatar,
     name: 'Andrew Chau',
-    positions: ['Cofondateur et', 'directeur général'],
+    positions: {
+      EN: ['Co-founder &', 'CEO'],
+      FR: ['Cofondateur et', 'directeur général'],
+    },
   },
   {
     picture: FounderJeffAvatar,
     name: 'Jeff Adamson',
-    positions: ['Cofondateur et', 'directeur des partenariats'],
+    positions: {
+      EN: ['Co-founder &', 'Head of Partnerships'],
+      FR: ['Cofondateur et', 'directeur des partenariats'],
+    },
   },
   {
     picture: FounderKrisAvatar,
     name: 'Kris Read',
-    positions: ['Cofondateur et', 'directeur technique'],
+    positions: {
+      EN: ['Co-founder &', 'Head of Engineering'],
+      FR: ['Cofondateur et', 'directeur technique'],
+    },
   },
 ];
 

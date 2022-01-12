@@ -3,14 +3,14 @@ import { List, PositionContainer, Title } from '../../styles';
 import styled from 'styled-components';
 import { ItemList } from '../../../../../components';
 import OUR_VALUES_CONSTANTS from '../constants/our-values-section';
-import { LanguageState } from '../../../../../store/actions/language';
+import { Language } from '../../../../../store/language/types';
 import OUR_VALUES_ROUTES from '../constants/route.constants';
 import RouterUtils from '../../../../../utils/RouterUtils';
 import Transition from '../../../../../components/Transition';
 
 type Props = {
   children?: never;
-  language: LanguageState;
+  language: Language;
 };
 
 const CSS_ID_OUR_VALUES = RouterUtils.convertDeepLinkToCssId(OUR_VALUES_ROUTES.deepLinks.OUR_VALUES);

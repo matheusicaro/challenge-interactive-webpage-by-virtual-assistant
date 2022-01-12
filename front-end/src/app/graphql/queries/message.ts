@@ -20,10 +20,10 @@ export interface SendMessageData {
     answer: Array<string>;
     conversationId: string;
     context: {
-      commands: {
+      commands: Array<{
         type: string;
         value: string;
-      };
+      }>;
     };
   };
 }

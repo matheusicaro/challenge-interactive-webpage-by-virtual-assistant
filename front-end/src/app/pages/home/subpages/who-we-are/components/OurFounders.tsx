@@ -6,13 +6,13 @@ import { Text, Transition } from '../../../../../components';
 
 import { PositionContainer, Subtitle, Title } from '../../styles';
 import OUR_FOUNDERS_CONSTANTS from '../constants/our-founders.constants';
-import { LanguageState } from '../../../../../store/actions/language';
+import { Language } from '../../../../../store/language/types';
 import RouterUtils from '../../../../../utils/RouterUtils';
 import WHO_WE_ARE_ROUTES from '../constants/route.constants';
 
 type Props = {
   children?: never;
-  language: LanguageState;
+  language: Language;
 };
 
 const CSS_ID_OUR_FOUNDERS = RouterUtils.convertDeepLinkToCssId(WHO_WE_ARE_ROUTES.deepLinks.OUR_FOUNDERS);
@@ -37,7 +37,7 @@ const OurFounders: React.FC<Props> = (props) => {
               <Subtitle text={founder.name} />
 
               <ul>
-                {founder.positions.map((position) => (
+                {founder.positions[props.language].map((position) => (
                   <Text key={position} className="our-founders-position" component="li" variant="subtitle2">
                     {position}
                   </Text>

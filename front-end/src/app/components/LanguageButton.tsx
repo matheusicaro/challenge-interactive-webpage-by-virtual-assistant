@@ -3,7 +3,8 @@ import { Fab } from '@mui/material';
 import styled from 'styled-components';
 import { Language as LanguageIcon } from '@material-ui/icons';
 import { globalContext } from '../store';
-import LanguageAction from '../store/actions/language';
+import { Language } from '../store/language/types';
+import { changeLanguage } from '../store/language/actions';
 
 type Props = {
   children?: never;
@@ -12,14 +13,19 @@ type Props = {
 const LanguageButton: React.FC<Props> = (props) => {
   const { globalState, dispatch } = useContext(globalContext);
 
-  const isENLanguage = globalState.language === 'EN';
+  const isEnglishLanguage = globalState.language === 'EN';
+
+  const onClickChangeLanguage = () => {
+    const newLanguage: Language = isEnglishLanguage ? 'FR' : 'EN';
+    dispatch(changeLanguage(newLanguage));
+  };
 
   return (
-    <Container variant="extended" size="large" onClick={() => dispatch(LanguageAction.actions.loadRequest())}>
+    <Container variant="extended" size="large" onClick={onClickChangeLanguage}>
       <LanguageIcon />
-      <Text activated={isENLanguage}>EN</Text>
+      <Text activated={isEnglishLanguage}>EN</Text>
       <span>|</span>
-      <Text activated={!isENLanguage}>FR</Text>
+      <Text activated={!isEnglishLanguage}>FR</Text>
     </Container>
   );
 };

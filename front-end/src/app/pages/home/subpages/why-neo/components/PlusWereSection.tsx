@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Text, Transition } from '../../../../../components';
 import LinkButton from '../../../../../components/LinkButton';
-import { LanguageState } from '../../../../../store/actions/language';
+import { Language } from '../../../../../store/language/types';
 import { useTheme } from '../../../../../styles/provider';
 import RouterUtils from '../../../../../utils/RouterUtils';
 import PLUS_WERE_CONSTANTS from '../constants/plus-were.constants';
@@ -11,7 +11,7 @@ import WHY_NEO_ROUTES from '../constants/route.constants';
 
 type Props = {
   children?: never;
-  language: LanguageState;
+  language: Language;
 };
 
 const CSS_ID_PLUS_WE_ARE = RouterUtils.convertDeepLinkToCssId(WHY_NEO_ROUTES.deepLinks.PLUS_WE_ARE);

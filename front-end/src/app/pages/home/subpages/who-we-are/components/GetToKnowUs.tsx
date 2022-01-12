@@ -5,14 +5,14 @@ import styled from 'styled-components';
 
 import ItemList from '../../../../../components/ItemList';
 import GET_TO_KNOW_US_CONSTANTS from '../constants/get-to-know-us.constants';
-import { LanguageState } from '../../../../../store/actions/language';
+import { Language } from '../../../../../store/language/types';
 import RouterUtils from '../../../../../utils/RouterUtils';
 import WHO_WE_ARE_ROUTES from '../constants/route.constants';
 import { Transition } from '../../../../../components';
 
 type Props = {
   children?: never;
-  language: LanguageState;
+  language: Language;
 };
 
 const CSS_ID_GET_TO_KNOW_US = RouterUtils.convertDeepLinkToCssId(WHO_WE_ARE_ROUTES.deepLinks.GET_TO_KNOW_US);

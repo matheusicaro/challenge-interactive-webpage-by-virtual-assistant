@@ -5,12 +5,12 @@ import 'react-chat-widget/lib/styles.css';
 import styled from 'styled-components';
 import AvatarImg from '../../assets/images/avatar.png';
 import AvatarSmallImg from '../../assets/images/avatar-small.png';
-import { LanguageState } from '../../store/actions/language';
+import { Language } from '../../store/language/types';
 import CHAT_CONSTANTS from './constants';
 
 type Props = {
   handleNewUserMessage: (message: string) => void;
-  language: LanguageState;
+  language: Language;
   handleOpenChat?: (chatIsOpen: boolean) => void;
 };
 

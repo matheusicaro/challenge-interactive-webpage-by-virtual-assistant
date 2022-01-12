@@ -5,12 +5,12 @@ import Home from '../pages/home';
 import OUR_VALUES_ROUTES from '../pages/home/subpages/our-values/constants/route.constants';
 import WHO_WE_ARE_ROUTES from '../pages/home/subpages/who-we-are/constants/route.constants';
 import WHY_NEO_ROUTES from '../pages/home/subpages/why-neo/constants/route.constants';
-import { LanguageState } from '../store/actions/language';
+import { Language } from '../store/language/types';
 
 export interface RouteType {
   id: string;
   label: {
-    [key in LanguageState]: string;
+    [key in Language]: string;
   };
 }
 

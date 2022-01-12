@@ -4,14 +4,14 @@ import styled from 'styled-components';
 import { ItemList, Text, Transition } from '../../../../../components';
 
 import { useTheme } from '../../../../../styles/provider';
-import { LanguageState } from '../../../../../store/actions/language';
+import { Language } from '../../../../../store/language/types';
 import DID_YOU_KNOW_CONSTANTS from '../constants/did-you-know-section.constants';
 import RouterUtils from '../../../../../utils/RouterUtils';
 import WHY_NEO_ROUTES from '../constants/route.constants';
 
 type Props = {
   children?: never;
-  language: LanguageState;
+  language: Language;
 };
 
 const CSS_ID_DID_YOU_KNOW = RouterUtils.convertDeepLinkToCssId(WHY_NEO_ROUTES.deepLinks.DID_YOU_KNOW);

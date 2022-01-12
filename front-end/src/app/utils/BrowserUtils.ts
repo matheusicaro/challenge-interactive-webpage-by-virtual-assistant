@@ -6,10 +6,21 @@ const scrollUp = () => DocumentScrollIntoView('root', 'start');
 const scrollUpId = (cssId: string) => DocumentScrollIntoView(cssId, 'start');
 const scrollCenterId = (cssId: string) => DocumentScrollIntoView(cssId, 'center');
 
+const getLanguage = (): string => {
+  try {
+    const pageLanguage = window.navigator.language;
+    const browserLanguage = pageLanguage.slice(0, pageLanguage.indexOf('-')).toUpperCase();
+    return browserLanguage;
+  } catch (error: any) {
+    return 'EN';
+  }
+};
+
 const BrowserUtils = {
   scrollUp,
   scrollUpId,
   scrollCenterId,
+  getLanguage,
 };
 
 export default BrowserUtils;

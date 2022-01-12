@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { LinkButton } from '../../../../../components';
-import { LanguageState } from '../../../../../store/actions/language';
+import { Language } from '../../../../../store/language/types';
 import { useTheme } from '../../../../../styles/provider';
 import RouterUtils from '../../../../../utils/RouterUtils';
 import { Paragraph, Title } from '../../styles';
@@ -12,7 +12,7 @@ import OUR_VALUES_ROUTES from '../constants/route.constants';
 
 type Props = {
   children?: never;
-  language: LanguageState;
+  language: Language;
 };
 
 const CSS_ID_JOIN_THE_NEO_TEAM = RouterUtils.convertDeepLinkToCssId(OUR_VALUES_ROUTES.deepLinks.JOIN_THE_NEO_TEAM);

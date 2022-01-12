@@ -1,4 +1,5 @@
 import { SendMessageData } from '../../graphql/queries/message';
+import { Command } from '../../store/chat/types';
 
 export type ChatState = {
   conversation: {
@@ -6,6 +7,7 @@ export type ChatState = {
     newMessage: boolean;
     chatbotLastAnswer: Array<string>;
     conversationId: string;
+    commands: Array<Command>;
   };
   loader: {
     active: boolean;

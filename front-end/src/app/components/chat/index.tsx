@@ -6,7 +6,8 @@ import 'react-chat-widget/lib/styles.css';
 import { useHistory } from 'react-router-dom';
 import { SendMessageData, SEND_MESSAGE } from '../../graphql/queries/message';
 import { globalContext } from '../../store';
-import { LanguageState } from '../../store/actions/language';
+import { addNewCommands } from '../../store/chat/actions';
+import { Language } from '../../store/language/types';
 import ChatView from './Chat';
 import CHAT_CONSTANTS from './constants';
 import { ChatState, MessagePayload } from './types';
@@ -26,9 +27,8 @@ import { ChatState, MessagePayload } from './types';
 const Chat: React.FC = () => {
   const [state, setState] = useState<ChatState>(initialState());
 
-  const { globalState } = useContext(globalContext);
+  const { globalState, dispatch } = useContext(globalContext);
   const [sendMessage, { error, data, loading }] = useMutation<SendMessageData>(SEND_MESSAGE);
-  const history = useHistory();
 
   const handleOpenChat = (open: boolean) => setState((prev) => ({ ...prev, open }));
 
@@ -49,9 +49,16 @@ const Chat: React.FC = () => {
   };
 
   const handleNewUserMessage = (message: string) => {
-    if (state.errorInformed) setState((prev) => ({ ...prev, errorInformed: false }));
-    sendMessage({ variables: { message, conversationId: getConversationId(data), language: globalState.language } });
-    enableLoader();
+    if (message && message.length > 0) {
+      const conversationId = getConversationId(data);
+      const language = globalState.language;
+      message = message.replaceAll('\n', ' ');
+
+      if (state.errorInformed) setState((prev) => ({ ...prev, errorInformed: false }));
+
+      sendMessage({ variables: { message, conversationId, language } });
+      enableLoader();
+    }
   };
 
   const sendResponseMessage = (message: string) => {
@@ -70,7 +77,7 @@ const Chat: React.FC = () => {
       enableLastResponseMessage();
       setState((prev) => ({ ...prev, welcomeMessageViewed: true }));
     }
-  }, [state.open]);
+  }, [state.open]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /**
    * Effect to disable loader if enabled in case of the first attempt fails.
@@ -79,7 +86,7 @@ const Chat: React.FC = () => {
    */
   useEffect(() => {
     if (loaderActivatedIncorrectly(state)) disableLoader();
-  }, [state.loader.active, state.loader.attemptsToDisable]);
+  }, [state.loader.active, state.loader.attemptsToDisable]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /**
    * Effect to update state with new answer received from the Chatbot.
@@ -89,6 +96,7 @@ const Chat: React.FC = () => {
     if (!error && !loading && data) {
       const messagesFromTheChatbot = data.sendMessage.answer;
       const conversationId = data.sendMessage.conversationId;
+      const commands = data.sendMessage.context.commands;
       const messageAlreadyAnswered = messagesFromTheChatbot.join() === state.conversation.chatbotLastAnswer.join();
 
       setState((prev) => ({
@@ -98,11 +106,12 @@ const Chat: React.FC = () => {
           answered: messageAlreadyAnswered,
           newMessage: !messageAlreadyAnswered,
           chatbotLastAnswer: messagesFromTheChatbot,
+          commands,
           conversationId,
         },
       }));
     }
-  }, [loading, error, data]);
+  }, [loading, error, data]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!state.open && !state.welcomeMessageViewed) {
     sendWelcomeMessage(globalState.language);
@@ -119,6 +128,11 @@ const Chat: React.FC = () => {
     setState((prev) => ({ ...prev, conversation: { ...prev.conversation, newMessage: false, answered: true } }));
   }
 
+  if (state.conversation.commands && state.conversation.commands.length !== 0) {
+    setState((prev) => ({ ...prev, conversation: { ...prev.conversation, commands: [] } }));
+    dispatch(addNewCommands(state.conversation.commands));
+  }
+
   return <ChatView handleNewUserMessage={handleNewUserMessage} language={globalState.language} handleOpenChat={handleOpenChat} />;
 };
 
@@ -129,6 +143,7 @@ const initialState = (): ChatState => ({
     answered: false,
     newMessage: false,
     chatbotLastAnswer: [''],
+    commands: [],
     conversationId: '',
   },
   errorInformed: false,
@@ -143,9 +158,9 @@ const initialState = (): ChatState => ({
 /**
  * Function to send the Welcome Message
  *
- * @param {LanguageState} language: message language
+ * @param {Language} language: message language
  */
-const sendWelcomeMessage = (language: LanguageState) => {
+const sendWelcomeMessage = (language: Language) => {
   addResponseMessage(CHAT_CONSTANTS.WELCOME[language]);
 };
 

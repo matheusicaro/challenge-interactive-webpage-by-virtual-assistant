@@ -6,13 +6,13 @@ import styled from 'styled-components';
 import HighlightImage from '../assets/highlight.png';
 import { PositionContainer, Title } from '../../styles';
 import WHO_WE_ARE_HIGHLIGHTS_CONSTANTS from '../constants/who-we-are-highlights.constants';
-import { LanguageState } from '../../../../../store/actions/language';
+import { Language } from '../../../../../store/language/types';
 import RouterUtils from '../../../../../utils/RouterUtils';
 import WHO_WE_ARE_ROUTES from '../constants/route.constants';
 
 type Props = {
   children?: never;
-  language: LanguageState;
+  language: Language;
 };
 
 const CSS_ID_WHO_WE_ARE = RouterUtils.convertDeepLinkToCssId(WHO_WE_ARE_ROUTES.deepLinks.WHO_WE_ARE);
