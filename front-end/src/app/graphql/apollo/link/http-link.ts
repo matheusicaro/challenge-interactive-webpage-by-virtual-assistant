@@ -7,7 +7,7 @@ import environments from '../../../environments';
  * @reference: https://www.apollographql.com/docs/react/api/link/apollo-link-http/
  */
 export const httpLink = new HttpLink({
-  uri: `${environments.ENV === 'dev' ? 'http' : 'https'}://${environments.HOST_BASE_URL}`,
+  uri: environments.HOST_BASE_URL,
   // Additional options
   // credentials: 'include',
 });
