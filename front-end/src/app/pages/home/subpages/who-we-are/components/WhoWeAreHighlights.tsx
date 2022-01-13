@@ -15,7 +15,7 @@ type Props = {
   language: Language;
 };
 
-const CSS_ID_WHO_WE_ARE = RouterUtils.convertDeepLinkToCssId(WHO_WE_ARE_ROUTES.deepLinks.WHO_WE_ARE);
+const CSS_ID_WHO_WE_ARE = RouterUtils.convertDeepLinkToCssId(WHO_WE_ARE_ROUTES.subRoute.WHO_WE_ARE.deepLink);
 
 const WhoWeAreHighlights: React.FC<Props> = (props) => {
   return (

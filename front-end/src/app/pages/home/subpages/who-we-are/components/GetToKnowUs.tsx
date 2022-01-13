@@ -15,7 +15,7 @@ type Props = {
   language: Language;
 };
 
-const CSS_ID_GET_TO_KNOW_US = RouterUtils.convertDeepLinkToCssId(WHO_WE_ARE_ROUTES.deepLinks.GET_TO_KNOW_US);
+const CSS_ID_GET_TO_KNOW_US = RouterUtils.convertDeepLinkToCssId(WHO_WE_ARE_ROUTES.subRoute.GET_TO_KNOW_US.deepLink);
 
 const GetToKnowUs: React.FC<Props> = (props) => {
   const items = GET_TO_KNOW_US_CONSTANTS.items;

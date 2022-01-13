@@ -12,8 +12,8 @@ const Reducer = (state: GlobalState, action: ActionType<any>): GlobalState => {
     case ChatActionTypes.ADD_NEW_COMMANDS:
       return newChatCommands(action.payload, state);
 
-    case ChatActionTypes.COMMAND_EXECUTED:
-      return commandExecuted(action.payload, state);
+    case ChatActionTypes.COMMANDS_EXECUTED:
+      return commandsExecuted(action.payload, state);
 
     default:
       return state;
@@ -55,20 +55,20 @@ const newChatCommands = (payload: Array<Command>, prevState: GlobalState): Globa
  * @param {GlobalState} currentState
  * @returns new state updated with a new list of commands executed
  */
-const commandExecuted = (payload: CommandStatus, prevState: GlobalState): GlobalState => {
-  const { command, executed } = payload;
-
+const commandsExecuted = (payload: Array<CommandStatus>, prevState: GlobalState): GlobalState => {
+  //
   const updateCommandStatus = (status: CommandStatus) => {
-    if (status.command.type === command.type) return { executed, command };
+    const executed = payload.find((statusExecuted) => statusExecuted.command.type === status.command.type);
+
+    if (executed) return executed;
+
     return status;
   };
-
-  const commandsUpdated = prevState.chat.commands.map(updateCommandStatus);
 
   return {
     ...prevState,
     chat: {
-      commands: commandsUpdated,
+      commands: prevState.chat.commands.map(updateCommandStatus),
     },
   };
 };

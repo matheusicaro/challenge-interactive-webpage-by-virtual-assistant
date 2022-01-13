@@ -16,11 +16,14 @@ const getLanguage = (): string => {
   }
 };
 
+const replaceUrlBrowser = (path: string, title = '') => window.history.replaceState('', title, path);
+
 const BrowserUtils = {
   scrollUp,
   scrollUpId,
   scrollCenterId,
   getLanguage,
+  replaceUrlBrowser,
 };
 
 export default BrowserUtils;

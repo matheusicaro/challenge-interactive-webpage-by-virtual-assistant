@@ -5,7 +5,7 @@ import { Banner, Footer, AppBar } from '../../components';
 import SubpageRouter from './subpages/SubpageRouter';
 
 type Props = {
-  onSelectedRoute: (route: string) => void;
+  handleSelectedHeaderOption: (option: string) => void;
   routes: Array<string>;
   routeSelected: string;
   subpageId: string;
@@ -18,7 +18,12 @@ const HomeView: React.FC<Props> = (props) => {
   return (
     <Main>
       <Banner />
-      <AppBar id={HEADER_CSS_ID} routes={props.routes} onSelectedRoute={props.onSelectedRoute} routeSelected={props.routeSelected} />
+      <AppBar
+        id={HEADER_CSS_ID}
+        routes={props.routes}
+        handleSelectedOption={props.handleSelectedHeaderOption}
+        routeSelected={props.routeSelected}
+      />
 
       <article>
         <SubpageRouter subpageId={props.subpageId} />

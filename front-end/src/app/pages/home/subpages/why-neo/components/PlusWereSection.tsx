@@ -14,7 +14,7 @@ type Props = {
   language: Language;
 };
 
-const CSS_ID_PLUS_WE_ARE = RouterUtils.convertDeepLinkToCssId(WHY_NEO_ROUTES.deepLinks.PLUS_WE_ARE);
+const CSS_ID_PLUS_WE_ARE = RouterUtils.convertDeepLinkToCssId(WHY_NEO_ROUTES.subRoute.PLUS_WE_ARE.deepLink);
 
 const PlusWereSection: React.FC<Props> = (props) => {
   const { theme } = useTheme();

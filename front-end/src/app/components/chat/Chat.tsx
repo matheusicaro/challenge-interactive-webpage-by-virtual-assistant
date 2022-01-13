@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import AvatarImg from '../../assets/images/avatar.png';
 import AvatarSmallImg from '../../assets/images/avatar-small.png';
 import { Language } from '../../store/language/types';
-import CHAT_CONSTANTS from './constants';
+import { CSS_CLASS_NAMES, CHAT_MESSAGES } from './constants';
 
 type Props = {
   handleNewUserMessage: (message: string) => void;
@@ -22,9 +22,9 @@ const ChatView: React.FC<Props> = (props) => {
         titleAvatar={AvatarImg}
         launcherOpenImg={AvatarSmallImg}
         handleNewUserMessage={props.handleNewUserMessage}
-        title={CHAT_CONSTANTS.TITLE[props.language]}
-        subtitle={CHAT_CONSTANTS.SUBTITLE[props.language]}
-        senderPlaceHolder={CHAT_CONSTANTS.SENDER_PLACE_HOLDER[props.language]}
+        title={CHAT_MESSAGES.TITLE[props.language]}
+        subtitle={CHAT_MESSAGES.SUBTITLE[props.language]}
+        senderPlaceHolder={CHAT_MESSAGES.SENDER_PLACE_HOLDER[props.language]}
         handleToggle={props.handleOpenChat}
       />
     </Container>
@@ -84,7 +84,7 @@ const Container = styled.section`
     line-height: 1.2em;
   }
 
-  .rcw-message {
+  .${CSS_CLASS_NAMES.MESSAGE} {
     display: none !important;
 
     .rcw-response .rcw-message-text {
@@ -113,7 +113,7 @@ const Container = styled.section`
     display: flex !important;
   }
 
-  .enabled {
+  .${CSS_CLASS_NAMES.ENABLE_ELEMENT} {
     display: flex !important;
   }
 `;

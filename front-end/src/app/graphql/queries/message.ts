@@ -27,3 +27,8 @@ export interface SendMessageData {
     };
   };
 }
+
+export const COMMANDS_TYPES = {
+  REDIRECT_TO_PAGE: 'REDIRECT_TO_PAGE',
+  SHOW_LINK: 'SHOW_LINK',
+};

@@ -3,7 +3,7 @@ import { Command, CommandStatus } from './types';
 
 export enum ChatActionTypes {
   ADD_NEW_COMMANDS = '@chat/ADD_NEW_COMMANDS',
-  COMMAND_EXECUTED = '@chat/COMMAND_EXECUTED',
+  COMMANDS_EXECUTED = '@chat/COMMANDS_EXECUTED',
 }
 
 export const addNewCommands = (commands: Array<Command>): ActionType<Array<Command>> => ({
@@ -11,10 +11,7 @@ export const addNewCommands = (commands: Array<Command>): ActionType<Array<Comma
   payload: commands,
 });
 
-export const commandExecuted = (executed: boolean, command: Command): ActionType<CommandStatus> => ({
-  type: ChatActionTypes.COMMAND_EXECUTED,
-  payload: {
-    executed,
-    command,
-  },
+export const commandsExecuted = (commands: Array<CommandStatus>): ActionType<Array<CommandStatus>> => ({
+  type: ChatActionTypes.COMMANDS_EXECUTED,
+  payload: commands,
 });

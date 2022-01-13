@@ -1,9 +1,14 @@
 import { RouteType } from '../../../../../routes';
 
 interface OurValuesRoutes extends RouteType {
-  deepLinks: {
-    OUR_VALUES: string;
-    JOIN_THE_NEO_TEAM: string;
+  subRoute: {
+    OUR_VALUES: {
+      deepLink: string;
+    };
+    JOIN_THE_NEO_TEAM: {
+      path: string;
+      deepLink: string;
+    };
   };
 }
 
@@ -13,9 +18,15 @@ const OUR_VALUES_ROUTES: OurValuesRoutes = {
     EN: 'Our Values',
     FR: 'Nos valeurs',
   },
-  deepLinks: {
-    OUR_VALUES: '/our-values',
-    JOIN_THE_NEO_TEAM: '/our-values/join-the-neo-team',
+  path: '/our-values',
+  subRoute: {
+    OUR_VALUES: {
+      deepLink: '/our-values',
+    },
+    JOIN_THE_NEO_TEAM: {
+      path: '/our-values/join-the-neo-team',
+      deepLink: '/our-values/join-the-neo-team',
+    },
   },
 };
 

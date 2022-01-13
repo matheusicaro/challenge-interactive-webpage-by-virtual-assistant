@@ -13,7 +13,7 @@ type Props = {
   language: Language;
 };
 
-const CSS_ID_OUR_VALUES = RouterUtils.convertDeepLinkToCssId(OUR_VALUES_ROUTES.deepLinks.OUR_VALUES);
+const CSS_ID_OUR_VALUES = RouterUtils.convertDeepLinkToCssId(OUR_VALUES_ROUTES.subRoute.OUR_VALUES.deepLink);
 
 const OurValuesSection: React.FC<Props> = (props) => {
   const items = OUR_VALUES_CONSTANTS.items;

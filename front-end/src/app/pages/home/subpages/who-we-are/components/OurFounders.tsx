@@ -15,7 +15,7 @@ type Props = {
   language: Language;
 };
 
-const CSS_ID_OUR_FOUNDERS = RouterUtils.convertDeepLinkToCssId(WHO_WE_ARE_ROUTES.deepLinks.OUR_FOUNDERS);
+const CSS_ID_OUR_FOUNDERS = RouterUtils.convertDeepLinkToCssId(WHO_WE_ARE_ROUTES.subRoute.OUR_FOUNDERS.deepLink);
 
 const OurFounders: React.FC<Props> = (props) => {
   const founders = OUR_FOUNDERS_CONSTANTS.founders;

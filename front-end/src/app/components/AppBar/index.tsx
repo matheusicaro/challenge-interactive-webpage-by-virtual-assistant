@@ -11,7 +11,7 @@ import styled from 'styled-components';
 type Props = {
   children?: never;
   routes: Array<string>;
-  onSelectedRoute: (route: string) => void;
+  handleSelectedOption: (route: string) => void;
   routeSelected?: string;
   id?: string;
 };
@@ -23,10 +23,10 @@ const AppBar: React.FC<Props> = (props) => {
 
   const onClickHeaderMenu = (e: any): void => {
     e.preventDefault();
-    props.onSelectedRoute(e.target.value);
+    props.handleSelectedOption(e.target.value);
   };
 
-  const onSelectOption = (option: string) => props.onSelectedRoute(option);
+  const onSelectOption = (option: string) => props.handleSelectedOption(option);
 
   const ToggleTheme = () => {
     return (

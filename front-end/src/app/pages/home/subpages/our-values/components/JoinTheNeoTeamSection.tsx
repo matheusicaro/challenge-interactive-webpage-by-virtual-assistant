@@ -15,7 +15,7 @@ type Props = {
   language: Language;
 };
 
-const CSS_ID_JOIN_THE_NEO_TEAM = RouterUtils.convertDeepLinkToCssId(OUR_VALUES_ROUTES.deepLinks.JOIN_THE_NEO_TEAM);
+const CSS_ID_JOIN_THE_NEO_TEAM = RouterUtils.convertDeepLinkToCssId(OUR_VALUES_ROUTES.subRoute.JOIN_THE_NEO_TEAM.deepLink);
 
 const JoinTheNeoTeamSection: React.FC<Props> = (props) => {
   const { theme } = useTheme();

@@ -1,15 +1,15 @@
 import { useMutation } from '@apollo/client';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { addResponseMessage, toggleMsgLoader } from 'react-chat-widget';
 
 import 'react-chat-widget/lib/styles.css';
-import { useHistory } from 'react-router-dom';
 import { SendMessageData, SEND_MESSAGE } from '../../graphql/queries/message';
 import { globalContext } from '../../store';
 import { addNewCommands } from '../../store/chat/actions';
-import { Language } from '../../store/language/types';
+import { Command } from '../../store/chat/types';
 import ChatView from './Chat';
-import CHAT_CONSTANTS from './constants';
+import CommandsListener from './CommandsListener';
+import { CSS_CLASS_NAMES, CHAT_MESSAGES, CONSTANTS } from './constants';
 import { ChatState, MessagePayload } from './types';
 
 /*
@@ -40,19 +40,34 @@ const Chat: React.FC = () => {
 
   const enableLoader = () => {
     toggleMsgLoader();
-    setState((prev) => ({ ...prev, loader: { ...prev.loader, active: true } }));
+    setState(updateStateWhenLoaderIsEnabled);
   };
 
   const disableLoader = () => {
     toggleMsgLoader();
-    setState((prev) => ({ ...prev, loader: { active: false, attemptsToDisable: prev.loader.attemptsToDisable + 1 } }));
+    setState(updateStateWhenTheLoaderIsDisabled);
+  };
+
+  const enablesWelcomeMessage = () => {
+    if (!state.welcomeMessageViewed && state.open) {
+      enableLastResponseMessage();
+      setState((prev) => ({ ...prev, welcomeMessageViewed: true }));
+    }
+  };
+
+  const sendResponseMessage = (message: string) => {
+    addMessagesInTheChat(message);
+    setTimeout(() => {
+      disableLoader();
+      enableLastResponseMessage();
+    }, CONSTANTS.DELAY_TO_ENABLE_MESSAGE_IN_MS);
   };
 
   const handleNewUserMessage = (message: string) => {
     if (message && message.length > 0) {
       const conversationId = getConversationId(data);
       const language = globalState.language;
-      message = message.replaceAll('\n', ' ');
+      message = removeMessageFormatting(message);
 
       if (state.errorInformed) setState((prev) => ({ ...prev, errorInformed: false }));
 
@@ -61,48 +76,19 @@ const Chat: React.FC = () => {
     }
   };
 
-  const sendResponseMessage = (message: string) => {
-    setTimeout(() => addResponseMessage(message), 1000);
-    setTimeout(() => {
-      disableLoader();
-      enableLastResponseMessage();
-    }, 2000);
-  };
-
-  /**
-   * Effect to enable Welcome message when the Chat is open for the first time
-   */
-  useEffect(() => {
-    if (!state.welcomeMessageViewed && state.open) {
-      enableLastResponseMessage();
-      setState((prev) => ({ ...prev, welcomeMessageViewed: true }));
-    }
-  }, [state.open]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  /**
-   * Effect to disable loader if enabled in case of the first attempt fails.
-   * This effect is necessary to fix the bug reported at the react-chat-widget where the internal component
-   * is render 2x or more which makes the loader enable again independently.
-   */
-  useEffect(() => {
-    if (loaderActivatedIncorrectly(state)) disableLoader();
-  }, [state.loader.active, state.loader.attemptsToDisable]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  /**
-   * Effect to update state with new answer received from the Chatbot.
-   * This control is necessary to control the answers avoiding a bug of duplicate messages
-   */
-  useEffect(() => {
+  const getChatbotAnswer = () => {
     if (!error && !loading && data) {
       const messagesFromTheChatbot = data.sendMessage.answer;
       const conversationId = data.sendMessage.conversationId;
       const commands = data.sendMessage.context.commands;
+
       const messageAlreadyAnswered = messagesFromTheChatbot.join() === state.conversation.chatbotLastAnswer.join();
 
       setState((prev) => ({
         ...prev,
         conversation: {
           ...prev.conversation,
+
           answered: messageAlreadyAnswered,
           newMessage: !messageAlreadyAnswered,
           chatbotLastAnswer: messagesFromTheChatbot,
@@ -111,29 +97,53 @@ const Chat: React.FC = () => {
         },
       }));
     }
-  }, [loading, error, data]); // eslint-disable-line react-hooks/exhaustive-deps
+  };
+
+  /**
+   * Effect to enable Welcome message when the Chat is open for the first time
+   */
+  useEffect(enablesWelcomeMessage, [state.open]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  /**
+   * Effect to disable loader if enabled in case of the first attempt fails.
+   * This effect is necessary to fix the "unknown bug" reported at the react-chat-widget where the internal component
+   * is render 2x or more which makes the loader enable again independently.
+   */
+  useEffect(() => {
+    if (loaderActivatedIncorrectly(state)) disableLoader();
+  }, [state.loader.active, state.loader.attemptsToDisable]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  /**
+   * Effect to update state with new answer received from the Chatbot.
+   * This control is necessary to control the answers avoiding a "unknown bug" of duplicate messages
+   */
+  useEffect(getChatbotAnswer, [loading, error, data]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!state.open && !state.welcomeMessageViewed) {
-    sendWelcomeMessage(globalState.language);
+    addMessagesInTheChat(CHAT_MESSAGES.WELCOME[globalState.language], false);
   }
 
   if (error && !state.errorInformed) {
-    sendResponseMessage(CHAT_CONSTANTS.ERROR.SEND_MESSAGE[globalState.language]);
-    setState((prev) => ({ ...prev, errorInformed: true }));
+    addMessagesInTheChat(CHAT_MESSAGES.ERROR.SEND_MESSAGE[globalState.language]);
+    setState(updateStaForInformedError);
   }
 
   if (state.conversation.newMessage) {
-    const message = state.conversation.chatbotLastAnswer.join('\n');
-    sendResponseMessage(message);
-    setState((prev) => ({ ...prev, conversation: { ...prev.conversation, newMessage: false, answered: true } }));
+    sendResponseMessage(joinMessagesByParagraph(state.conversation.chatbotLastAnswer));
+    setState(updateStateForNewMessageAnsweredFromTheChatbot);
   }
 
-  if (state.conversation.commands && state.conversation.commands.length !== 0) {
-    setState((prev) => ({ ...prev, conversation: { ...prev.conversation, commands: [] } }));
+  if (thereAreCommandsToBeExecuted(state.conversation.commands)) {
     dispatch(addNewCommands(state.conversation.commands));
+    setState(updateStateToClearCommandsAddedInTheStore);
   }
 
-  return <ChatView handleNewUserMessage={handleNewUserMessage} language={globalState.language} handleOpenChat={handleOpenChat} />;
+  return (
+    <Fragment>
+      <CommandsListener />
+      <ChatView handleNewUserMessage={handleNewUserMessage} language={globalState.language} handleOpenChat={handleOpenChat} />
+    </Fragment>
+  );
 };
 
 export default Chat;
@@ -156,30 +166,77 @@ const initialState = (): ChatState => ({
 });
 
 /**
- * Function to send the Welcome Message
+ * Function to add Message at the external chat component - Widget
  *
- * @param {Language} language: message language
+ * @param {string} message
+ * @param {boolean} addDelay: add delay to show message
  */
-const sendWelcomeMessage = (language: Language) => {
-  addResponseMessage(CHAT_CONSTANTS.WELCOME[language]);
+const addMessagesInTheChat = (message: string, addDelay = true) => {
+  if (addDelay) setTimeout(() => addResponseMessage(message), CONSTANTS.DELAY_TO_ADD_MESSAGE_IN_MS);
+  else addResponseMessage(message);
 };
 
 /**
  * Function to enable message to be viewed on the chat through manipulation of the DOM
  */
 const enableLastResponseMessage = () => {
-  const elements = document.getElementById('messages')?.getElementsByClassName('rcw-message');
-  if (elements && elements.length > 0) elements[elements.length - 1].classList.add('enabled');
+  const elements = document.getElementById(CSS_CLASS_NAMES.MESSAGES_LIST_CONTAINER)?.getElementsByClassName(CSS_CLASS_NAMES.MESSAGE);
+
+  if (elements && elements.length > 0) {
+    elements[elements.length - 1].classList.add(CSS_CLASS_NAMES.ENABLE_ELEMENT);
+  }
 };
 
 /**
  * Function to check if element loader is active even
  */
 const loaderIsEnabled = (): boolean => {
-  const elements = document.getElementById('messages')?.getElementsByClassName('loader');
-  return !!elements && elements[0].classList.contains('active');
+  const elements = document.getElementById(CSS_CLASS_NAMES.MESSAGES_LIST_CONTAINER)?.getElementsByClassName(CSS_CLASS_NAMES.LOADER);
+
+  return !!elements && elements[0].classList.contains(CSS_CLASS_NAMES.ELEMENT_ACTIVATED);
 };
 
 const getConversationId = (data: MessagePayload): string => {
   return data ? data.sendMessage.conversationId : '';
 };
+
+const removeMessageFormatting = (message: string): string => message?.replaceAll('\n', ' ');
+
+const joinMessagesByParagraph = (messages: Array<string>): string => messages.join('\n\n');
+
+const thereAreCommandsToBeExecuted = (commands: Array<Command>): boolean => commands && commands.length !== 0;
+
+const updateStaForInformedError = (prevState: ChatState): ChatState => ({ ...prevState, errorInformed: true });
+
+const updateStateForNewMessageAnsweredFromTheChatbot = (prev: ChatState): ChatState => ({
+  ...prev,
+  conversation: {
+    ...prev.conversation,
+    newMessage: false,
+    answered: true,
+  },
+});
+
+const updateStateToClearCommandsAddedInTheStore = (prev: ChatState): ChatState => ({
+  ...prev,
+  conversation: {
+    ...prev.conversation,
+    commands: [],
+  },
+});
+
+const updateStateWhenTheLoaderIsDisabled = (prev: ChatState): ChatState => ({
+  ...prev,
+  loader: {
+    active: false,
+    attemptsToDisable: prev.loader.attemptsToDisable + 1,
+  },
+});
+
+const updateStateWhenLoaderIsEnabled = (prev: ChatState): ChatState => ({
+  ...prev,
+  loader: {
+    ...prev.loader,
+    active: true,
+  },
+});

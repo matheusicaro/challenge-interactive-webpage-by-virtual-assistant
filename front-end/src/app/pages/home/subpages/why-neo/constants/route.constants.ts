@@ -1,10 +1,18 @@
 import { RouteType } from '../../../../../routes';
 
 interface WhyNeoRoutes extends RouteType {
-  deepLinks: {
-    WHY_NEO: string;
-    DID_YOU_KNOW: string;
-    PLUS_WE_ARE: string;
+  subRoute: {
+    WHY_NEO: {
+      deepLink: string;
+    };
+    DID_YOU_KNOW: {
+      path: string;
+      deepLink: string;
+    };
+    PLUS_WE_ARE: {
+      path: string;
+      deepLink: string;
+    };
   };
 }
 
@@ -14,10 +22,19 @@ const WHY_NEO_ROUTES: WhyNeoRoutes = {
     EN: 'Why Neo',
     FR: 'Pourquoi Néo',
   },
-  deepLinks: {
-    WHY_NEO: '/why-neo',
-    DID_YOU_KNOW: '/why-neo/did-you-know',
-    PLUS_WE_ARE: '/why-neo/plus-we-are',
+  path: '/why-neo',
+  subRoute: {
+    WHY_NEO: {
+      deepLink: '/why-neo',
+    },
+    DID_YOU_KNOW: {
+      path: '/why-neo/did-you-know',
+      deepLink: '/why-neo/did-you-know',
+    },
+    PLUS_WE_ARE: {
+      path: '/why-neo/plus-we-are',
+      deepLink: '/why-neo/plus-we-are',
+    },
   },
 };
 

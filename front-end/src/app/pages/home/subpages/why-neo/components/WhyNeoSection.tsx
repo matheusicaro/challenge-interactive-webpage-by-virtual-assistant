@@ -15,7 +15,7 @@ type Props = {
   language: Language;
 };
 
-const CSS_ID_WHY_NEO_TITLE = RouterUtils.convertDeepLinkToCssId(WHY_NEO_ROUTES.deepLinks.WHY_NEO);
+const CSS_ID_WHY_NEO_TITLE = RouterUtils.convertDeepLinkToCssId(WHY_NEO_ROUTES.subRoute.WHY_NEO.deepLink);
 
 const WhyNeoSection: React.FC<Props> = (props) => {
   return (

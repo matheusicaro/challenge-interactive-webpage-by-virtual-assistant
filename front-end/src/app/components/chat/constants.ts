@@ -1,4 +1,4 @@
-const CHAT_CONSTANTS = {
+export const CHAT_MESSAGES = {
   TITLE: {
     EN: 'Neo Assistant',
     FR: 'Assistant Néo',
@@ -24,4 +24,16 @@ const CHAT_CONSTANTS = {
   },
 };
 
-export default CHAT_CONSTANTS;
+export const CONSTANTS = {
+  DELAY_TO_ADD_MESSAGE_IN_MS: 1000,
+  DELAY_TO_ENABLE_MESSAGE_IN_MS: 2000,
+};
+
+export const CSS_CLASS_NAMES = {
+  MESSAGES_LIST_CONTAINER: 'messages',
+  MESSAGE: 'rcw-message',
+  LINK_MESSAGE: 'rcw-link',
+  LOADER: 'loader',
+  ELEMENT_ACTIVATED: 'active',
+  ENABLE_ELEMENT: 'enabled',
+};

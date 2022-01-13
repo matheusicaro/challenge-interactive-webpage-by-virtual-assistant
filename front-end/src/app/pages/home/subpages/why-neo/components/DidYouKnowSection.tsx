@@ -14,7 +14,7 @@ type Props = {
   language: Language;
 };
 
-const CSS_ID_DID_YOU_KNOW = RouterUtils.convertDeepLinkToCssId(WHY_NEO_ROUTES.deepLinks.DID_YOU_KNOW);
+const CSS_ID_DID_YOU_KNOW = RouterUtils.convertDeepLinkToCssId(WHY_NEO_ROUTES.subRoute.DID_YOU_KNOW.deepLink);
 
 const DidYouKnowSection: React.FC<Props> = (props) => {
   const { theme } = useTheme();

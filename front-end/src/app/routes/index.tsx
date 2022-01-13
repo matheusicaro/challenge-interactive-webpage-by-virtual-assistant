@@ -12,47 +12,58 @@ export interface RouteType {
   label: {
     [key in Language]: string;
   };
+  path: string;
+  subRoute?: {
+    [subRouteName: string]: {
+      path?: string;
+      deepLink?: string;
+    };
+  };
 }
 
 const Routes: React.FC = () => (
   <Switch>
     <Route
       exact
-      path="/who-we-are"
-      render={() => <Home deepLink={WHO_WE_ARE_ROUTES.deepLinks.WHO_WE_ARE} routeId={WHO_WE_ARE_ROUTES.id} />}
+      path={WHO_WE_ARE_ROUTES.path}
+      render={() => <Home deepLink={WHO_WE_ARE_ROUTES.subRoute.WHO_WE_ARE.deepLink} routeId={WHO_WE_ARE_ROUTES.id} />}
     />
     <Route
       exact
-      path="/who-we-are/get-to-know-us"
-      render={() => <Home deepLink={WHO_WE_ARE_ROUTES.deepLinks.GET_TO_KNOW_US} routeId={WHO_WE_ARE_ROUTES.id} />}
+      path={WHO_WE_ARE_ROUTES.subRoute.GET_TO_KNOW_US.path}
+      render={() => <Home deepLink={WHO_WE_ARE_ROUTES.subRoute.GET_TO_KNOW_US.deepLink} routeId={WHO_WE_ARE_ROUTES.id} />}
     />
     <Route
       exact
-      path="/who-we-are/our-founders"
-      render={() => <Home deepLink={WHO_WE_ARE_ROUTES.deepLinks.OUR_FOUNDERS} routeId={WHO_WE_ARE_ROUTES.id} />}
-    />
-
-    <Route exact path="/why-neo/" render={() => <Home deepLink={WHY_NEO_ROUTES.deepLinks.WHY_NEO} routeId={WHY_NEO_ROUTES.id} />} />
-    <Route
-      exact
-      path="/why-neo/did-you-know"
-      render={() => <Home deepLink={WHY_NEO_ROUTES.deepLinks.DID_YOU_KNOW} routeId={WHY_NEO_ROUTES.id} />}
-    />
-    <Route
-      exact
-      path="/why-neo/plus-we-are"
-      render={() => <Home deepLink={WHY_NEO_ROUTES.deepLinks.PLUS_WE_ARE} routeId={WHY_NEO_ROUTES.id} />}
+      path={WHO_WE_ARE_ROUTES.subRoute.OUR_FOUNDERS.path}
+      render={() => <Home deepLink={WHO_WE_ARE_ROUTES.subRoute.OUR_FOUNDERS.deepLink} routeId={WHO_WE_ARE_ROUTES.id} />}
     />
 
     <Route
       exact
-      path="/our-values"
-      render={() => <Home deepLink={OUR_VALUES_ROUTES.deepLinks.OUR_VALUES} routeId={OUR_VALUES_ROUTES.id} />}
+      path={WHY_NEO_ROUTES.path}
+      render={() => <Home deepLink={WHY_NEO_ROUTES.subRoute.WHY_NEO.deepLink} routeId={WHY_NEO_ROUTES.id} />}
     />
     <Route
       exact
-      path="/our-values/join-the-neo-team"
-      render={() => <Home deepLink={OUR_VALUES_ROUTES.deepLinks.JOIN_THE_NEO_TEAM} routeId={OUR_VALUES_ROUTES.id} />}
+      path={WHY_NEO_ROUTES.subRoute.DID_YOU_KNOW.path}
+      render={() => <Home deepLink={WHY_NEO_ROUTES.subRoute.DID_YOU_KNOW.deepLink} routeId={WHY_NEO_ROUTES.id} />}
+    />
+    <Route
+      exact
+      path={WHY_NEO_ROUTES.subRoute.PLUS_WE_ARE.path}
+      render={() => <Home deepLink={WHY_NEO_ROUTES.subRoute.PLUS_WE_ARE.deepLink} routeId={WHY_NEO_ROUTES.id} />}
+    />
+
+    <Route
+      exact
+      path={OUR_VALUES_ROUTES.path}
+      render={() => <Home deepLink={OUR_VALUES_ROUTES.subRoute.OUR_VALUES.deepLink} routeId={OUR_VALUES_ROUTES.id} />}
+    />
+    <Route
+      exact
+      path={OUR_VALUES_ROUTES.subRoute.JOIN_THE_NEO_TEAM.path}
+      render={() => <Home deepLink={OUR_VALUES_ROUTES.subRoute.JOIN_THE_NEO_TEAM.deepLink} routeId={OUR_VALUES_ROUTES.id} />}
     />
 
     <Route path="*" component={Home} />
