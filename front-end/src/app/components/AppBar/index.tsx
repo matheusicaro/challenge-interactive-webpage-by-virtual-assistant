@@ -31,9 +31,9 @@ const AppBar: React.FC<Props> = (props) => {
   const ToggleTheme = () => {
     return (
       <ThemeContainer>
-        <LightIcon activated={isLightTheme} onClick={toggleTheme} />
+        <LightIcon $activated={isLightTheme} onClick={toggleTheme} />
         <span>{' | '}</span>
-        <DarkIcon activated={!isLightTheme} onClick={toggleTheme} />
+        <DarkIcon $activated={!isLightTheme} onClick={toggleTheme} />
       </ThemeContainer>
     );
   };
@@ -57,7 +57,7 @@ const AppBar: React.FC<Props> = (props) => {
                 value={route}
                 onClick={onClickHeaderMenu}
                 sx={ButtonStyleSX}
-                active={route === props.routeSelected}
+                $active={route === props.routeSelected}
                 disabled={route === props.routeSelected}
               >
                 {route}

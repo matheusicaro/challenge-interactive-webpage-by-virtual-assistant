@@ -5,5 +5,6 @@ import ItemList from './ItemList';
 import LinkButton from './LinkButton';
 import AppBar from './AppBar';
 import Transition from './Transition';
+import LoaderFullPage from './LoaderFullPage';
 
-export { Banner, Footer, Text, ItemList, LinkButton, AppBar, Transition };
+export { Banner, Footer, Text, ItemList, LinkButton, AppBar, Transition, LoaderFullPage };

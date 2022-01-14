@@ -4,7 +4,6 @@ import { Figure, Subtitle } from '../pages/home/subpages/styles';
 
 type Props = {
   children?: never;
-  key?: string | number;
   picture: string;
   title: string;
   paragraph: string;
@@ -13,7 +12,7 @@ type Props = {
 
 const ItemList: React.FC<Props> = (props) => {
   return (
-    <li key={props.key}>
+    <li>
       <Figure>
         <img src={props.picture} alt={props.title} />
       </Figure>

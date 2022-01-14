@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import { Banner, Footer, AppBar } from '../../components';
+import { Banner, Footer, AppBar, LoaderFullPage } from '../../components';
 import SubpageRouter from './subpages/SubpageRouter';
 
 type Props = {
@@ -17,6 +17,8 @@ export const CSS_FIXING_CLASS_NAME = 'is-pinned';
 const HomeView: React.FC<Props> = (props) => {
   return (
     <Main>
+      <LoaderFullPage />
+
       <Banner />
       <AppBar
         id={HEADER_CSS_ID}

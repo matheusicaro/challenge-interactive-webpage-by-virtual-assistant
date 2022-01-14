@@ -19,8 +19,12 @@ export const CHAT_MESSAGES = {
     },
   },
   WELCOME: {
-    EN: 'Welcome to this chat. How can I help you?',
-    FR: 'Bienvenue sur ce chat. Comment puis-je vous aider?',
+    EN: `Welcome to this chat. How can I help you?
+    \n\n_you can chat with me in_ **French** _or_ **English**_, just change the language at the bottom of the Chat._
+    `,
+    FR: `Bienvenue sur ce chat. Comment puis-je vous aider?
+    \n\n_vous pouvez discuter avec moi_ **en Anglais** _ou_ **en Français**_, changez simplement la langue en bas du chat._
+    `,
   },
 };
 

@@ -13,10 +13,10 @@ export const AppBarContainer = styled(AppBarMui)`
   }
 `;
 
-export const BoxItem = styled(Button)<{ active: boolean }>`
+export const BoxItem = styled(Button)<{ $active: boolean }>`
   margin: 16px;
   padding: 10px 20px !important;
-  font-weight: ${({ active }) => (active ? '900' : '400')} !important;
+  font-weight: ${(props) => (props.$active ? '900' : '400')} !important;
 
   color: ${({ theme }) => theme.colors.lightColor} !important;
 `;
@@ -60,8 +60,8 @@ export const ThemeContainer = styled.section`
   }
 `;
 
-const themeIconStyle = css<{ activated: boolean }>`
-  opacity: ${({ activated }) => (activated ? '1' : '0.3')} !important;
+const themeIconStyle = css<{ $activated: boolean }>`
+  opacity: ${(props) => (props.$activated ? '1' : '0.3')} !important;
   width: 0.8em !important;
 `;
 

@@ -1,16 +1,24 @@
 import { useMutation } from '@apollo/client';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
-import { addResponseMessage, toggleMsgLoader } from 'react-chat-widget';
+import { toggleMsgLoader } from 'react-chat-widget';
 
 import 'react-chat-widget/lib/styles.css';
 import { SendMessageData, SEND_MESSAGE } from '../../graphql/queries/message';
 import { globalContext } from '../../store';
 import { addNewCommands } from '../../store/chat/actions';
-import { Command } from '../../store/chat/types';
 import ChatView from './Chat';
-import CommandsListener from './CommandsListener';
-import { CSS_CLASS_NAMES, CHAT_MESSAGES, CONSTANTS } from './constants';
-import { ChatState, MessagePayload } from './types';
+import CommandsListener from './command-listener';
+import { CHAT_MESSAGES, CONSTANTS } from './constants';
+import {
+  loaderIsEnabled,
+  enableLastResponseMessage,
+  addMessagesInTheChat,
+  getConversationId,
+  joinMessagesByParagraph,
+  thereAreCommandsToBeExecuted,
+  removeTextFormatting,
+} from './helpers';
+import { ChatState } from './types';
 
 /*
  * Standalone chat component as a widget.
@@ -67,7 +75,7 @@ const Chat: React.FC = () => {
     if (message && message.length > 0) {
       const conversationId = getConversationId(data);
       const language = globalState.language;
-      message = removeMessageFormatting(message);
+      message = removeTextFormatting(message);
 
       if (state.errorInformed) setState((prev) => ({ ...prev, errorInformed: false }));
 
@@ -164,47 +172,6 @@ const initialState = (): ChatState => ({
   open: false,
   welcomeMessageViewed: false,
 });
-
-/**
- * Function to add Message at the external chat component - Widget
- *
- * @param {string} message
- * @param {boolean} addDelay: add delay to show message
- */
-const addMessagesInTheChat = (message: string, addDelay = true) => {
-  if (addDelay) setTimeout(() => addResponseMessage(message), CONSTANTS.DELAY_TO_ADD_MESSAGE_IN_MS);
-  else addResponseMessage(message);
-};
-
-/**
- * Function to enable message to be viewed on the chat through manipulation of the DOM
- */
-const enableLastResponseMessage = () => {
-  const elements = document.getElementById(CSS_CLASS_NAMES.MESSAGES_LIST_CONTAINER)?.getElementsByClassName(CSS_CLASS_NAMES.MESSAGE);
-
-  if (elements && elements.length > 0) {
-    elements[elements.length - 1].classList.add(CSS_CLASS_NAMES.ENABLE_ELEMENT);
-  }
-};
-
-/**
- * Function to check if element loader is active even
- */
-const loaderIsEnabled = (): boolean => {
-  const elements = document.getElementById(CSS_CLASS_NAMES.MESSAGES_LIST_CONTAINER)?.getElementsByClassName(CSS_CLASS_NAMES.LOADER);
-
-  return !!elements && elements[0].classList.contains(CSS_CLASS_NAMES.ELEMENT_ACTIVATED);
-};
-
-const getConversationId = (data: MessagePayload): string => {
-  return data ? data.sendMessage.conversationId : '';
-};
-
-const removeMessageFormatting = (message: string): string => message?.replaceAll('\n', ' ');
-
-const joinMessagesByParagraph = (messages: Array<string>): string => messages.join('\n\n');
-
-const thereAreCommandsToBeExecuted = (commands: Array<Command>): boolean => commands && commands.length !== 0;
 
 const updateStaForInformedError = (prevState: ChatState): ChatState => ({ ...prevState, errorInformed: true });
 

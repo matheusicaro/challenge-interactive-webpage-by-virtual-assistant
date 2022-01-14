@@ -5,6 +5,7 @@ import 'react-chat-widget/lib/styles.css';
 import styled from 'styled-components';
 import AvatarImg from '../../assets/images/avatar.png';
 import AvatarSmallImg from '../../assets/images/avatar-small.png';
+import AvatarHeartLovesImg from '../../assets/images/neo-heart.png';
 import { Language } from '../../store/language/types';
 import { CSS_CLASS_NAMES, CHAT_MESSAGES } from './constants';
 
@@ -18,7 +19,7 @@ const ChatView: React.FC<Props> = (props) => {
   return (
     <Container>
       <Widget
-        profileAvatar={AvatarImg}
+        profileAvatar={AvatarHeartLovesImg}
         titleAvatar={AvatarImg}
         launcherOpenImg={AvatarSmallImg}
         handleNewUserMessage={props.handleNewUserMessage}
@@ -79,14 +80,20 @@ const Container = styled.section`
     background-color: ${({ theme }) => theme.colors.background.chat.messages.container};
   }
 
+  .rcw-new-message,
   .rcw-messages-container {
     font-size: 0.8em;
     line-height: 1.2em;
   }
 
+  .loader-container {
+    background-color: ${({ theme }) => theme.colors.background.chat.messages.bot};
+  }
+
   .${CSS_CLASS_NAMES.MESSAGE} {
     display: none !important;
 
+    .rcw-snippet,
     .rcw-response .rcw-message-text {
       background-color: ${({ theme }) => theme.colors.background.chat.messages.bot};
     }
@@ -107,6 +114,11 @@ const Container = styled.section`
     .rcw-close-launcher {
       width: 20px;
     }
+  }
+
+  .rcw-avatar {
+    width: 70px;
+    height: 70px;
   }
 
   .rcw-message-client {
