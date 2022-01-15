@@ -7,7 +7,7 @@ const DARK_THEME_NAME: PaletteMode = 'dark';
 export type DarkThemeName = 'dark';
 
 const BACKGROUND_PRIMARY = '#000000';
-const TEXT_PRIMARY = 'rgb(255, 255, 255, 0.9)';
+const TEXT_PRIMARY = 'rgb(255, 255, 255, 0.5)';
 const TEXT_PRIMARY_REVERSE = 'rgb(0, 0, 0, 0.9)';
 const DARK = '#000000';
 const LIGHT = '#fff';

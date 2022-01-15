@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, PositionContainer, Title } from '../../styles';
+import { DarkSection, List, PositionContainer, Title } from '../../styles';
 import styled from 'styled-components';
 import { ItemList } from '../../../../../components';
 import OUR_VALUES_CONSTANTS from '../constants/our-values-section';
@@ -40,8 +40,6 @@ const Container = styled.section`
 
   padding: 0vw 25vw;
   padding-bottom: 5vh;
-
-  background-color: ${({ theme }) => theme.colors.background.secondary};
 
   #our-values-title {
     padding: 50px 0;

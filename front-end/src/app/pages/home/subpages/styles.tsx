@@ -75,3 +75,15 @@ export const List = styled.ul`
     grid-template-rows: repeat(4, 1fr);
   }
 `;
+
+export const DarkSection = css`
+  &,
+  li,
+  h4,
+  p,
+  .MuiTypography-root {
+    color: ${({ theme }) => (theme.title === 'light' ? theme.colors.lightColor : theme.colors.text)} !important;
+  }
+
+  background-color: ${({ theme }) => theme.colors.darkColor};
+`;

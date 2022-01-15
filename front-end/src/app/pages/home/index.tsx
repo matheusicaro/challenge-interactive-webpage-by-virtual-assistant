@@ -15,6 +15,7 @@ type State = {
   subpage: RouteType;
   severStarted: boolean;
   attemptsToStartServer: number;
+  initialLoader: boolean;
 };
 
 type Props = {
@@ -60,6 +61,10 @@ const HomePage: React.FC<Props> = (props) => {
     }
   };
 
+  const disableLoader = () => {
+    setTimeout(() => setState((prev) => ({ ...prev, initialLoader: false })), 8000);
+  };
+
   useEffect(goToSubpage, [props.routeId]);
 
   useEffect(goToDeepLink, [props.deepLink]);
@@ -68,12 +73,15 @@ const HomePage: React.FC<Props> = (props) => {
 
   useEffect(startServer, [state.attemptsToStartServer, data, loading]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(disableLoader, []);
+
   return (
     <HomeView
       routes={labels}
       handleSelectedHeaderOption={handleSelectedHeaderOption}
       routeSelected={state.subpage.label[globalState.language]}
       subpageId={state.subpage.id}
+      initialLoader={state.initialLoader}
     />
   );
 };
@@ -87,6 +95,7 @@ const initialState = (routeId: string): State => {
     subpage,
     severStarted: false,
     attemptsToStartServer: 0,
+    initialLoader: true,
   };
 };
 

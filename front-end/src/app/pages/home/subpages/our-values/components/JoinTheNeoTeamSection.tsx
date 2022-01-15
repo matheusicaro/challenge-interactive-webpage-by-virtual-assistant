@@ -4,7 +4,7 @@ import { LinkButton } from '../../../../../components';
 import { Language } from '../../../../../store/language/types';
 import { useTheme } from '../../../../../styles/provider';
 import RouterUtils from '../../../../../utils/RouterUtils';
-import { Paragraph, Title } from '../../styles';
+import { DarkSection, Paragraph, Title } from '../../styles';
 
 import highlightsImage from '../assets/join-the-neo-team-highlights.png';
 import JOIN_THE_NEO_TEAM_CONSTANTS from '../constants/join-the-neo-team-section';
@@ -38,17 +38,11 @@ const JoinTheNeoTeamSection: React.FC<Props> = (props) => {
 export default JoinTheNeoTeamSection;
 
 const Container = styled.section`
+  ${DarkSection}
+
   padding: 10vh 25vw;
   padding-right: 50vw;
   height: 498px;
-
-  background-color: ${({ theme }) => theme.colors.darkColor};
-
-  &,
-  h4,
-  p {
-    color: ${({ theme }) => theme.colors.lightColor};
-  }
 
   h4,
   p,

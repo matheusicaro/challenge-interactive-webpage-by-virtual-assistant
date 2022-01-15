@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { Text, Transition } from '../../../../../components';
 
-import { PositionContainer, Subtitle, Title } from '../../styles';
+import { DarkSection, PositionContainer, Subtitle, Title } from '../../styles';
 import OUR_FOUNDERS_CONSTANTS from '../constants/our-founders.constants';
 import { Language } from '../../../../../store/language/types';
 import RouterUtils from '../../../../../utils/RouterUtils';
@@ -56,14 +56,7 @@ export default OurFounders;
 const Container = styled.section`
   ${PositionContainer}
 
-  background-color: ${({ theme }) => theme.colors.darkColor};
-
-  h4,
-  h6,
-  p,
-  li {
-    color: ${({ theme }) => theme.colors.lightColor};
-  }
+  ${DarkSection}
 
   ul {
     list-style-type: none;

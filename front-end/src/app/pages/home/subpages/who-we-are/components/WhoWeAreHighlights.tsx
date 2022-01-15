@@ -4,7 +4,7 @@ import { Text } from '../../../../../components';
 import styled from 'styled-components';
 
 import HighlightImage from '../assets/highlight.png';
-import { PositionContainer, Title } from '../../styles';
+import { DarkSection, PositionContainer, Title } from '../../styles';
 import WHO_WE_ARE_HIGHLIGHTS_CONSTANTS from '../constants/who-we-are-highlights.constants';
 import { Language } from '../../../../../store/language/types';
 import RouterUtils from '../../../../../utils/RouterUtils';
@@ -34,9 +34,10 @@ export default WhoWeAreHighlights;
 const Container = styled.section`
   ${PositionContainer}
 
+  ${DarkSection}
+
   text-align: start;
   height: 300px;
-  background-color: ${({ theme }) => theme.colors.darkColor};
 
   background-image: url(${HighlightImage});
   background-repeat: no-repeat;
@@ -46,11 +47,6 @@ const Container = styled.section`
   #who-we-are-paragraph {
     width: 50%;
     margin: 30px 0;
-  }
-
-  h4,
-  p {
-    color: ${({ theme }) => theme.colors.lightColor};
   }
 
   @media (max-width: 1600px) {

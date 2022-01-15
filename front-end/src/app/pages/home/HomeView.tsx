@@ -1,7 +1,9 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import { Banner, Footer, AppBar, LoaderFullPage } from '../../components';
+import { Banner, Footer, AppBar, LoaderFullPage, Transition } from '../../components';
+import Chat from '../../components/chat';
+import LanguageButton from '../../components/LanguageButton';
 import SubpageRouter from './subpages/SubpageRouter';
 
 type Props = {
@@ -9,30 +11,37 @@ type Props = {
   routes: Array<string>;
   routeSelected: string;
   subpageId: string;
+  initialLoader: boolean;
 };
 
 export const HEADER_CSS_ID = 'header-appbar';
 export const CSS_FIXING_CLASS_NAME = 'is-pinned';
 
 const HomeView: React.FC<Props> = (props) => {
+  if (props.initialLoader) return <LoaderFullPage active={props.initialLoader} />;
+
   return (
-    <Main>
-      <LoaderFullPage />
+    <Transition>
+      <Main>
+        <Banner />
 
-      <Banner />
-      <AppBar
-        id={HEADER_CSS_ID}
-        routes={props.routes}
-        handleSelectedOption={props.handleSelectedHeaderOption}
-        routeSelected={props.routeSelected}
-      />
+        <AppBar
+          id={HEADER_CSS_ID}
+          routes={props.routes}
+          handleSelectedOption={props.handleSelectedHeaderOption}
+          routeSelected={props.routeSelected}
+        />
 
-      <article>
-        <SubpageRouter subpageId={props.subpageId} />
-      </article>
+        <article>
+          <SubpageRouter subpageId={props.subpageId} />
+        </article>
 
-      <Footer />
-    </Main>
+        <LanguageButton />
+        <Chat />
+
+        <Footer />
+      </Main>
+    </Transition>
   );
 };
 
