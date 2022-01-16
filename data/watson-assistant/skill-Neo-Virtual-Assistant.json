@@ -175,6 +175,9 @@
           "text": "how to meet you?"
         },
         {
+          "text": "what does Neo help me?"
+        },
+        {
           "text": "what do you help to do?"
         },
         {
@@ -189,7 +192,8 @@
         {
           "text": "which country do you serve?"
         }
-      ]
+      ],
+      "description": "examples of how to meet Neo in ENGLISH"
     },
     {
       "intent": "get_to_know_us_FR",
@@ -198,7 +202,13 @@
           "text": "apprendre a nous connaitre?"
         },
         {
+          "text": "Comment Neo m'aide-t-il ?"
+        },
+        {
           "text": "comment te rencontrer ?"
+        },
+        {
+          "text": "en quoi Neo pet-il m'aider ?"
         },
         {
           "text": "pour qui a-t-il été fait ?"
@@ -218,7 +228,8 @@
         {
           "text": "qu'offres-tu?"
         }
-      ]
+      ],
+      "description": "examples of how to meet Neo in FRENCH"
     },
     {
       "intent": "hello_EN",
@@ -253,7 +264,8 @@
         {
           "text": "what is your name?"
         }
-      ]
+      ],
+      "description": "examples of greetings in ENGLISH"
     },
     {
       "intent": "hello_FR",
@@ -288,7 +300,8 @@
         {
           "text": "Salut tout va bien ?"
         }
-      ]
+      ],
+      "description": "examples of greetings in FRENCH"
     },
     {
       "intent": "help_me_EN",
@@ -320,7 +333,8 @@
         {
           "text": "you know something?"
         }
-      ]
+      ],
+      "description": "examples of how can I help you in ENGLISH"
     },
     {
       "intent": "help_me_FR",
@@ -352,7 +366,8 @@
         {
           "text": "vous savez quelque chose?"
         }
-      ]
+      ],
+      "description": "examples of how can I help you in FRENCH"
     },
     {
       "intent": "join_in_team_EN",
@@ -390,7 +405,8 @@
         {
           "text": "Where can I see open job openings?"
         }
-      ]
+      ],
+      "description": "examples of how to apply for jobs at Neo in ENGLISH"
     },
     {
       "intent": "join_in_team_FR",
@@ -428,7 +444,8 @@
         {
           "text": "travaillez-vous à distance ?"
         }
-      ]
+      ],
+      "description": "examples of how to apply for jobs at Neo in FRENCH"
     },
     {
       "intent": "new_card_EN",
@@ -463,7 +480,8 @@
         {
           "text": "to ask for my card to be sent"
         }
-      ]
+      ],
+      "description": "examples of how to get a Neo card in ENGLISH"
     },
     {
       "intent": "new_card_FR",
@@ -498,7 +516,8 @@
         {
           "text": "la carte de crédit est-elle gratuite ?"
         }
-      ]
+      ],
+      "description": "examples of how to get a Neo card in FRENCH"
     },
     {
       "intent": "our_founders_EN",
@@ -536,7 +555,8 @@
         {
           "text": "who is the co-founder?"
         }
-      ]
+      ],
+      "description": "examples of who are our founders in ENGLISH"
     },
     {
       "intent": "our_founders_FR",
@@ -574,7 +594,8 @@
         {
           "text": "qui sont les réalisateurs ?"
         }
-      ]
+      ],
+      "description": "examples of who are our founders in FRENCH"
     },
     {
       "intent": "our_values_EN",
@@ -612,7 +633,8 @@
         {
           "text": "what kind of customers do you want?"
         }
-      ]
+      ],
+      "description": "examples of what are the values of Neo in ENGLISH"
     },
     {
       "intent": "our_values_FR",
@@ -650,7 +672,8 @@
         {
           "text": "qu'est-ce que tu respectes ?"
         }
-      ]
+      ],
+      "description": "examples of what are the values of Neo in FRENCH"
     },
     {
       "intent": "who_we_are_EN",
@@ -673,7 +696,8 @@
         {
           "text": "who is the?"
         }
-      ]
+      ],
+      "description": "examples of who we are in ENGLISH"
     },
     {
       "intent": "who_we_are_FR",
@@ -699,7 +723,8 @@
         {
           "text": "qui nous sommes?"
         }
-      ]
+      ],
+      "description": "examples of who we are in FRENCH"
     },
     {
       "intent": "why_neo_EN",
@@ -731,7 +756,8 @@
         {
           "text": "Why should I open an account with this company?"
         }
-      ]
+      ],
+      "description": "examples of Why you should choose Neo in ENGLISH"
     },
     {
       "intent": "why_neo_FR",
@@ -767,10 +793,75 @@
           "text": "quels sont les avantages de cette entreprise?"
         }
       ],
-      "description": ""
+      "description": "examples of Why you should choose it Neo FRENCH"
     }
   ],
-  "entities": [],
+  "entities": [
+    {
+      "entity": "credit_card",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Credit Cart",
+          "synonyms": [
+            "bills",
+            "Cart",
+            "cashback",
+            "Credit",
+            "earnings",
+            "mastercard",
+            "purchases",
+            "shopping",
+            "visa"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "founders",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Andrew Chau",
+          "synonyms": [
+            "Andrew",
+            "Andrew C",
+            "Mr Andrew",
+            "Mr. Andrew",
+            "Mrs Chau",
+            "Mrs. Chau"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Jeff Adamson",
+          "synonyms": [
+            "Jeff",
+            "Jeff A",
+            "Jeff R",
+            "Mr Jeff",
+            "Mr. Jeff",
+            "Mrs Jeff",
+            "Mrs. Jeff"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Kris Read",
+          "synonyms": [
+            "kris",
+            "KRIS R",
+            "Mr Kris",
+            "Mr. Kris",
+            "Mrs Read",
+            "Mrs. Read"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
   "metadata": {
     "api_version": {
       "major_version": "v2",
@@ -781,28 +872,19 @@
     {
       "type": "standard",
       "title": "Anything else",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "I didn't understand. You can try rephrasing."
-              },
-              {
-                "text": "Can you reword your statement? I'm not understanding."
-              },
-              {
-                "text": "I didn't get your meaning."
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_8_1642323280109"
       },
       "conditions": "anything_else",
       "dialog_node": "Anything else",
-      "previous_sibling": "node_4_1640973993025",
+      "previous_sibling": "node_8_1642323280109",
       "disambiguation_opt_out": true
     },
     {
@@ -812,6 +894,14 @@
       "event_name": "focus",
       "dialog_node": "handler_10_1641937380137",
       "previous_sibling": "handler_1_1641937380137"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1642254830497",
+      "event_name": "focus",
+      "dialog_node": "handler_10_1642254830531",
+      "previous_sibling": "handler_5_1642254830531"
     },
     {
       "type": "event_handler",
@@ -835,57 +925,16 @@
       "previous_sibling": "handler_4_1642105537171"
     },
     {
-      "type": "standard",
-      "title": "RETURN from command - node_10_1640975634082",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "Done!"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_5_1640972393721",
-      "dialog_node": "node_10_1640975634082",
-      "previous_sibling": "node_3_1640972428772"
+      "type": "event_handler",
+      "parent": "slot_3_1642254830497",
+      "event_name": "input",
+      "dialog_node": "handler_5_1642254830531"
     },
     {
       "type": "standard",
-      "title": "ERROR",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": " 😳 Too bad, something went wrong in my processing. I am in those days, please bear with me. Let's try again."
-              },
-              {
-                "text": "In fact, I need a vacation... couldn't process it again can you believe it? let's try one last time, if I can't, I'll pretend nothing happened and we started from scratch 😅."
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "multiline"
-          }
-        ]
-      },
-      "next_step": {
-        "behavior": "jump_to",
-        "selector": "body",
-        "dialog_node": "Welcome"
-      },
-      "digress_in": "does_not_return",
-      "dialog_node": "node_10_1640976126019",
-      "previous_sibling": "Welcome"
-    },
-    {
-      "type": "standard",
-      "title": "Second answer",
-      "parent": "node_9_1640856946344",
+      "title": "NEO VALUES",
+      "output": {},
+      "parent": "node_6_1641931257545",
       "metadata": {
         "_customization": {
           "mcr": true
@@ -893,12 +942,12 @@
       },
       "next_step": {
         "behavior": "jump_to",
-        "selector": "condition",
-        "dialog_node": "node_5_1640972393721"
+        "selector": "body",
+        "dialog_node": "node_12_1642334275293"
       },
-      "conditions": "true",
-      "dialog_node": "node_1_1640972383191",
-      "previous_sibling": "response_8_1641842064249"
+      "conditions": "#our_values_EN || #our_values_FR",
+      "dialog_node": "node_11_1642334275290",
+      "previous_sibling": "node_7_1642328714569"
     },
     {
       "type": "standard",
@@ -919,29 +968,14 @@
     },
     {
       "type": "standard",
-      "output": {
-        "generic": [
-          {
-            "values": [],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_4_1640973993025",
-      "conditions": "intents[0].confidence >= 0.1",
-      "dialog_node": "node_1_1641932310807",
-      "previous_sibling": "node_6_1641931257545"
-    },
-    {
-      "type": "standard",
       "title": "RUN command (\"REDIRECT_TO_PAGE\")",
       "output": {
         "generic": []
       },
       "parent": "node_3_1641937347787",
       "context": {
-        "deepLink": "deeplink://why-neo/did-you-know"
+        "deepLink": "deeplink://why-neo/did-you-know",
+        "topic_redirected": "> Did you know? Neo helps you"
       },
       "next_step": {
         "behavior": "jump_to",
@@ -963,11 +997,148 @@
       "next_step": {
         "behavior": "jump_to",
         "selector": "body",
-        "dialog_node": "node_2_1642105537171"
+        "dialog_node": "node_1_1642325334572"
       },
       "conditions": "#get_to_know_us_EN || #get_to_know_us_FR",
       "dialog_node": "node_1_1642105537168",
       "previous_sibling": "node_3_1641937347787"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_6_1641931257545",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "Anything else"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_1_1642256859734",
+      "previous_sibling": "node_19_1642335188047"
+    },
+    {
+      "type": "standard",
+      "title": "RUN command (\"REDIRECT_TO_PAGE\")",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_1_1642105537168",
+      "context": {
+        "deepLink": "deeplink://who-we-are/get-to-know-us",
+        "topic_redirected": "Get to know us"
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_4_1642036309384"
+      },
+      "dialog_node": "node_1_1642325334572"
+    },
+    {
+      "type": "standard",
+      "parent": "node_4_1640973993025",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "intents[0].confidence >= 0.05",
+      "dialog_node": "node_1_1642330657106",
+      "previous_sibling": "node_6_1641931257545"
+    },
+    {
+      "type": "standard",
+      "title": "RUN command (\"REDIRECT_TO_PAGE\")",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_11_1642334275290",
+      "context": {
+        "deepLink": "deeplink://our-values",
+        "topic_redirected": "Our values"
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_4_1642036309384"
+      },
+      "dialog_node": "node_12_1642334275293"
+    },
+    {
+      "type": "standard",
+      "title": "WHO WE ARE",
+      "output": {},
+      "parent": "node_6_1641931257545",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_16_1642334857398"
+      },
+      "conditions": "#who_we_are_EN || #who_we_are_FR",
+      "dialog_node": "node_15_1642334857395",
+      "previous_sibling": "node_11_1642334275290"
+    },
+    {
+      "type": "standard",
+      "title": "RUN command (\"REDIRECT_TO_PAGE\")",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_15_1642334857395",
+      "context": {
+        "deepLink": "deeplink://who-we-are/get-to-know-us",
+        "no_suffix": true
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_4_1642036309384"
+      },
+      "dialog_node": "node_16_1642334857398"
+    },
+    {
+      "type": "standard",
+      "title": "WHY NEO",
+      "output": {},
+      "parent": "node_6_1641931257545",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_20_1642335188049"
+      },
+      "conditions": "#why_neo_EN || #why_neo_FR",
+      "dialog_node": "node_19_1642335188047",
+      "previous_sibling": "node_15_1642334857395"
+    },
+    {
+      "type": "standard",
+      "title": "RUN command (\"REDIRECT_TO_PAGE\")",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_19_1642335188047",
+      "context": {
+        "deepLink": "deeplink://why-neo",
+        "no_suffix": true
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_4_1642036309384"
+      },
+      "dialog_node": "node_20_1642335188049"
     },
     {
       "type": "standard",
@@ -992,46 +1163,17 @@
       "output": {
         "generic": []
       },
-      "parent": "node_1_1642105537168",
+      "parent": "node_4_1642326097900",
       "context": {
-        "deepLink": "deeplink://who-we-are/get-to-know-us"
+        "deepLink": "deeplink://our-values/join-the-neo-team",
+        "topic_redirected": "Join the Neo team"
       },
       "next_step": {
         "behavior": "jump_to",
         "selector": "body",
         "dialog_node": "node_4_1642036309384"
       },
-      "dialog_node": "node_2_1642105537171"
-    },
-    {
-      "type": "standard",
-      "title": "EXECUTE command (\"REDIRECT_TO_PAGE\")",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "Running..."
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_5_1640972393721",
-      "context": {
-        "command_type": "REDIRECT_TO_PAGE",
-        "command_value": "https://www.google.com/",
-        "command_return_to": "node_10_1640975634082"
-      },
-      "next_step": {
-        "behavior": "jump_to",
-        "selector": "body",
-        "dialog_node": "node_2_1640974269672"
-      },
-      "dialog_node": "node_3_1640972428772",
-      "previous_sibling": "response_9_1641842134337"
+      "dialog_node": "node_2_1642326123322"
     },
     {
       "type": "standard",
@@ -1089,7 +1231,42 @@
     },
     {
       "type": "standard",
-      "title": "ROOT - INITAL CONFIGS",
+      "title": "MESSAGES",
+      "parent": "node_4_1642036309384",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_2_1640974269672"
+      },
+      "dialog_node": "node_3_1642315381543"
+    },
+    {
+      "type": "standard",
+      "title": "REQUEST A CREDIT CARD",
+      "output": {},
+      "parent": "node_6_1641931257545",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_4_1642326717857"
+      },
+      "conditions": "#new_card_EN || #new_card_FR",
+      "dialog_node": "node_3_1642326717854",
+      "previous_sibling": "node_4_1642326097900"
+    },
+    {
+      "type": "standard",
+      "title": "ROOT - MAIN FLOW",
       "output": {
         "generic": []
       },
@@ -1101,7 +1278,7 @@
       },
       "conditions": "true",
       "dialog_node": "node_4_1640973993025",
-      "previous_sibling": "node_10_1640976126019"
+      "previous_sibling": "Welcome"
     },
     {
       "type": "standard",
@@ -1131,17 +1308,7 @@
       "type": "standard",
       "title": "command: REDIRECT_TO_PAGE",
       "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "**I am redirecting you to a page of its own to know more details about this.**"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
+        "generic": []
       },
       "parent": "node_4_1642031588359",
       "context": {
@@ -1149,18 +1316,23 @@
         "command_value": "<? $deepLink ?>",
         "command_return_to": "<? $return_to ? $return_to : 'root' ?>"
       },
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
       "next_step": {
         "behavior": "jump_to",
         "selector": "body",
-        "dialog_node": "node_2_1640974269672"
+        "dialog_node": "node_3_1642315381543"
       },
       "dialog_node": "node_4_1642036309384",
       "previous_sibling": "node_3_1642031616012"
     },
     {
       "type": "standard",
-      "title": "Third answer",
-      "parent": "node_9_1640856946344",
+      "title": "JOIN IN THE TEAM",
+      "parent": "node_6_1641931257545",
       "metadata": {
         "_customization": {
           "mcr": true
@@ -1169,11 +1341,29 @@
       "next_step": {
         "behavior": "jump_to",
         "selector": "body",
-        "dialog_node": "node_3_1640972428772"
+        "dialog_node": "node_2_1642326123322"
       },
-      "conditions": "true",
-      "dialog_node": "node_5_1640972393721",
-      "previous_sibling": "node_1_1640972383191"
+      "conditions": "#join_in_team_EN || #join_in_team_FR",
+      "dialog_node": "node_4_1642326097900",
+      "previous_sibling": "node_1_1642105537168"
+    },
+    {
+      "type": "standard",
+      "title": "RUN command (\"REDIRECT_TO_PAGE\")",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_3_1642326717854",
+      "context": {
+        "deepLink": "deeplink://why-neo/plus-we-are",
+        "topic_redirected": "GET THE NEO CARD"
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_4_1642036309384"
+      },
+      "dialog_node": "node_4_1642326717857"
     },
     {
       "type": "standard",
@@ -1220,7 +1410,8 @@
         "dialog_node": "node_3_1642036152390"
       },
       "conditions": "#about_the_project_EN || #about_the_project_FR",
-      "dialog_node": "node_6_1642035285966"
+      "dialog_node": "node_6_1642035285966",
+      "previous_sibling": "node_7_1642255000300"
     },
     {
       "type": "folder",
@@ -1230,6 +1421,9 @@
     },
     {
       "type": "standard",
+      "output": {
+        "generic": []
+      },
       "parent": "node_4_1640973993025",
       "next_step": {
         "behavior": "jump_to",
@@ -1238,19 +1432,57 @@
       },
       "conditions": "anything_else",
       "dialog_node": "node_7_1641932424556",
-      "previous_sibling": "node_1_1641932310807"
+      "previous_sibling": "node_1_1642330657106"
+    },
+    {
+      "type": "standard",
+      "title": "HOW CAN I HELP YOU",
+      "parent": "node_6_1641931257545",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_8_1642323280109"
+      },
+      "conditions": "#help_me_EN || #help_me_FR",
+      "dialog_node": "node_7_1642255000300",
+      "previous_sibling": "node_9_1642254804641"
+    },
+    {
+      "type": "standard",
+      "title": "OUR FOUNDERS",
+      "output": {},
+      "parent": "node_6_1641931257545",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_8_1642328714572"
+      },
+      "conditions": "#our_founders_EN || #our_founders_FR",
+      "dialog_node": "node_7_1642328714569",
+      "previous_sibling": "node_3_1642326717854"
     },
     {
       "type": "standard",
       "title": "4) CLEAR auxiliary variables",
       "output": {
-        "generic": []
+        "generic": [],
+        "deleted_variable": "<? context.remove('command') ?><? context.remove('command_type') ?><? context.remove('topic_redirected') ?>"
       },
       "parent": "node_2_1640974269672",
       "context": {
         "command": null,
         "command_type": null,
-        "command_value": null
+        "topic_redirected": null
       },
       "next_step": {
         "behavior": "jump_to",
@@ -1274,15 +1506,45 @@
     },
     {
       "type": "standard",
-      "parent": "node_4_1640973993025",
+      "title": "MENU - HOW CAN I HELP YOU",
       "metadata": {
         "_customization": {
           "mcr": true
         }
       },
-      "conditions": "#hello",
-      "dialog_node": "node_9_1640856946344",
-      "previous_sibling": "node_7_1641932424556"
+      "digress_in": "does_not_return",
+      "dialog_node": "node_8_1642323280109",
+      "previous_sibling": "node_4_1640973993025"
+    },
+    {
+      "type": "standard",
+      "title": "RUN command (\"REDIRECT_TO_PAGE\")",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_7_1642328714569",
+      "context": {
+        "deepLink": "deeplink://who-we-are/our-founders",
+        "no_suffix": true
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_4_1642036309384"
+      },
+      "dialog_node": "node_8_1642328714572"
+    },
+    {
+      "type": "standard",
+      "title": "HELLO",
+      "parent": "node_6_1641931257545",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#hello_EN || #hello_FR",
+      "dialog_node": "node_9_1642254804641"
     },
     {
       "type": "response_condition",
@@ -1293,13 +1555,236 @@
       "context": {
         "command_return_to": null
       },
+      "conditions": "\"node_10_1640975634082\" == $command_return_to",
+      "dialog_node": "response_10_1640975768562"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Salut! 🖤😃"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1642254804641",
+      "conditions": "$language == \"FR\"",
+      "dialog_node": "response_10_1642254862001"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "**I am redirecting you to a page of its own to know more details about this.**"
+              },
+              {
+                "text": "**I will move you to the <? $topic_redirected?>\" topic of our website.**\n\nI believe this is the information you are looking for.\n\nIf this is not what you are looking for, please give me one more chance to try to help you. You can call me as many times as you want. 😄"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1642036309384",
+      "context": {
+        "command_type": "REDIRECT_TO_PAGE",
+        "command_value": "<? $deepLink ?>",
+        "command_return_to": "<? $return_to ? $return_to : 'root' ?>"
+      },
+      "disabled": true,
+      "conditions": "anything_else",
+      "dialog_node": "response_10_1642314939514",
+      "previous_sibling": "node_3_1642315381543"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Glad to know that! We are always looking to grow and expand our team. 💼\nStay tuned for our job opportunities.🍀"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1642326097900",
+      "conditions": "anything_else",
+      "dialog_node": "response_10_1642326209110",
+      "previous_sibling": "response_7_1642326117772"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Our founders have an incredible history...\n\nThey've built SkipTheDishes into one of Canada's top 10 brands, and together we're ready to revolutionize the financial market. 🚀🚀\n\nI am directing you to the section ➜ **Our founders** of our website where you can meet our directors."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1642328714569",
+      "conditions": "anything_else",
+      "dialog_node": "response_10_1642328714572",
+      "previous_sibling": "response_9_1642328714572"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_1_1642330657106",
       "next_step": {
         "behavior": "jump_to",
         "selector": "body",
-        "dialog_node": "node_10_1640975634082"
+        "dialog_node": "Anything else"
       },
-      "conditions": "\"node_10_1640975634082\" == $command_return_to",
-      "dialog_node": "response_10_1640975768562"
+      "conditions": "anything_else",
+      "dialog_node": "response_1_1642330740641",
+      "previous_sibling": "response_4_1642331077959"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Eh bien, peut-être que je n'ai pas bien compris ce que vous voulez savoir. Mais je pense que cela a à voir avec nos fondateurs..."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1642330657106",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_7_1642328714569"
+      },
+      "conditions": "@founders && $language == \"FR\"",
+      "dialog_node": "response_1_1642331054920",
+      "previous_sibling": "response_5_1642330721830"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Au vu de notre objectif de révolutionner le marché financier, nos valeurs ne sont pas négociables, ce qui implique **l'intégrité** et **l'exclusivité** de nos clients.  \n\nDe plus, nous cherchons à **renforcer** et à construire une **communauté** de manière significative pour nos partenaires et nos clients."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_11_1642334275290",
+      "conditions": "$language == \"FR\"",
+      "dialog_node": "response_13_1642334275293",
+      "previous_sibling": "node_12_1642334275293"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "In view of our objective of revolutionizing the financial market, our values are non-negotiable, which involves the **integrity* and **exclusivity** of our customers.  \n\nIn addition, we seek to **strengthen** and build a **community** in a meaningful way for our partners and our customers."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_11_1642334275290",
+      "conditions": "anything_else",
+      "dialog_node": "response_14_1642334275293",
+      "previous_sibling": "response_13_1642334275293"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Grâce à la technologie, nous réinventons le monde des dépenses, de l’épargne et des récompenses afin de simplifier les finances, de créer des expériences fructueuses et de bâtir une communauté pour la population canadienne. 🍁\n\nJe vous redirige vers la section ➜ **Neo en bref** pour que vous puissiez en savoir un peu plus sur nous."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_15_1642334857395",
+      "conditions": "$language == \"FR\"",
+      "dialog_node": "response_17_1642334857398",
+      "previous_sibling": "node_16_1642334857398"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "We’re reimagining spending, savings, and rewards by using technology to simplify finances, create rewarding experiences, and build a community for all Canadians. 🍁\n\nI'll redirect you to the section ➜ **Get to know us** so you can get to know a little more about us."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_15_1642334857395",
+      "conditions": "anything_else",
+      "dialog_node": "response_18_1642334857398",
+      "previous_sibling": "response_17_1642334857398"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Nous comprenons, les mots \"récompenses\" et \"cashback\" ont été tellement galvaudés que même nous roulons des yeux. 💰💸\n\nNos clients ont plusieurs bénéfices et avantages.\n\nJe vais vous diriger vers la section **Pourquoi choisir Neo?** du site afin que vous puissiez en apprendre un peu plus sur pourquoi être Neo."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_19_1642335188047",
+      "conditions": "$language == \"FR\"",
+      "dialog_node": "response_21_1642335188049",
+      "previous_sibling": "node_20_1642335188049"
     },
     {
       "type": "response_condition",
@@ -1323,7 +1808,7 @@
           {
             "values": [
               {
-                "text": "Agréable! sur le projet, vous pouvez trouver plus de détails sur sa mise en œuvre et le code source du projet **sur ce lien**."
+                "text": "Agréable! 🤓💻\n\nsur le projet, vous pouvez trouver plus de détails sur sa mise en œuvre et le code source du projet **sur ce lien**."
               }
             ],
             "response_type": "text",
@@ -1343,7 +1828,131 @@
           {
             "values": [
               {
-                "text": "Avoir un compte Neo présente de nombreux avantages. Voir certains d'entre eux sur cette page."
+                "text": "- Who we are...\n- What we offer...\n- Why you should choose Neo...\n- What are our advantages and benefits...\n- What are the values of Neo...\n- How to get a Neo card...\n- Who are our founders...\n- How to apply for jobs at Neo..."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1642323280109",
+      "conditions": "anything_else",
+      "dialog_node": "response_2_1642323496585",
+      "previous_sibling": "response_8_1642323431367"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "We get it, the words “rewards” and “cashback” have been so overused that even we roll our eyes. 💰💸\n\nOur customers have several benefits and advantages.\n\nI'll direct you to the section ➜ **Why Neo?** of the site so you can learn a little more about why being Neo."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_19_1642335188047",
+      "conditions": "anything_else",
+      "dialog_node": "response_22_1642335188049",
+      "previous_sibling": "response_21_1642335188049"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Eh bien, je suis un assistant virtuel interactif et je peux vous aider à naviguer sur ce site pour en savoir un peu plus sur Neo Financial.\n\nVous pouvez me demander:"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1642255000300",
+      "conditions": "$language == \"FR\"",
+      "dialog_node": "response_3_1642255040086"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Well, I'm an interactive virtual assistant, and I can help you navigate this site to learn a little more about Neo Financial.\n\nYou can ask me about:"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1642255000300",
+      "conditions": "anything_else",
+      "dialog_node": "response_3_1642255058157",
+      "previous_sibling": "response_3_1642255040086"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Je vais le déplacer vers le section: ➜ **<? $topic_redirected ?>**, sur notre site Web."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1642315381543",
+      "conditions": "$topic_redirected && $language == \"FR\"",
+      "dialog_node": "response_3_1642315415308",
+      "previous_sibling": "response_9_1642315425380"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Je ne comprenais pas. 😥\nPourriez-vous essayer de reformuler la question, s'il vous plaît ?\n\nJe peux vous aider avec des questions liées à:"
+              },
+              {
+                "text": "Pourriez-vous reformuler votre question ? 😅\nDésolé, j'apprends encore. 🤓⏳\n\nPosez-moi des questions sur un sujet connexe ci-dessous:"
+              },
+              {
+                "text": "Je pense que j'ai besoin de prendre des vacances ou de travailler après les heures pour améliorer mes compétences. 👀\n\nJe veux vraiment t'aider. 🤜🤛\n\nRegardez comme c'est cool, posez-moi des questions sur l'un de ces sujets ci-dessous, et je vous amènerai à cette section du site de manière interactive (automatiquement)."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Anything else",
+      "conditions": "$language == \"FR\"",
+      "dialog_node": "response_3_1642324504626"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Avoir un compte Neo présente de nombreux avantages. Voir certains d'entre eux sur cette page. 💳💰🤑"
               }
             ],
             "response_type": "text",
@@ -1359,14 +1968,54 @@
     {
       "type": "response_condition",
       "output": {
-        "generic": []
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Je vous orienterai vers une séance où elle est en rapport avec ce que vous recherchez. \n\n_Si ce n'est pas ce que vous cherchez, donnez-moi une chance de plus d'essayer de vous aider. Vous pouvez m'appeler autant de fois que vous le souhaitez._ 😄 "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
       },
-      "parent": "node_8_1640975157521",
+      "parent": "node_3_1642315381543",
+      "conditions": "$language == \"FR\"",
+      "dialog_node": "response_4_1642315778257",
+      "previous_sibling": "response_3_1642315415308"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "J'étais un peu confus. 🤔\nJe pense que vous voulez en savoir plus sur notre carte de crédit, n'est-ce pas ?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1642330657106",
       "next_step": {
         "behavior": "jump_to",
         "selector": "body",
-        "dialog_node": "node_10_1640976126019"
+        "dialog_node": "node_3_1642326717854"
       },
+      "conditions": "@credit_card && $language == \"FR\"",
+      "dialog_node": "response_4_1642331077959",
+      "previous_sibling": "response_5_1642330725116"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_8_1640975157521",
       "conditions": "anything_else",
       "dialog_node": "response_5_1640976116119",
       "previous_sibling": "response_2_1641937916460"
@@ -1378,58 +2027,21 @@
           {
             "values": [
               {
-                "text": "FRENCH Third answer"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_5_1640972393721",
-      "context": {},
-      "conditions": "$language == \"FR\"",
-      "dialog_node": "response_5_1641842129428"
-    },
-    {
-      "type": "response_condition",
-      "output": {
-        "generic": [
-          {
-            "values": [
+                "text": "Hello! 🖤😃"
+              },
               {
-                "text": "FRENCH answer  - $language"
+                "text": "Hi!"
               }
             ],
             "response_type": "text",
-            "selection_policy": "sequential"
+            "selection_policy": "random"
           }
         ]
       },
-      "parent": "node_9_1640856946344",
-      "context": {},
-      "conditions": "$language == \"FR\"",
-      "dialog_node": "response_6_1641842031324"
-    },
-    {
-      "type": "response_condition",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "english Second answer - $language"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_1_1640972383191",
+      "parent": "node_9_1642254804641",
       "conditions": "anything_else",
-      "dialog_node": "response_6_1641842093805",
-      "previous_sibling": "response_9_1641842091355"
+      "dialog_node": "response_5_1642254837708",
+      "previous_sibling": "response_10_1642254862001"
     },
     {
       "type": "response_condition",
@@ -1438,7 +2050,76 @@
           {
             "values": [
               {
-                "text": "Avoir un compte Neo présente de nombreux avantages. Voir certains d'entre eux sur cette page."
+                "text": "La carte Neo, en plus d'être belle, présente de nombreux avantages et avantages. 💳\n\nPour postuler c'est très simple et rapide. 🖤🖤"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1642326717854",
+      "conditions": "$language == \"FR\"",
+      "dialog_node": "response_5_1642326717857",
+      "previous_sibling": "node_4_1642326717857"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Well, maybe I didn't quite understand what you want to know. But I think it has to do with our founders..."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1642330657106",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_7_1642328714569"
+      },
+      "conditions": "@founders && $language == \"EN\"",
+      "dialog_node": "response_5_1642330721830"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I am a little confused. 🤔\nI think you want to know more information about our credit card, right?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1642330657106",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_3_1642326717854"
+      },
+      "conditions": "@credit_card && $language == \"EN\"",
+      "dialog_node": "response_5_1642330725116",
+      "previous_sibling": "response_1_1642331054920"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Neo a été fabriqué au Canada pour tout le Canada 🍁avec une innovation technologique dans le secteur financier pleine d'avantages et de récompenses."
               }
             ],
             "response_type": "text",
@@ -1449,7 +2130,7 @@
       "parent": "node_1_1642105537168",
       "conditions": "$language == \"FR\"",
       "dialog_node": "response_6_1642105537171",
-      "previous_sibling": "node_2_1642105537171"
+      "previous_sibling": "node_1_1642325334572"
     },
     {
       "type": "response_condition",
@@ -1458,7 +2139,47 @@
           {
             "values": [
               {
-                "text": "Neo was made in Canada for all of Canada with a technological innovation in the financial sector full of advantages and rewards."
+                "text": "I will direct you to a session where it is related to what you are looking for.  \n\n_If this is not what you are looking for, please give me one more chance to try to help you.  You can call me as many times as you want._ 😄"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1642315381543",
+      "conditions": "anything_else",
+      "dialog_node": "response_6_1642316040870",
+      "previous_sibling": "response_4_1642315778257"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The Neo card, besides being beautiful, has many benefits and advantages. 💳\n\nTo apply is very quick and simple. 🖤🖤"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1642326717854",
+      "conditions": "anything_else",
+      "dialog_node": "response_6_1642326717857",
+      "previous_sibling": "response_5_1642326717857"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Neo was made in Canada for all of Canada 🍁\nwith technological innovation in the financial sector full of advantages and rewards."
               }
             ],
             "response_type": "text",
@@ -1478,7 +2199,13 @@
           {
             "values": [
               {
-                "text": "english answer  - $language"
+                "text": "I didn't understand. 😥 \nCould you try to rephrase the question, please?\n\nI can help you with questions related to:"
+              },
+              {
+                "text": "Could you rephrase your question again? 😅\nSorry, I'm still learning. 🤓⏳\n\nAsk me about a related topic below:"
+              },
+              {
+                "text": "I think I need to take a vacation, or work after hours to improve my knowledge. 👀\n\nI really want to help you. 🤜🤛\n\nLook how cool, ask me about any of these topics below, and I'll take you to this section of the site interactively (automatic)."
               }
             ],
             "response_type": "text",
@@ -1486,10 +2213,10 @@
           }
         ]
       },
-      "parent": "node_9_1640856946344",
+      "parent": "Anything else",
       "conditions": "anything_else",
-      "dialog_node": "response_8_1641842064249",
-      "previous_sibling": "response_6_1641842031324"
+      "dialog_node": "response_7_1642324496682",
+      "previous_sibling": "response_3_1642324504626"
     },
     {
       "type": "response_condition",
@@ -1498,7 +2225,7 @@
           {
             "values": [
               {
-                "text": "FRENCH Second answer- $language"
+                "text": "Content de le savoir! Nous cherchons toujours à grandir et à agrandir notre équipe. 💼\nRestez à l'affût de nos opportunités d'emploi.🍀"
               }
             ],
             "response_type": "text",
@@ -1506,30 +2233,24 @@
           }
         ]
       },
-      "parent": "node_1_1640972383191",
-      "context": {},
+      "parent": "node_4_1642326097900",
       "conditions": "$language == \"FR\"",
-      "dialog_node": "response_9_1641842091355"
+      "dialog_node": "response_7_1642326117772",
+      "previous_sibling": "node_2_1642326123322"
     },
     {
       "type": "response_condition",
       "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "english Third answer"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
+        "text": {
+          "values": [
+            "- Qui nous sommes... \n- Ce que nous offrons...\n- Pourquoi devriez-vous choisir Neo...\n- Quels sont nos avantages et bénéfices...\n- Quelles sont les valeurs de Neo...\n- Comment obtenir une carte de crédit Neo...\n- Qui sont nos fondateurs...\n- Comment postuler à des emplois chez Neo..."
+          ],
+          "selection_policy": "sequential"
+        }
       },
-      "parent": "node_5_1640972393721",
-      "conditions": "anything_else",
-      "dialog_node": "response_9_1641842134337",
-      "previous_sibling": "response_5_1641842129428"
+      "parent": "node_8_1642323280109",
+      "conditions": "$language == \"FR\"",
+      "dialog_node": "response_8_1642323431367"
     },
     {
       "type": "response_condition",
@@ -1538,7 +2259,7 @@
           {
             "values": [
               {
-                "text": "There are many benefits to having a Neo account."
+                "text": "There are many benefits to having a Neo account. 💳💰🤑"
               }
             ],
             "response_type": "text",
@@ -1558,7 +2279,7 @@
           {
             "values": [
               {
-                "text": "Nice! about the project, you can find more details on how it was implemented and the project's source code at this **link below**."
+                "text": "Nice! 🤓💻\n\nabout the project, you can find more details on how it was implemented and the project's source code at this **link below**."
               }
             ],
             "response_type": "text",
@@ -1572,6 +2293,59 @@
       "previous_sibling": "response_2_1642035557834"
     },
     {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I will redirect you to the section: ➜ **<? $topic_redirected ?>**, on our website."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1642315381543",
+      "conditions": "$topic_redirected && $language == \"EN\"",
+      "dialog_node": "response_9_1642315425380",
+      "previous_sibling": "response_9_1642329575772"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Nos fondateurs ont une histoire incroyable...\n\nIls ont fait de SkipTheDishes l'une des 10 meilleures marques au Canada, et ensemble, nous sommes prêts à révolutionner le marché financier. 🚀🚀\n\nJe vous dirige vers la section ➜ **Nos fondateurs** de notre site Web où vous pourrez rencontrer nos administrateurs."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1642328714569",
+      "conditions": "$language == \"FR\"",
+      "dialog_node": "response_9_1642328714572",
+      "previous_sibling": "node_8_1642328714572"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [],
+        "deleted_variable": "<? context.remove('no_sufix ') ?>"
+      },
+      "parent": "node_3_1642315381543",
+      "context": {
+        "no_sufix": null
+      },
+      "conditions": "$no_suffix == true",
+      "dialog_node": "response_9_1642329575772"
+    },
+    {
       "type": "slot",
       "parent": "node_3_1641937347787",
       "dialog_node": "slot_3_1641937380126",
@@ -1583,6 +2357,12 @@
       "parent": "node_1_1642105537168",
       "dialog_node": "slot_3_1642105537171",
       "previous_sibling": "response_7_1642105537171"
+    },
+    {
+      "type": "slot",
+      "parent": "node_9_1642254804641",
+      "dialog_node": "slot_3_1642254830497",
+      "previous_sibling": "response_5_1642254837708"
     },
     {
       "type": "standard",
