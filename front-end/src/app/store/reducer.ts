@@ -10,6 +10,9 @@ const Reducer = (state: GlobalState, action: ActionType<any>): GlobalState => {
     case LanguageActionTypes.CHANGE_LANGUAGE:
       return changeLanguage(action.payload, state);
 
+    case ChatActionTypes.ADD_NEW_CHATBOT_MESSAGE_POSITION_ID:
+      return addNewChatbotMessagePositionId(action.payload, state);
+
     case ChatActionTypes.ADD_NEW_COMMANDS:
       return newChatCommands(action.payload, state);
 
@@ -45,6 +48,7 @@ const changeLanguage = (payload: Language, currentState: GlobalState): GlobalSta
 const newChatCommands = (payload: Array<Command>, prevState: GlobalState): GlobalState => ({
   ...prevState,
   chat: {
+    ...prevState.chat,
     commands: [...prevState.chat.commands].concat(payload.map((command) => ({ executed: false, command }))),
   },
 });
@@ -69,7 +73,30 @@ const commandsExecuted = (payload: Array<CommandStatus>, prevState: GlobalState)
   return {
     ...prevState,
     chat: {
+      ...prevState.chat,
       commands: prevState.chat.commands.map(updateCommandStatus),
+    },
+  };
+};
+
+/**
+ * Function to return new state with the new chatbot message id list updated with new chatbot message position id
+ *
+ * @param {number} payload: chatbot message position id
+ * @param {GlobalState} currentState
+ * @returns new state updated with a new list of commands executed
+ */
+const addNewChatbotMessagePositionId = (payload: number, prevState: GlobalState): GlobalState => {
+  //
+  if (prevState.chat.chatbot.messageIdList.includes(payload)) return prevState;
+
+  return {
+    ...prevState,
+    chat: {
+      ...prevState.chat,
+      chatbot: {
+        messageIdList: [...prevState.chat.chatbot.messageIdList, payload],
+      },
     },
   };
 };

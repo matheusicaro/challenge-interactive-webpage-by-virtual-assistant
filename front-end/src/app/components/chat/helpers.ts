@@ -36,15 +36,21 @@ export const addMessagesInTheChat = (message: string, addDelay = true) => {
 /**
  * Function to enable message to be viewed on the chat through manipulation of the DOM
  *
+ * @returns {number} index of the element enabled in the messages list container
  */
-export const enableLastResponseMessage = () => {
+export const enableLastResponseMessage = (): number | null => {
   const elements = document.getElementById(CSS_CLASS_NAMES.MESSAGES_LIST_CONTAINER)?.getElementsByClassName(CSS_CLASS_NAMES.MESSAGE);
 
+  let indexElementEnabled = null;
+
   if (elements && elements.length > 0) {
-    elements[elements.length - 1].classList.add(CSS_CLASS_NAMES.ENABLE_ELEMENT);
+    indexElementEnabled = elements.length - 1;
+    elements[indexElementEnabled].classList.add(CSS_CLASS_NAMES.ENABLE_ELEMENT);
   }
 
   moveChatScrollToEnd();
+
+  return indexElementEnabled;
 };
 
 /**
@@ -155,4 +161,24 @@ export const messageAlreadyAnswered = (newMessages: Array<string>, lastMessages:
   }
 
   return messageAlreadyAnswered;
+};
+
+/**
+ * Function to check if messages are valid.
+ *
+ * @param {Array<string>} messages
+ * @returns {boolean}
+ */
+export const areValidMessages = (messages: Array<string>) =>
+  messages && messages.length > 0 && messages.some((m) => m && m !== '' && m !== ' ');
+
+/**
+ * Function to check if messages are valid.
+ *
+ * @param {Array<string>} messages
+ * @returns {boolean}
+ */
+export const enableChatHistory = (messageIdList: Array<number>) => {
+  const messages = document.getElementById(CSS_CLASS_NAMES.MESSAGES_LIST_CONTAINER);
+  messageIdList.forEach((id) => messages?.children[id]?.classList.add(CSS_CLASS_NAMES.ENABLE_ELEMENT));
 };

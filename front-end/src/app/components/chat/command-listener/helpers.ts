@@ -29,9 +29,11 @@ export const filterUniquesAndUnexecutedCommands = (commands: Array<CommandStatus
  * OBS: Function needed to eliminate "unknown bug" found in external component in message duplication.
  *
  * @param {string} elementClassName: Css class name of the element to be found
+ * @returns {number | undefined} elementPositionId: returns the element position id if it was added as the last element of the chat
  */
-export const putHtmlNodeAsLastElementOfTheChat = (elementClassName: string) => {
+export const putHtmlNodeAsLastElementOfTheChat = (elementClassName: string): number | undefined => {
   const messages = document.getElementById(CSS_CLASS_NAMES.MESSAGES_LIST_CONTAINER)?.getElementsByClassName(CSS_CLASS_NAMES.MESSAGE);
+  let elementPositionId;
 
   if (messages && messages.length > 0) {
     const valueToStopTheLoop = -1;
@@ -46,26 +48,36 @@ export const putHtmlNodeAsLastElementOfTheChat = (elementClassName: string) => {
       const foundElementAlreadyAdded = wantedElement && index === indexLastElement;
 
       if (foundElementAlreadyAdded) index = valueToStopTheLoop;
-      else if (wantedElement) added = addElementAfterTypingLoader(messages[index]);
-      else index--;
+      else if (wantedElement) {
+        const response = addElementAfterTypingLoader(messages[index]);
+        added = response.added;
+        elementPositionId = response.positionId;
+      } else index--;
     }
   }
+
+  return elementPositionId;
 };
 
 /**
  * Class to add Element as the last message before the typing loader
  *
  * @param {Element} element: HTML element
+ * @returns {{ added: boolean; positionId?: number }} response: return if element was added and
  */
-export const addElementAfterTypingLoader = (element: Element): boolean => {
+export const addElementAfterTypingLoader = (element: Element): { added: boolean; positionId?: number } => {
   const container = document.getElementById(CSS_CLASS_NAMES.MESSAGES_LIST_CONTAINER);
 
-  if (!container) return false;
+  if (!container) return { added: false };
 
   const loaderAsLastElement = container.children[container.children.length - 1];
 
   container.insertBefore(element, loaderAsLastElement);
-  container.children[container.children.length - 2]?.classList.add(CSS_CLASS_NAMES.ENABLE_ELEMENT);
+  const positionId = container.children.length - 2;
+  container.children[positionId]?.classList.add(CSS_CLASS_NAMES.ENABLE_ELEMENT);
 
-  return true;
+  return {
+    added: true,
+    positionId,
+  };
 };

@@ -10,6 +10,9 @@ export type CommandStatus = {
 
 type ChatStoreState = {
   commands: Array<CommandStatus>;
+  chatbot: {
+    messageIdList: Array<number>;
+  };
 };
 
 export default ChatStoreState;

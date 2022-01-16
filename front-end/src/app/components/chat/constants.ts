@@ -18,6 +18,10 @@ export const CHAT_MESSAGES = {
       comment puis-je vous aider`,
     },
   },
+  NOT_UNDERSTAND: {
+    EN: `I didn't understand. Could you try to rephrase the question, please?`,
+    FR: `Je ne comprenais pas. Pourriez-vous essayer de reformuler la question, s'il vous plaît?`,
+  },
   WELCOME: {
     EN: `Welcome to this chat. How can I help you?
     \n\n_you can chat with me in_ **French** _or_ **English**_, just change the language at the bottom of the Chat._

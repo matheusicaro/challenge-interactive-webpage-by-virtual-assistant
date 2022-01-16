@@ -25,5 +25,8 @@ export const INITIAL_STATE: GlobalState = {
   language: BrowserUtils.getLanguage() === 'FR' ? 'FR' : 'EN',
   chat: {
     commands: [],
+    chatbot: {
+      messageIdList: [],
+    },
   },
 };

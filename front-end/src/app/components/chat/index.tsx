@@ -5,7 +5,7 @@ import { toggleMsgLoader } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
 import { SendMessageData, SEND_MESSAGE } from '../../graphql/queries/message';
 import { globalContext } from '../../store';
-import { addNewCommands } from '../../store/chat/actions';
+import { addNewChatbotPositionMessageId, addNewCommands } from '../../store/chat/actions';
 import { Command } from '../../store/chat/types';
 import ChatView from './Chat';
 import CommandsListener from './command-listener';
@@ -20,6 +20,8 @@ import {
   removeTextFormatting,
   errorBySessionExpired,
   messageAlreadyAnswered,
+  areValidMessages,
+  enableChatHistory,
 } from './helpers';
 import { ChatState } from './types';
 
@@ -59,10 +61,19 @@ const Chat: React.FC = () => {
     setState(updateStateWhenTheLoaderIsDisabled);
   };
 
-  const enablesWelcomeMessage = () => {
-    if (!state.welcomeMessageViewed && state.open) {
-      enableLastResponseMessage();
-      setState((prev) => ({ ...prev, welcomeMessageViewed: true }));
+  const enableLastChatbotMessage = () => {
+    const messagePositionId = enableLastResponseMessage();
+    if (messagePositionId !== null) dispatch(addNewChatbotPositionMessageId(messagePositionId));
+  };
+
+  const handleWhenChatIsOpened = () => {
+    if (state.open) {
+      if (!state.welcomeMessageViewed) {
+        enableLastChatbotMessage();
+        setState((prev) => ({ ...prev, welcomeMessageViewed: true }));
+      }
+
+      enableChatHistory(globalState.chat.chatbot.messageIdList);
     }
   };
 
@@ -70,7 +81,7 @@ const Chat: React.FC = () => {
     addMessagesInTheChat(message);
     setTimeout(() => {
       disableLoader();
-      enableLastResponseMessage();
+      enableLastChatbotMessage();
     }, CONSTANTS.DELAY_TO_ENABLE_MESSAGE_IN_MS);
   };
 
@@ -93,9 +104,11 @@ const Chat: React.FC = () => {
 
   const getChatbotAnswer = () => {
     if (!error && !loading && data) {
-      const messagesFromTheChatbot = data.sendMessage.answer;
       const conversationId = data.sendMessage.conversationId;
       const commands = data.sendMessage.context.commands;
+      const messagesFromTheChatbot = areValidMessages(data.sendMessage.answer)
+        ? data.sendMessage.answer
+        : [CHAT_MESSAGES.NOT_UNDERSTAND[globalState.language]];
 
       const messageAnswered = messageAlreadyAnswered(messagesFromTheChatbot, state.conversation.chatbotLastAnswer);
 
@@ -108,7 +121,7 @@ const Chat: React.FC = () => {
   /**
    * Effect to enable Welcome message when the Chat is open for the first time
    */
-  useEffect(enablesWelcomeMessage, [state.open]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(handleWhenChatIsOpened, [state.open]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /**
    * Effect to disable loader if enabled in case of the first attempt fails.

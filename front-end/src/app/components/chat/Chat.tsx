@@ -55,6 +55,14 @@ const Container = styled.section`
       background-color: ${({ theme }) => theme.colors.darkColor} !important;
     }
 
+    @media (max-width: 800px) {
+      margin-top: 2%;
+
+      .rcw-close-button {
+        top: 75px;
+      }
+    }
+
     @media (max-width: 380px) {
       min-width: 98vw;
 
@@ -96,6 +104,14 @@ const Container = styled.section`
     .rcw-snippet,
     .rcw-response .rcw-message-text {
       background-color: ${({ theme }) => theme.colors.background.chat.messages.bot};
+
+      ul {
+        margin-top: -20px;
+
+        li {
+          margin-left: 10px;
+        }
+      }
     }
 
     .rcw-client .rcw-message-text {
