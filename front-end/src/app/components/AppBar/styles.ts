@@ -11,6 +11,10 @@ export const AppBarContainer = styled(AppBarMui)`
   .MuiBox-root {
     margin-left: 80px;
   }
+
+  .MuiToolbar-root {
+    grid-column-gap: 10px !important;
+  }
 `;
 
 export const BoxItem = styled(Button)<{ $active: boolean }>`

@@ -4,7 +4,7 @@ import { ThemeProvider as ThemeProviderMaterialUi } from '@mui/material/styles';
 import { ThemeProvider as ThemeProviderStyledComponents } from 'styled-components';
 
 import { GlobalStyle } from './cssGlobalStyle';
-import { ThemeType, themes } from './themes';
+import { ThemeType, themes, ThemeNamesType } from './themes';
 
 type StateType = {
   mounted?: boolean;
@@ -14,7 +14,7 @@ type StateType = {
 type ThemeState = {
   mounted?: boolean;
   theme: ThemeType;
-  toggleTheme: () => void;
+  toggleTheme: (theme: ThemeNamesType) => void;
 };
 
 type SetStateType = React.Dispatch<React.SetStateAction<StateType>>;
@@ -23,7 +23,7 @@ const initialTheme: ThemeType = themes.light;
 
 const ThemeContext = createContext<ThemeState>({
   theme: initialTheme,
-  toggleTheme: () => {
+  toggleTheme: (theme: ThemeNamesType) => {
     return;
   },
 });
@@ -31,10 +31,11 @@ const ThemeContext = createContext<ThemeState>({
 /**
  * Global theme provider for App encapsulated by Styled Components and Material-UI.
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ThemeGlobalProvider = ({ children }: any) => {
   const [state, setState] = useState<StateType>({ theme: initialTheme });
 
-  const toggleTheme = () => setState(state.theme.name === 'light' ? newTheme(themes.dark) : newTheme(themes.light));
+  const toggleTheme = (theme: ThemeNamesType) => setState(theme === 'dark' ? newTheme(themes.dark) : newTheme(themes.light));
 
   useLayoutEffect(() => newStateMounted(setState, state.mounted), [state]);
 

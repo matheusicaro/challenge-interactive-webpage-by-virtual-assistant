@@ -18,40 +18,61 @@ const LoaderFullPage: React.FC<Props> = (props) => {
 
   return (
     <Transition in={props.active} timeout={{ enter: ENTER_TIMEOUT, exit: EXIT_TIMEOUT }}>
-      <section>
-        <Container className="animate__animated animate__pulse animate__infinite"></Container>
-
-        <Transition in={props.active} timeout={{ enter: ENTER_TIMEOUT + 1500, exit: EXIT_TIMEOUT }}>
-          <LoadingText variant="h5">Loading...</LoadingText>
+      <Container>
+        <NeoHeartImage className="animate__animated animate__pulse animate__infinite">
+          <img src={NeoHeartBigImage} alt="Logo" />
+        </NeoHeartImage>
+        <Transition in={props.active} timeout={{ enter: ENTER_TIMEOUT + 5000, exit: EXIT_TIMEOUT }}>
+          <Text variant="h5">Loading...</Text>
         </Transition>
-      </section>
+      </Container>
     </Transition>
   );
 };
 
 export default LoaderFullPage;
 
-const Container = styled.figure`
-  width: 100vw;
-  height: 100vh;
-  z-index: 999999;
-  position: fixed;
-  background: white;
-
-  animation-duration: 2s;
-
-  background-image: url(${NeoHeartBigImage});
-  background-repeat: no-repeat;
-  background-position: 50% 35%;
-  background-size: 35%;
+const NeoHeartImage = styled.figure`
+  img {
+    width: 500px;
+  }
 `;
 
-const LoadingText = styled(Text)`
-  position: fixed;
-  z-index: 9999991;
-  left: 50%;
-  top: 80%;
-  transform: translate(-50%, -50%);
+const Container = styled.section`
+  width: 100vw;
+  height: 100vh;
 
-  opacity: 0.5;
+  width: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h5 {
+    color: rgb(10 10 10 / 25%);
+    margin-top: 40px;
+    font-size: 2em;
+  }
+
+  @media (max-width: 900px) {
+    img {
+      width: 400px;
+    }
+    h5 {
+      font-size: 1.5em;
+    }
+  }
+
+  @media (max-width: 600px) {
+    img {
+      width: 300px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    img {
+      width: 180px;
+    }
+  }
 `;

@@ -3,21 +3,39 @@ import React from 'react';
 import styled from 'styled-components';
 
 import packageJSON from '../../../package.json';
-import LogoBackground from '../assets/images/logo_background.png';
+import LogoBackground from '../assets/images/logo-background.png';
+import { Language } from '../store/language/types';
+
+const DESCRIPTION = {
+  EN: 'Interactive Webpage by Virtual Assistant',
+  FR: 'Page Web interactive par assistant virtuel',
+};
+const FRONT_END = ['#61DBFB', 'React.js, TypeScript, Material-UI, Styled-Components...'];
+const BACK_END = ['#6CC24A', 'Node.js, TypeScript, GraphQL, Apollo, MongoDB...'];
+
+type Props = {
+  language: Language;
+};
 
 /**
  * Banner component with introduction and general application information
  *
  */
-const Banner: React.FC = () => {
-  const { description, tags, repository } = packageJSON;
+const Banner: React.FC<Props> = (props) => {
+  const { repository } = packageJSON;
+
   return (
     <Container>
-      <p className="banner-contrast">{description}</p>
-      <p className="banner-topics">{`- Developed with ${tags.join(', ')}`}</p>
+      <p className="banner-contrast">{DESCRIPTION[props.language]}</p>
+      <p className="banner-topics">
+        - Front-end: <span style={{ color: FRONT_END[0] }}>{FRONT_END[1]}</span>
+      </p>
+      <p className="banner-topics">
+        - Back-end: <span style={{ color: BACK_END[0] }}>{BACK_END[1]}</span>
+      </p>
       <p className="banner-topics">
         - Repository at:
-        <a href={repository.url} rel="noopener noreferrer" target="_blank" title="----">
+        <a href={repository.url} rel="noopener noreferrer" target="_blank" title="Repository at Github">
           {' Github'}
         </a>
       </p>
@@ -45,10 +63,10 @@ const Container = styled.section`
   }
 
   .banner-topics {
-    color: #098debab;
+    color: #71c4ffab;
 
     & > a {
-      color: #e90dcfc8;
+      color: #fda2f2;
     }
   }
 
@@ -82,6 +100,16 @@ const Container = styled.section`
   }
 
   & p:nth-child(3) {
+    -webkit-animation-delay: 6s;
+    animation-delay: 6s;
+  }
+
+  & p:nth-child(4) {
+    -webkit-animation-delay: 8s;
+    animation-delay: 8s;
+  }
+
+  & p:nth-child(5) {
     opacity: 0;
 
     -webkit-animation: typefinal 2s steps(40, end), blink 0.2s step-end infinite alternate;
@@ -90,8 +118,8 @@ const Container = styled.section`
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
 
-    animation-delay: 6s;
-    -webkit-animation-delay: 6s;
+    animation-delay: 10s;
+    -webkit-animation-delay: 10s;
   }
 
   @keyframes type {
@@ -228,30 +256,46 @@ const Container = styled.section`
     }
   }
 
-  @media (max-width: 1600px) {
-    background-position: 98% 80% !important;
-    background-size: 300px !important;
-  }
   @media (max-width: 1400px) {
-    background-position: 98% 100% !important;
-    background-size: 200px !important;
+    padding-left: 2vw !important;
+    background-position: 98% 80%;
 
-    padding-left: 3vw !important;
-    padding-right: 3vw !important;
     & p {
       font-size: 18px;
     }
   }
   @media (max-width: 1024px) {
-    background-size: revert !important;
-    background-position: 95% 100% !important;
+    padding-top: 25px;
+    padding-bottom: 120px;
+    background-size: 250px;
+    background-position: 97% 95%;
   }
 
-  @media (max-width: 768px) {
-    background-size: 280px !important;
+  @media (max-width: 800px) {
+    padding-bottom: 160px;
+
+    & p {
+      font-size: 0.75em;
+
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
   }
 
-  @media (max-width: 600px) {
-    background-image: none !important;
+  @media (max-width: 800px) {
+    background-position: 50% 95%;
+  }
+
+  @media (max-width: 400px) {
+    & p {
+      font-family: -webkit-pictograph;
+      font-size: 0.6em;
+      text-transform: uppercase;
+    }
+  }
+
+  @media (max-width: 300px) {
+    background-size: 180px;
   }
 `;

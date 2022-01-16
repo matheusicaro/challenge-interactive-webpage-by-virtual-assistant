@@ -6,6 +6,7 @@ import { RouteType } from '../../routes';
 
 import { globalContext } from '../../store';
 import { Language } from '../../store/language/types';
+import { useTheme } from '../../styles/provider';
 import BrowserUtils from '../../utils/BrowserUtils';
 import RouterUtils from '../../utils/RouterUtils';
 import HomeView, { CSS_FIXING_CLASS_NAME, HEADER_CSS_ID } from './HomeView';
@@ -24,6 +25,8 @@ type Props = {
 };
 
 const HomePage: React.FC<Props> = (props) => {
+  const { theme } = useTheme();
+
   const [state, setState] = useState<State>(initialState(props.routeId));
   const { globalState } = useContext(globalContext);
   const { loading, data, refetch } = useQuery<HealthData>(GET_HEALTH, { errorPolicy: 'ignore', fetchPolicy: 'no-cache' });
@@ -69,6 +72,8 @@ const HomePage: React.FC<Props> = (props) => {
 
   useEffect(goToDeepLink, [props.deepLink]);
 
+  useEffect(setFixedHeader, [theme]);
+
   useEffect(setHeaderOnTopWhenScrolling);
 
   useEffect(startServer, [state.attemptsToStartServer, data, loading]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -82,6 +87,7 @@ const HomePage: React.FC<Props> = (props) => {
       routeSelected={state.subpage.label[globalState.language]}
       subpageId={state.subpage.id}
       initialLoader={state.initialLoader}
+      language={globalState.language}
     />
   );
 };
@@ -109,13 +115,13 @@ const getSubPageById = (routeId: string): RouteType => {
 };
 
 const setHeaderOnTopWhenScrolling = () => {
-  window.addEventListener('scroll', pinHeader);
+  window.addEventListener('scroll', setFixedHeader);
   return () => {
-    window.removeEventListener('scroll', pinHeader);
+    window.removeEventListener('scroll', setFixedHeader);
   };
 };
 
-const pinHeader = () => {
+const setFixedHeader = () => {
   const header = document.getElementById(HEADER_CSS_ID);
   const scrollTop = window.scrollY;
 

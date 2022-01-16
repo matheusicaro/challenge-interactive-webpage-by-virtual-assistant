@@ -1,5 +1,5 @@
 import React from 'react';
-import { DarkSection, List, PositionContainer, Title } from '../../styles';
+import { List, PositionContainer, Title } from '../../styles';
 import styled from 'styled-components';
 import { ItemList } from '../../../../../components';
 import OUR_VALUES_CONSTANTS from '../constants/our-values-section';

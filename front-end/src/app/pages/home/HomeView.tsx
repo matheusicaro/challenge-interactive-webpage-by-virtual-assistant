@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Banner, Footer, AppBar, LoaderFullPage, Transition } from '../../components';
 import Chat from '../../components/chat';
 import LanguageButton from '../../components/LanguageButton';
+import { Language } from '../../store/language/types';
 import SubpageRouter from './subpages/SubpageRouter';
 
 type Props = {
@@ -12,6 +13,7 @@ type Props = {
   routeSelected: string;
   subpageId: string;
   initialLoader: boolean;
+  language: Language;
 };
 
 export const HEADER_CSS_ID = 'header-appbar';
@@ -23,7 +25,7 @@ const HomeView: React.FC<Props> = (props) => {
   return (
     <Transition>
       <Main>
-        <Banner />
+        <Banner language={props.language} />
 
         <AppBar
           id={HEADER_CSS_ID}
@@ -39,7 +41,7 @@ const HomeView: React.FC<Props> = (props) => {
         <LanguageButton />
         <Chat />
 
-        <Footer />
+        <Footer language={props.language} />
       </Main>
     </Transition>
   );
@@ -53,7 +55,7 @@ const Main = styled.main`
     position: fixed;
     top: 0;
 
-    @media (max-width: 800px) {
+    @media screen and (max-width: 800px), screen and (max-height: 680px) {
       z-index: 999;
     }
   }

@@ -5,6 +5,7 @@ export type ChatState = {
   conversation: {
     answered: boolean;
     newMessage: boolean;
+    userLastMessage: string;
     chatbotLastAnswer: Array<string>;
     conversationId: string;
     commands: Array<Command>;

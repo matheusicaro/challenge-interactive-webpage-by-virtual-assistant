@@ -2,11 +2,11 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
-import Logo from '../../assets/images/logo_neo_full.png';
-import { useTheme } from '../../styles/provider';
-import { AppBarContainer, BoxItem, BoxStyleSX, ButtonStyleSX, DarkIcon, Figure, LightIcon, ThemeContainer } from './styles';
+import Logo from '../../assets/images/logo-neo-full.png';
+import { AppBarContainer, BoxItem, BoxStyleSX, ButtonStyleSX, Figure } from './styles';
 import Menu from './Menu';
 import styled from 'styled-components';
+import ToggleTheme from './ToggleTheme';
 
 type Props = {
   children?: never;
@@ -17,26 +17,13 @@ type Props = {
 };
 
 const AppBar: React.FC<Props> = (props) => {
-  const { theme, toggleTheme } = useTheme();
-
-  const isLightTheme = theme === 'light';
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onClickHeaderMenu = (e: any): void => {
     e.preventDefault();
     props.handleSelectedOption(e.target.value);
   };
 
   const onSelectOption = (option: string) => props.handleSelectedOption(option);
-
-  const ToggleTheme = () => {
-    return (
-      <ThemeContainer>
-        <LightIcon $activated={isLightTheme} onClick={toggleTheme} />
-        <span>{' | '}</span>
-        <DarkIcon $activated={!isLightTheme} onClick={toggleTheme} />
-      </ThemeContainer>
-    );
-  };
 
   return (
     <AppBarContainer id={props.id} position="static">

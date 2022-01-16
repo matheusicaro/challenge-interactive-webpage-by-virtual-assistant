@@ -11,6 +11,7 @@ const getLanguage = (): string => {
     const pageLanguage = window.navigator.language;
     const browserLanguage = pageLanguage.slice(0, pageLanguage.indexOf('-')).toUpperCase();
     return browserLanguage;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return 'EN';
   }

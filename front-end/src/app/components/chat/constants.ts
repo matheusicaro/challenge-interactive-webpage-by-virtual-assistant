@@ -36,6 +36,8 @@ export const CONSTANTS = {
 export const CSS_CLASS_NAMES = {
   MESSAGES_LIST_CONTAINER: 'messages',
   MESSAGE: 'rcw-message',
+  MESSAGE_FROM_USER_CLIENT: 'rcw-message-client',
+  MESSAGE_TEXT: 'rcw-message-text',
   LINK_MESSAGE: 'rcw-link',
   LOADER: 'loader',
   ELEMENT_ACTIVATED: 'active',

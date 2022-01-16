@@ -1,7 +1,26 @@
+import { ApolloError } from '@apollo/client';
 import { addResponseMessage } from 'react-chat-widget';
 import { Command } from '../../store/chat/types';
 import { CONSTANTS, CSS_CLASS_NAMES } from './constants';
 import { MessagePayload } from './types';
+
+/**
+ * Function to compare if strings are equals.
+ *
+ * @param {Array<string>} firstMessage
+ * @param {Array<string>} secondString
+ *
+ * @returns {boolean}
+ */
+const stringContentsAreTheSame = (firstString: string, secondString: string | null): boolean => {
+  if (firstString === null && secondString === null) return true;
+
+  if (secondString === null) return false;
+
+  const removeSpacesOrSpecialCharacters = (str: string) => str.replace(/[\s|-]+/g, '');
+
+  return removeSpacesOrSpecialCharacters(firstString) === removeSpacesOrSpecialCharacters(secondString);
+};
 
 /**
  * Function to add Message at the external chat component - Widget
@@ -29,6 +48,8 @@ export const enableLastResponseMessage = () => {
 };
 
 /**
+ * Function to move Chat scroll to the end
+ *
  * This is necessary due to DOM manipulation to deal with an "unknown bug"
  * in the external Chat component in message duplication.
  *
@@ -81,3 +102,57 @@ export const joinMessagesByParagraph = (messages: Array<string>): string => mess
  * @returns {boolean}
  */
 export const thereAreCommandsToBeExecuted = (commands: Array<Command>): boolean => commands && commands.length !== 0;
+
+/**
+ * Function to check if error received from the ApolloServer is by session expired
+ *
+ * @param {Array<Command>} commands
+ * @returns {boolean}
+ */
+export const errorBySessionExpired = (error: ApolloError) => {
+  if (!error.graphQLErrors) return false;
+
+  return error.graphQLErrors.some((err) => err.message === 'Invalid Session' || err.extensions?.code === 404);
+};
+
+/**
+ * Function to check if new message received from the ChatbotServer was already answered.
+ *
+ * This is necessary due to DOM manipulation to deal with an "unknown bug" in the external Chat component in message duplication.
+ *
+ * @param {Array<string>} newMessages
+ * @param {Array<string>} lastMessages
+ *
+ * @returns {boolean}
+ */
+export const messageAlreadyAnswered = (newMessages: Array<string>, lastMessages: Array<string>): boolean => {
+  if (!(newMessages.join() === lastMessages.join())) return false;
+
+  const elements = document.getElementById(CSS_CLASS_NAMES.MESSAGES_LIST_CONTAINER)?.getElementsByClassName(CSS_CLASS_NAMES.MESSAGE);
+
+  if (!elements) return false;
+
+  const getText = (element: Element) => element.getElementsByClassName(CSS_CLASS_NAMES.MESSAGE_TEXT)[0]?.textContent;
+
+  let indexOfLastElement = elements.length - 1;
+  let validated = false;
+  let messageAlreadyAnswered = false;
+
+  while (!validated) {
+    const message = elements[indexOfLastElement];
+
+    if (message) {
+      const isMessageFromChatbot = !message.classList.contains(CSS_CLASS_NAMES.MESSAGE_FROM_USER_CLIENT);
+
+      if (isMessageFromChatbot) {
+        messageAlreadyAnswered = stringContentsAreTheSame(newMessages.join(''), getText(message));
+      }
+
+      validated = true;
+    } else {
+      indexOfLastElement--;
+    }
+  }
+
+  return messageAlreadyAnswered;
+};

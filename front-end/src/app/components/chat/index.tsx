@@ -6,6 +6,7 @@ import 'react-chat-widget/lib/styles.css';
 import { SendMessageData, SEND_MESSAGE } from '../../graphql/queries/message';
 import { globalContext } from '../../store';
 import { addNewCommands } from '../../store/chat/actions';
+import { Command } from '../../store/chat/types';
 import ChatView from './Chat';
 import CommandsListener from './command-listener';
 import { CHAT_MESSAGES, CONSTANTS } from './constants';
@@ -17,6 +18,8 @@ import {
   joinMessagesByParagraph,
   thereAreCommandsToBeExecuted,
   removeTextFormatting,
+  errorBySessionExpired,
+  messageAlreadyAnswered,
 } from './helpers';
 import { ChatState } from './types';
 
@@ -71,16 +74,20 @@ const Chat: React.FC = () => {
     }, CONSTANTS.DELAY_TO_ENABLE_MESSAGE_IN_MS);
   };
 
+  const sendMessageToChatbot = (message: string, conversationId?: string | null) => {
+    enableLoader();
+
+    const payload = { message: removeTextFormatting(message), conversationId, language: globalState.language };
+    sendMessage({ variables: payload });
+
+    setState((prev) => ({ ...prev, conversation: { ...prev.conversation, userLastMessage: message } }));
+  };
+
   const handleNewUserMessage = (message: string) => {
     if (message && message.length > 0) {
-      const conversationId = getConversationId(data);
-      const language = globalState.language;
-      message = removeTextFormatting(message);
-
       if (state.errorInformed) setState((prev) => ({ ...prev, errorInformed: false }));
 
-      sendMessage({ variables: { message, conversationId, language } });
-      enableLoader();
+      sendMessageToChatbot(message, getConversationId(data));
     }
   };
 
@@ -90,20 +97,11 @@ const Chat: React.FC = () => {
       const conversationId = data.sendMessage.conversationId;
       const commands = data.sendMessage.context.commands;
 
-      const messageAlreadyAnswered = messagesFromTheChatbot.join() === state.conversation.chatbotLastAnswer.join();
+      const messageAnswered = messageAlreadyAnswered(messagesFromTheChatbot, state.conversation.chatbotLastAnswer);
 
-      setState((prev) => ({
-        ...prev,
-        conversation: {
-          ...prev.conversation,
-
-          answered: messageAlreadyAnswered,
-          newMessage: !messageAlreadyAnswered,
-          chatbotLastAnswer: messagesFromTheChatbot,
-          commands,
-          conversationId,
-        },
-      }));
+      setState((prev) =>
+        updateStateForNewMessageAnsweredFromTheChatbot(prev, messagesFromTheChatbot, messageAnswered, commands, conversationId),
+      );
     }
   };
 
@@ -132,13 +130,16 @@ const Chat: React.FC = () => {
   }
 
   if (error && !state.errorInformed) {
-    addMessagesInTheChat(CHAT_MESSAGES.ERROR.SEND_MESSAGE[globalState.language]);
-    setState(updateStaForInformedError);
+    if (errorBySessionExpired(error)) sendMessageToChatbot(state.conversation.userLastMessage, null);
+    else {
+      addMessagesInTheChat(CHAT_MESSAGES.ERROR.SEND_MESSAGE[globalState.language]);
+      setState(updateStaForInformedError);
+    }
   }
 
   if (state.conversation.newMessage) {
     sendResponseMessage(joinMessagesByParagraph(state.conversation.chatbotLastAnswer));
-    setState(updateStateForNewMessageAnsweredFromTheChatbot);
+    setState(updateStateToRespondNewChatbotMessage);
   }
 
   if (thereAreCommandsToBeExecuted(state.conversation.commands)) {
@@ -157,25 +158,26 @@ const Chat: React.FC = () => {
 export default Chat;
 
 const initialState = (): ChatState => ({
+  open: false,
+  welcomeMessageViewed: false,
+  errorInformed: false,
   conversation: {
     answered: false,
     newMessage: false,
+    userLastMessage: '',
     chatbotLastAnswer: [''],
     commands: [],
     conversationId: '',
   },
-  errorInformed: false,
   loader: {
     active: false,
     attemptsToDisable: 0,
   },
-  open: false,
-  welcomeMessageViewed: false,
 });
 
 const updateStaForInformedError = (prevState: ChatState): ChatState => ({ ...prevState, errorInformed: true });
 
-const updateStateForNewMessageAnsweredFromTheChatbot = (prev: ChatState): ChatState => ({
+const updateStateToRespondNewChatbotMessage = (prev: ChatState): ChatState => ({
   ...prev,
   conversation: {
     ...prev.conversation,
@@ -205,5 +207,29 @@ const updateStateWhenLoaderIsEnabled = (prev: ChatState): ChatState => ({
   loader: {
     ...prev.loader,
     active: true,
+  },
+});
+
+const updateStateForNewMessageAnsweredFromTheChatbot = (
+  prev: ChatState,
+  messagesFromTheChatbot: Array<string>,
+  messageAnswered: boolean,
+  commands: Array<Command>,
+  conversationId: string,
+): ChatState => ({
+  ...prev,
+  conversation: {
+    ...prev.conversation,
+
+    answered: messageAnswered,
+    newMessage: !messageAnswered,
+    chatbotLastAnswer: messagesFromTheChatbot,
+    commands,
+    conversationId,
+  },
+
+  loader: {
+    ...prev.loader,
+    active: messageAnswered ? false : prev.loader.active,
   },
 });

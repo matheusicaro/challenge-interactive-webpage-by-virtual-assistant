@@ -4,6 +4,7 @@ import { ActionType, GlobalState } from './types';
 import { Language } from './language/types';
 import { Command, CommandStatus } from './chat/types';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Reducer = (state: GlobalState, action: ActionType<any>): GlobalState => {
   switch (action.type) {
     case LanguageActionTypes.CHANGE_LANGUAGE:
