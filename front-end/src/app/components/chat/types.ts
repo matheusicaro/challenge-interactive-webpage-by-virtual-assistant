@@ -14,6 +14,7 @@ export type ChatState = {
     active: boolean;
     attemptsToDisable: number;
   };
+  error: boolean;
   errorInformed: boolean;
   open: boolean;
   welcomeMessageViewed: boolean;

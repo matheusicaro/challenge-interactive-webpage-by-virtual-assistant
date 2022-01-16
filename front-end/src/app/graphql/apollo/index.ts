@@ -13,6 +13,14 @@ const apolloClient = new ApolloClient({
   // link: from([errorLink, forwardLink, asyncLink, splitLink]),
   link: httpLink,
   cache,
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'no-cache',
+    },
+    query: {
+      fetchPolicy: 'no-cache',
+    },
+  },
 });
 
 export default apolloClient;

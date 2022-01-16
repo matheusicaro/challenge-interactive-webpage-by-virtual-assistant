@@ -9,7 +9,7 @@ import { addNewChatbotPositionMessageId, addNewCommands } from '../../store/chat
 import { Command } from '../../store/chat/types';
 import ChatView from './Chat';
 import CommandsListener from './command-listener';
-import { CHAT_MESSAGES, CONSTANTS } from './constants';
+import { CHAT_MESSAGES, CHAT_CONSTANTS } from './constants';
 import {
   loaderIsEnabled,
   enableLastResponseMessage,
@@ -82,28 +82,25 @@ const Chat: React.FC = () => {
     setTimeout(() => {
       disableLoader();
       enableLastChatbotMessage();
-    }, CONSTANTS.DELAY_TO_ENABLE_MESSAGE_IN_MS);
+    }, CHAT_CONSTANTS.DELAY_TO_ENABLE_MESSAGE_IN_MS);
   };
 
   const sendMessageToChatbot = (message: string, conversationId?: string | null) => {
     enableLoader();
 
     const payload = { message: removeTextFormatting(message), conversationId, language: globalState.language };
-    sendMessage({ variables: payload });
+    sendMessage({ variables: payload, fetchPolicy: 'no-cache' });
 
-    setState((prev) => ({ ...prev, conversation: { ...prev.conversation, userLastMessage: message } }));
+    setState((prev) => updateStateForNewMessageFromUserToChatbot(prev, message));
   };
 
   const handleNewUserMessage = (message: string) => {
-    if (message && message.length > 0) {
-      if (state.errorInformed) setState((prev) => ({ ...prev, errorInformed: false }));
-
-      sendMessageToChatbot(message, getConversationId(data));
-    }
+    if (message && message.length > 0) sendMessageToChatbot(message, getConversationId(data));
   };
 
   const getChatbotAnswer = () => {
-    if (!error && !loading && data) {
+    if (error) setState((prev) => ({ ...prev, error: true, errorInformed: false }));
+    else if (!loading && data) {
       const conversationId = data.sendMessage.conversationId;
       const commands = data.sendMessage.context.commands;
       const messagesFromTheChatbot = areValidMessages(data.sendMessage.answer)
@@ -142,7 +139,7 @@ const Chat: React.FC = () => {
     addMessagesInTheChat(CHAT_MESSAGES.WELCOME[globalState.language], false);
   }
 
-  if (error && !state.errorInformed) {
+  if (state.error && !state.errorInformed) {
     if (errorBySessionExpired(error)) sendMessageToChatbot(state.conversation.userLastMessage, null);
     else {
       addMessagesInTheChat(CHAT_MESSAGES.ERROR.SEND_MESSAGE[globalState.language]);
@@ -173,6 +170,7 @@ export default Chat;
 const initialState = (): ChatState => ({
   open: false,
   welcomeMessageViewed: false,
+  error: false,
   errorInformed: false,
   conversation: {
     answered: false,
@@ -246,3 +244,15 @@ const updateStateForNewMessageAnsweredFromTheChatbot = (
     active: messageAnswered ? false : prev.loader.active,
   },
 });
+
+const updateStateForNewMessageFromUserToChatbot = (prev: ChatState, message: string): ChatState => {
+  return {
+    ...prev,
+    error: false,
+    errorInformed: false,
+    conversation: {
+      ...prev.conversation,
+      userLastMessage: message,
+    },
+  };
+};

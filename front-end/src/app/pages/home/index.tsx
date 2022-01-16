@@ -1,5 +1,7 @@
 import { useQuery } from '@apollo/client';
 import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { CHAT_CONSTANTS } from '../../components/chat/constants';
 import { GET_HEALTH, HealthData } from '../../graphql/queries/start-server';
 
 import { RouteType } from '../../routes';
@@ -11,6 +13,9 @@ import BrowserUtils from '../../utils/BrowserUtils';
 import RouterUtils from '../../utils/RouterUtils';
 import HomeView, { CSS_FIXING_CLASS_NAME, HEADER_CSS_ID } from './HomeView';
 import { SUB_PAGES_ROUTES, SUB_PAGES_LABELS } from './subpages';
+
+const DURATION_TIME_INITIAL_LOADER = 8000;
+const DURATION_TIME_NAVIGATION_BY_DEEP_LINK = 3000;
 
 type State = {
   subpage: RouteType;
@@ -25,10 +30,11 @@ type Props = {
 };
 
 const HomePage: React.FC<Props> = (props) => {
-  const { theme } = useTheme();
-
   const [state, setState] = useState<State>(initialState(props.routeId));
   const { globalState } = useContext(globalContext);
+  const history = useHistory();
+  const { theme } = useTheme();
+
   const { loading, data, refetch } = useQuery<HealthData>(GET_HEALTH, { errorPolicy: 'ignore', fetchPolicy: 'no-cache' });
 
   const labels = SUB_PAGES_LABELS(globalState.language);
@@ -36,17 +42,23 @@ const HomePage: React.FC<Props> = (props) => {
   const handleSelectedHeaderOption = (option: string) => {
     const subpage = getSubpage(option, globalState.language);
     setState((prev) => ({ ...prev, subpage }));
-    BrowserUtils.replaceUrlBrowser(subpage.path);
   };
 
   const goToSubpage = () => {
-    setTimeout(() => setState((prev) => ({ ...prev, subpage: getSubPageById(props.routeId) })), 2000);
+    const subpage = getSubPageById(props.routeId);
+    const time = CHAT_CONSTANTS.DELAY_TO_ENABLE_MESSAGE_IN_MS + 1300;
+    setTimeout(() => setState((prev) => ({ ...prev, subpage })), time);
   };
 
   const goToDeepLink = () => {
     if (props.deepLink) {
       const cssId = RouterUtils.convertDeepLinkToCssId(props.deepLink);
-      setTimeout(() => BrowserUtils.scrollCenterId(cssId), 3000);
+      const isFirstRoute = history.length < 3;
+      const time = isFirstRoute
+        ? DURATION_TIME_INITIAL_LOADER + DURATION_TIME_NAVIGATION_BY_DEEP_LINK
+        : DURATION_TIME_NAVIGATION_BY_DEEP_LINK;
+
+      setTimeout(() => BrowserUtils.scrollCenterId(cssId), time);
     }
   };
 
@@ -65,12 +77,12 @@ const HomePage: React.FC<Props> = (props) => {
   };
 
   const disableLoader = () => {
-    setTimeout(() => setState((prev) => ({ ...prev, initialLoader: false })), 8000);
+    setTimeout(() => setState((prev) => ({ ...prev, initialLoader: false })), DURATION_TIME_INITIAL_LOADER);
   };
 
   useEffect(goToSubpage, [props.routeId]);
 
-  useEffect(goToDeepLink, [props.deepLink]);
+  useEffect(goToDeepLink, [props.deepLink]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(setFixedHeader, [theme]);
 

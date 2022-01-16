@@ -32,7 +32,7 @@ export const CHAT_MESSAGES = {
   },
 };
 
-export const CONSTANTS = {
+export const CHAT_CONSTANTS = {
   DELAY_TO_ADD_MESSAGE_IN_MS: 1000,
   DELAY_TO_ENABLE_MESSAGE_IN_MS: 2000,
 };

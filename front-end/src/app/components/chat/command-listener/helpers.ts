@@ -1,5 +1,7 @@
 import { CommandStatus } from '../../../store/chat/types';
-import { CSS_CLASS_NAMES } from '../constants';
+import BrowserUtils from '../../../utils/BrowserUtils';
+import RouterUtils from '../../../utils/RouterUtils';
+import { CHAT_CONSTANTS, CSS_CLASS_NAMES } from '../constants';
 
 /**
  * Function to return a list with no duplicate elements and filtered by unexecuted.
@@ -60,7 +62,7 @@ export const putHtmlNodeAsLastElementOfTheChat = (elementClassName: string): num
 };
 
 /**
- * Class to add Element as the last message before the typing loader
+ * Function to add Element as the last message before the typing loader
  *
  * @param {Element} element: HTML element
  * @returns {{ added: boolean; positionId?: number }} response: return if element was added and
@@ -80,4 +82,17 @@ export const addElementAfterTypingLoader = (element: Element): { added: boolean;
     added: true,
     positionId,
   };
+};
+
+/**
+ * Function to move the scroll to the section from the deepLink
+ *
+ * @param {string} deepLink: the route path to navigate to the section of the css-id
+ */
+export const moveScrollTo = (deepLink: string) => {
+  setTimeout(() => BrowserUtils.scrollUp(), CHAT_CONSTANTS.DELAY_TO_ENABLE_MESSAGE_IN_MS + 1000);
+  setTimeout(
+    () => BrowserUtils.scrollCenterId(RouterUtils.convertDeepLinkToCssId(deepLink)),
+    CHAT_CONSTANTS.DELAY_TO_ENABLE_MESSAGE_IN_MS + 2000,
+  );
 };

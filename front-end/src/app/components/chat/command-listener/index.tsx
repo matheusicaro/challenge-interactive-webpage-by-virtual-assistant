@@ -4,7 +4,7 @@ import { globalContext } from '../../../store';
 import { CommandStatus } from '../../../store/chat/types';
 import { useHistory } from 'react-router-dom';
 import { addNewChatbotPositionMessageId, commandsExecuted } from '../../../store/chat/actions';
-import { filterUniquesAndUnexecutedCommands, putHtmlNodeAsLastElementOfTheChat } from './helpers';
+import { filterUniquesAndUnexecutedCommands, moveScrollTo, putHtmlNodeAsLastElementOfTheChat } from './helpers';
 import { addLinkSnippet } from 'react-chat-widget';
 import { CSS_CLASS_NAMES } from '../constants';
 import { moveChatScrollToEnd } from '../helpers';
@@ -17,7 +17,10 @@ const CommandsListener: React.FC<Props> = (props) => {
   const { globalState, dispatch } = useContext(globalContext);
   const history = useHistory();
 
-  const goToPath = (path: string) => history.push(path);
+  const goToPath = (path: string) => {
+    const userIsOnTheCurrentPath = history.location.pathname === path;
+    userIsOnTheCurrentPath ? moveScrollTo(path) : history.push(path);
+  };
 
   const runCommand = ({ command }: CommandStatus): CommandStatus => {
     switch (command.type) {

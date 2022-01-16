@@ -1,7 +1,7 @@
 import { ApolloError } from '@apollo/client';
 import { addResponseMessage } from 'react-chat-widget';
 import { Command } from '../../store/chat/types';
-import { CONSTANTS, CSS_CLASS_NAMES } from './constants';
+import { CHAT_CONSTANTS, CSS_CLASS_NAMES } from './constants';
 import { MessagePayload } from './types';
 
 /**
@@ -29,7 +29,7 @@ const stringContentsAreTheSame = (firstString: string, secondString: string | nu
  * @param {boolean} addDelay: add delay to show message
  */
 export const addMessagesInTheChat = (message: string, addDelay = true) => {
-  if (addDelay) setTimeout(() => addResponseMessage(message), CONSTANTS.DELAY_TO_ADD_MESSAGE_IN_MS);
+  if (addDelay) setTimeout(() => addResponseMessage(message), CHAT_CONSTANTS.DELAY_TO_ADD_MESSAGE_IN_MS);
   else addResponseMessage(message);
 };
 
@@ -115,8 +115,8 @@ export const thereAreCommandsToBeExecuted = (commands: Array<Command>): boolean 
  * @param {Array<Command>} commands
  * @returns {boolean}
  */
-export const errorBySessionExpired = (error: ApolloError) => {
-  if (!error.graphQLErrors) return false;
+export const errorBySessionExpired = (error?: ApolloError) => {
+  if (!error || !error.graphQLErrors) return false;
 
   return error.graphQLErrors.some((err) => err.message === 'Invalid Session' || err.extensions?.code === 404);
 };
