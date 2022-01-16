@@ -25,6 +25,9 @@
           "text": "who built you?"
         },
         {
+          "text": "who created this page, site, application?"
+        },
+        {
           "text": "who is the author of this project?"
         }
       ],
@@ -50,6 +53,9 @@
         },
         {
           "text": "quelles technologies sont utilisées dans cette application?"
+        },
+        {
+          "text": "qui a créé cette page, site, application ?"
         },
         {
           "text": "qui est l'auteur de ce projet ?"
@@ -158,6 +164,78 @@
         }
       ],
       "description": "examples of advantages and benefits in FRENCH language"
+    },
+    {
+      "intent": "error_EN",
+      "examples": [
+        {
+          "text": "did not work"
+        },
+        {
+          "text": "don't works"
+        },
+        {
+          "text": "is not working"
+        },
+        {
+          "text": "it didn't work"
+        },
+        {
+          "text": "it was not"
+        },
+        {
+          "text": "the platform did not work"
+        },
+        {
+          "text": "you are not going to"
+        },
+        {
+          "text": "you are wrong"
+        },
+        {
+          "text": "you didn't direct me"
+        },
+        {
+          "text": "you didn't go to"
+        },
+        {
+          "text": "you missed"
+        }
+      ],
+      "description": "examples of mistakes from the virtual assistant in ENGLISH"
+    },
+    {
+      "intent": "error_FR",
+      "examples": [
+        {
+          "text": "ça n'a pas marché"
+        },
+        {
+          "text": "Ce n'était pas"
+        },
+        {
+          "text": "la plateforme ne fonctionnait pas"
+        },
+        {
+          "text": "n'a pas marché"
+        },
+        {
+          "text": "ne fonctionne pas"
+        },
+        {
+          "text": "tu ne m'as pas dirigé"
+        },
+        {
+          "text": "tu n'es pas allé à"
+        },
+        {
+          "text": "vous avez raté"
+        },
+        {
+          "text": "Vous avez tort"
+        }
+      ],
+      "description": "examples of mistakes from the virtual assistant in FRENCH"
     },
     {
       "intent": "get_to_know_us_EN",
@@ -835,6 +913,41 @@
         },
         {
           "type": "synonyms",
+          "value": "founder",
+          "synonyms": [
+            "business person",
+            "businessperson",
+            "CEO",
+            "créateur",
+            "créateurs",
+            "creator",
+            "creators",
+            "directeur",
+            "directors",
+            "dirigeants",
+            "entrepreneurs",
+            "founders",
+            "gestionnaires",
+            "homme d'affaires",
+            "leader",
+            "leaders",
+            "les propriétaires",
+            "manager",
+            "managers",
+            "owner",
+            "owners",
+            "PDG",
+            "president",
+            "président",
+            "presidents",
+            "présidents",
+            "principal",
+            "propriétaire",
+            "réalisateurs"
+          ]
+        },
+        {
+          "type": "synonyms",
           "value": "Jeff Adamson",
           "synonyms": [
             "Jeff",
@@ -957,7 +1070,7 @@
       },
       "parent": "node_2_1640974269672",
       "context": {
-        "commands": "<? $commands ? $commands :[] ?> "
+        "commands": "<? $commands ? $commands : [] ?> "
       },
       "next_step": {
         "behavior": "jump_to",
@@ -1210,6 +1323,7 @@
         "selector": "body",
         "dialog_node": "node_2_1640974269672"
       },
+      "conditions": "$command_type == \"SHOW_LINK\"",
       "dialog_node": "node_3_1642031616012"
     },
     {
@@ -1271,7 +1385,8 @@
         "generic": []
       },
       "context": {
-        "commands": []
+        "commands": [],
+        "command_return_to": null
       },
       "next_step": {
         "behavior": "skip_user_input"
@@ -1288,7 +1403,12 @@
       },
       "parent": "node_2_1640974269672",
       "context": {
-        "commands": "<? $commands.append($command) ?>"
+        "commands": "<? $commands.append($command) ?>",
+        "last_command": {
+          "type": "$command.type",
+          "value": "$command.value",
+          "redirect_to": "$command_return_to"
+        }
       },
       "next_step": {
         "behavior": "jump_to",
@@ -1301,8 +1421,10 @@
     {
       "type": "folder",
       "title": "COMMANDS",
+      "conditions": "false",
+      "digress_in": "does_not_return",
       "dialog_node": "node_4_1642031588359",
-      "previous_sibling": "node_7_1640974262303"
+      "previous_sibling": "Anything else"
     },
     {
       "type": "standard",
@@ -1326,6 +1448,7 @@
         "selector": "body",
         "dialog_node": "node_3_1642315381543"
       },
+      "conditions": "$command_type == \"REDIRECT_TO_PAGE\"",
       "dialog_node": "node_4_1642036309384",
       "previous_sibling": "node_3_1642031616012"
     },
@@ -1415,9 +1538,10 @@
     },
     {
       "type": "folder",
-      "title": "CONFIGS",
+      "title": "CONFIGS and LOGICS",
+      "conditions": "false",
       "dialog_node": "node_7_1640974262303",
-      "previous_sibling": "Anything else"
+      "previous_sibling": "node_4_1642031588359"
     },
     {
       "type": "standard",
@@ -1473,15 +1597,53 @@
     },
     {
       "type": "standard",
+      "title": "ERROR - RUN command (\"REDIRECT_TO_PAGE\")",
+      "parent": "node_6_1641931257545",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_7_1642367925212"
+      },
+      "conditions": "#error_EN || #error_FR",
+      "dialog_node": "node_7_1642367426874"
+    },
+    {
+      "type": "standard",
+      "title": "run again: LAST_COMMAND",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_4_1642031588359",
+      "context": {
+        "command_type": "<? $last_command.type ?>",
+        "command_value": "<? $last_command.value ?>",
+        "command_return_to": "<? $last_command.redirect_to ?>"
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_3_1642031616012"
+      },
+      "dialog_node": "node_7_1642367925212",
+      "previous_sibling": "node_4_1642036309384"
+    },
+    {
+      "type": "standard",
       "title": "4) CLEAR auxiliary variables",
       "output": {
         "generic": [],
-        "deleted_variable": "<? context.remove('command') ?><? context.remove('command_type') ?><? context.remove('topic_redirected') ?>"
+        "deleted_variable": "<? context.remove('command') ?><? context.remove('command_type') ?><? context.remove('topic_redirected') ?><? context.remove('command_value') ?>"
       },
       "parent": "node_2_1640974269672",
       "context": {
         "command": null,
         "command_type": null,
+        "command_value": null,
         "topic_redirected": null
       },
       "next_step": {
@@ -1544,19 +1706,8 @@
         }
       },
       "conditions": "#hello_EN || #hello_FR",
-      "dialog_node": "node_9_1642254804641"
-    },
-    {
-      "type": "response_condition",
-      "output": {
-        "generic": []
-      },
-      "parent": "node_8_1640975157521",
-      "context": {
-        "command_return_to": null
-      },
-      "conditions": "\"node_10_1640975634082\" == $command_return_to",
-      "dialog_node": "response_10_1640975768562"
+      "dialog_node": "node_9_1642254804641",
+      "previous_sibling": "node_7_1642367426874"
     },
     {
       "type": "response_condition",
@@ -1649,6 +1800,31 @@
     {
       "type": "response_condition",
       "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Sorry, I'm still learning and I can get things wrong. 👶📚\n\nSee below the topics that I have already learned and can help you on:"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1642367426874",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_8_1642323280109"
+      },
+      "conditions": "!$last_command",
+      "dialog_node": "response_10_1642370537661",
+      "previous_sibling": "response_1_1642370423757"
+    },
+    {
+      "type": "response_condition",
+      "output": {
         "generic": []
       },
       "parent": "node_1_1642330657106",
@@ -1685,6 +1861,30 @@
       "conditions": "@founders && $language == \"FR\"",
       "dialog_node": "response_1_1642331054920",
       "previous_sibling": "response_5_1642330721830"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Je suis désolé, j'apprends et j'évolue encore et je peux faire des erreurs.👶📚  \n\nVoir ci-dessous les sujets que j'ai déjà appris et sur lesquels je peux vous aider:"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1642367426874",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_8_1642323280109"
+      },
+      "conditions": "!$last_command && $language == \"FR\"",
+      "dialog_node": "response_1_1642370423757"
     },
     {
       "type": "response_condition",
@@ -1798,8 +1998,7 @@
         "dialog_node": "node_4_1640973993025"
       },
       "conditions": "\"root\" == $command_return_to",
-      "dialog_node": "response_2_1641937916460",
-      "previous_sibling": "response_10_1640975768562"
+      "dialog_node": "response_2_1641937916460"
     },
     {
       "type": "response_condition",
@@ -2016,6 +2215,11 @@
         "generic": []
       },
       "parent": "node_8_1640975157521",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_4_1640973993025"
+      },
       "conditions": "anything_else",
       "dialog_node": "response_5_1640976116119",
       "previous_sibling": "response_2_1641937916460"
@@ -2243,6 +2447,21 @@
       "output": {
         "text": {
           "values": [
+            "Sorry, I'm still learning and I can get things wrong. 👶📚\n\nI'll try to refer you again, if it doesn't work, let me know and I'll try again."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_7_1642367426874",
+      "conditions": "anything_else",
+      "dialog_node": "response_7_1642368065584",
+      "previous_sibling": "response_9_1642368077529"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
             "- Qui nous sommes... \n- Ce que nous offrons...\n- Pourquoi devriez-vous choisir Neo...\n- Quels sont nos avantages et bénéfices...\n- Quelles sont les valeurs de Neo...\n- Comment obtenir une carte de crédit Neo...\n- Qui sont nos fondateurs...\n- Comment postuler à des emplois chez Neo..."
           ],
           "selection_policy": "sequential"
@@ -2336,14 +2555,34 @@
       "type": "response_condition",
       "output": {
         "generic": [],
-        "deleted_variable": "<? context.remove('no_sufix ') ?>"
+        "deleted_variable": "<? context.remove('no_suffix') ?>"
       },
       "parent": "node_3_1642315381543",
       "context": {
-        "no_sufix": null
+        "no_suffix": null
       },
       "conditions": "$no_suffix == true",
       "dialog_node": "response_9_1642329575772"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Je suis désolé, j'apprends et j'évolue encore et je peux faire des erreurs.👶📚\n\nJe vais essayer de vous référer à nouveau, si ça ne marche pas, faites le moi savoir et je réessaierai."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1642367426874",
+      "conditions": "$language == \"FR\"",
+      "dialog_node": "response_9_1642368077529",
+      "previous_sibling": "response_10_1642370537661"
     },
     {
       "type": "slot",
