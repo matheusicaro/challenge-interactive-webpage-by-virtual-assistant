@@ -54,6 +54,6 @@ const Container = styled.footer`
   #copyright {
     font-size: 0.8em;
     margin: 25px 0 60px 0;
-    color: #e8ff2873;
+    color: #e5aa24b0;
   }
 `;
