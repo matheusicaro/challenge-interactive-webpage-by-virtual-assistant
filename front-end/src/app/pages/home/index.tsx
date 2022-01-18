@@ -42,6 +42,7 @@ const HomePage: React.FC<Props> = (props) => {
   const handleSelectedHeaderOption = (option: string) => {
     const subpage = getSubpage(option, globalState.language);
     setState((prev) => ({ ...prev, subpage }));
+    history.replace(subpage.path);
   };
 
   const goToSubpage = () => {

@@ -1,7 +1,7 @@
 {
-  "name": "challenge-interactive-webpage-by-virtual-assistant",
+  "name": "challenge-interactive-webpage-by-virtual-assistant-webapp",
   "version": "1.0.0",
-  "description": "Interactive Webpage by Virtual Assistant",
+  "description": "Front-end to Interactive Webpage by Virtual Assistant App",
   "author": "Matheus Icaro",
   "license": "MIT",
   "private": false,

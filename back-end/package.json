@@ -1,14 +1,24 @@
 {
-  "name": "template-nodejs-app",
+  "name": "challenge-interactive-webpage-by-virtual-assistant-service",
   "version": "1.0.0",
-  "description": "Template API for projects using Node.js >14 with GraphQL and TypeScript.",
+  "description": "Back-end service APi to Interactive Webpage by Virtual Assistant App",
   "author": "Matheus Icaro",
   "license": "MIT",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/matheusicaro/template-nodejs-app/tree/node-14/GraphQL-and-TypeScript"
+    "url": "https://github.com/matheusicaro/challenge-interactive-webpage-by-virtual-assistant"
   },
+  "tags": [
+    "Node.js",
+    "TypeScript",
+    "GraphQL",
+    "Apollo-server",
+    "Jest",
+    "Winston",
+    "Husky",
+    "Prettier"
+  ],
   "engines": {
     "node": ">=14"
   },
