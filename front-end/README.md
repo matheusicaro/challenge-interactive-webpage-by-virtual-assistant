@@ -19,7 +19,7 @@ This is the **front-end** to the web application.
 
 ### :white_check_mark: [ ONLINE ] - Access the application at: [www.neo-together-with.matheusicaro.com](https://neo-together-with.matheusicaro.com/)
 
-![front-end](https://github.com/matheusicaro/challenge-interactive-webpage-by-virtual-assistant/blob/main/data/front-end.gif)
+![front-end](https://github.com/matheusicaro/challenge-interactive-webpage-by-virtual-assistant/blob/main/data/images/front-end-screen-shot.gif)
 
 ## Installation and Setup Instructions
 

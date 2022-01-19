@@ -27,9 +27,10 @@ This is the **back-end** service responsible for integrating with external servi
 
 ## Project Screen Shot
 
-### :white_check_mark: [ ONLINE ] - Access the application [online here](https://neo-interactive-webpage.herokuapp.com/)
+### :white_check_mark: [ ONLINE ] - Access the application [online here](http://neo-service.matheusicaro.com/)
 
 <br>
+
 ![back-end](https://github.com/matheusicaro/challenge-interactive-webpage-by-virtual-assistant/blob/main/data/images/back-end-screen-shot.png)
 
 ## Installation and Setup Instructions
