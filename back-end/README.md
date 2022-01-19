@@ -13,21 +13,18 @@
 - [Project Specifications](#project-specifications)
 - [To Do List](#to-do-list)
 
-## Database
-
-## Environment variables
-
 ## Intro:
 
-Interactive web application by a virtual assistant. **More details about the full web app**, [click here](https://github.com/matheusicaro/challenge-interactive-webpage-by-virtual-assistant).
+Interactive web application by a virtual assistant. **More details about the full web app**, **[click here](https://github.com/matheusicaro/challenge-interactive-webpage-by-virtual-assistant)**.
 
 This is the **back-end** service responsible for integrating with external services, as well as the NLP (Natural Language Processing) service, MongoDB database, and others...
+<br> The **front-end** is available at [this link](https://github.com/matheusicaro/challenge-interactive-webpage-by-virtual-assistant/tree/main/front-end).
 
 ---
 
 ## Project Screen Shot
 
-### :white_check_mark: [ ONLINE ] - Access the application [online here](http://neo-service.matheusicaro.com/)
+### :white_check_mark: [ ONLINE ] - Access the API Documentation [online here](http://neo-service.matheusicaro.com/)
 
 <br>
 
@@ -114,12 +111,12 @@ Database connection driver implementation reference: https://docs.mongodb.com/dr
   - [Apollo-server](https://www.apollographql.com/docs/apollo-server/)
 - User [IBM Watson Assistant](https://www.ibm.com/products/watson-assistant) as integration to provide the use of artificial intelligence for understanding natural language.
 - Used [Jest](https://jestjs.io/) for unit testing
-- Used [Winston](https://typicode.github.io/husky/#/) for the storage of the logs.
+- Used [Winston](https://github.com/winstonjs/winston) for the storage of the logs.
 - Used [Axios](https://axios-http.com/) for promises based HTTP client
 - Used [Husky](https://typicode.github.io/husky/#/) for analyzing lint tests and configurations before committing to the repository
 - Used [Prettier lint](https://prettier.io/docs/en/integrating-with-linters.html) for lint style
 
-## To Do List:
+## To Do List
 
 Due to the availability of time to develop the application in my free time, some tasks were not carried out, but they are essential for the delivery of the solution, and are pending below as a suggestion for future improvements:
 

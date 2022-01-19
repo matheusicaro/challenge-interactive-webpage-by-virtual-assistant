@@ -11,9 +11,10 @@
 
 ## Intro:
 
-Interactive web application by a virtual assistant. **More details about the full web app**, [click here](https://github.com/matheusicaro/challenge-interactive-webpage-by-virtual-assistant).
+Interactive web application by a virtual assistant. **More details about the full web app**, **[click here](https://github.com/matheusicaro/challenge-interactive-webpage-by-virtual-assistant)**.
 
 This is the **front-end** to the web application.
+<br> The **back-end** is available at [this link](https://github.com/matheusicaro/challenge-interactive-webpage-by-virtual-assistant/tree/main/back-end).
 
 ## Project Screen Shot
 
@@ -45,7 +46,7 @@ This is the **front-end** to the web application.
 
 ## Project Specifications
 
-- Used [React](https://www.typescriptlang.org/pt/docs/handbook/react.html) with:
+- Used [React](https://reactjs.org/) with:
   - [TypeScript](https://www.typescriptlang.org/)
   - [GraphQL](https://graphql.org/)
   - [Apollo-client](https://www.apollographql.com/docs/react/)
@@ -72,8 +73,8 @@ However, in development we found several bugs that possibly come between version
 
 The bugs found so far were:
 
-BUG_1) **Message Duplication:** During the exchange of messages in Chat, for each response from the bot user, his message is duplicated 2 or more times. To send a response from the bot to the external component, is necessary only to use the `addResponseMessage` function according to the [lib documentation](https://github.com/Wolox/react-chat-widget#widget-behavior).
+**BUG_1) Message Duplication:** During the exchange of messages in Chat, for each response from the bot user, his message is duplicated 2 or more times. To send a response from the bot to the external component, is necessary only to use the `addResponseMessage` function according to the [lib documentation](https://github.com/Wolox/react-chat-widget#widget-behavior).
 
-BUG_2) **Typing Loader Uncontrollable:** As an internal component, according to the [lib documentation](https://github.com/Wolox/react-chat-widget#widget-behavior), to active or disable the typing loader it is only necessary to call the `toggleMsgLoader` function. However, during chat messages, the loader appears unexpectedly, or is not deactivated when requested.
+**BUG_2) Typing Loader Uncontrollable:** As an internal component, according to the [lib documentation](https://github.com/Wolox/react-chat-widget#widget-behavior), to active or disable the typing loader it is only necessary to call the `toggleMsgLoader` function. However, during chat messages, the loader appears unexpectedly, or is not deactivated when requested.
 
 ![front-end](https://github.com/matheusicaro/challenge-interactive-webpage-by-virtual-assistant/blob/main/data/images/front-end-bug-chat-widget.gif)

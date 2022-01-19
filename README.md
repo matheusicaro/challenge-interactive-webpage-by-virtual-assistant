@@ -1,6 +1,8 @@
-## Neo Interactive Webpage by Virtual Assistant
+# Neo Interactive Webpage by Virtual Assistant
 
 [![license](https://img.shields.io/github/license/DAVFoundation/captain-n3m0.svg?style=flat-square)](https://github.com/matheusicaro/challenge-interactive-webpage-by-virtual-assistant/blob/main/LICENSE)
+
+<br>
 
 - [Challenge](#challenge)
 - [Intro](#intro)
@@ -28,6 +30,8 @@ Some sections of **[Neo's official website](https://www.neofinancial.com/)** wer
 The Virtual Assistant is able to interact with the user and control the web application interactively, being able to direct the user to specific sections of the site.
 
 > _got lost on the site?_ <br> > _don't know where to find information?_ <br> > _...ask Neo's virtual assistant that it will take you to the desired session._ 😉🖤
+
+### :white_check_mark: [ ONLINE ] - Access the application at: [www.neo-together-with.matheusicaro.com](https://neo-together-with.matheusicaro.com/)
 
 ![web-screen](https://github.com/matheusicaro/challenge-interactive-webpage-by-virtual-assistant/blob/main/data/images/interactive-web-screen-shot.gif)
 
@@ -71,7 +75,7 @@ The virtual assistant was built using IBM's Watson Assistant as a natural langua
 
 ### Single page application (English and French)
 
-![single-page](https://github.com/matheusicaro/challenge-interactive-webpage-by-virtual-assistant/blob/main/data/images/interactive-web-screen-single-page.gif)
+![single-page](https://github.com/matheusicaro/challenge-interactive-webpage-by-virtual-assistant/blob/main/data/images/feature-interactive-webpage-single-page.gif)
 
 <br>
 <br>
