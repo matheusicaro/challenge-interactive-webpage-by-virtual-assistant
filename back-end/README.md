@@ -5,7 +5,7 @@
 ## Summary:
 
 - [Intro](#intro)
-- [Project Screen Shot](#project-screen-shot)
+- **[Project Screen Shot](#project-screen-shot)**
 - [Installation and Setup Instructions](#installation-and-setup-instructions)
   - [Choosing the database](#database)
   - [Environment variables](#environment-variables)

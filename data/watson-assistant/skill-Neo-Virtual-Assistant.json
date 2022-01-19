@@ -754,6 +754,94 @@
       "description": "examples of what are the values of Neo in FRENCH"
     },
     {
+      "intent": "thank_EN",
+      "examples": [
+        {
+          "text": "amazing"
+        },
+        {
+          "text": "congratulation"
+        },
+        {
+          "text": "cool"
+        },
+        {
+          "text": "got it right"
+        },
+        {
+          "text": "nice"
+        },
+        {
+          "text": "snapped"
+        },
+        {
+          "text": "thanks"
+        },
+        {
+          "text": "very good"
+        },
+        {
+          "text": "wonderful"
+        },
+        {
+          "text": "you are a beast"
+        },
+        {
+          "text": "you are right"
+        },
+        {
+          "text": "you are smart"
+        },
+        {
+          "text": "you are sure"
+        }
+      ]
+    },
+    {
+      "intent": "thank_FR",
+      "examples": [
+        {
+          "text": "agréable"
+        },
+        {
+          "text": "cassé"
+        },
+        {
+          "text": "cool"
+        },
+        {
+          "text": "félicitation"
+        },
+        {
+          "text": "formidable"
+        },
+        {
+          "text": "incroyable"
+        },
+        {
+          "text": "Merci"
+        },
+        {
+          "text": "très bien"
+        },
+        {
+          "text": "tu as trouvé"
+        },
+        {
+          "text": "Tu es intelligent"
+        },
+        {
+          "text": "tu es une bête"
+        },
+        {
+          "text": "vous avez raison"
+        },
+        {
+          "text": "vous êtes sûr"
+        }
+      ]
+    },
+    {
       "intent": "who_we_are_EN",
       "examples": [
         {
@@ -1024,6 +1112,12 @@
     },
     {
       "type": "event_handler",
+      "parent": "slot_6_1642625757618",
+      "event_name": "input",
+      "dialog_node": "handler_1_1642625757640"
+    },
+    {
+      "type": "event_handler",
       "output": {},
       "parent": "slot_3_1642105537171",
       "event_name": "input",
@@ -1042,6 +1136,14 @@
       "parent": "slot_3_1642254830497",
       "event_name": "input",
       "dialog_node": "handler_5_1642254830531"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1642625757618",
+      "event_name": "focus",
+      "dialog_node": "handler_5_1642625757640",
+      "previous_sibling": "handler_1_1642625757640"
     },
     {
       "type": "standard",
@@ -1151,6 +1253,7 @@
     },
     {
       "type": "standard",
+      "title": "Enter if it has AT LEAST 5% of confidence in hit the question",
       "parent": "node_4_1640973993025",
       "metadata": {
         "_customization": {
@@ -1511,6 +1614,7 @@
     },
     {
       "type": "standard",
+      "title": "Enter if it has 40% of confidence in hit the question",
       "parent": "node_4_1640973993025",
       "next_step": {
         "behavior": "skip_user_input"
@@ -1574,7 +1678,7 @@
       },
       "conditions": "#help_me_EN || #help_me_FR",
       "dialog_node": "node_7_1642255000300",
-      "previous_sibling": "node_9_1642254804641"
+      "previous_sibling": "node_8_1642625750571"
     },
     {
       "type": "standard",
@@ -1698,6 +1802,18 @@
     },
     {
       "type": "standard",
+      "parent": "node_6_1641931257545",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#thank_EN || #thank_FR",
+      "dialog_node": "node_8_1642625750571",
+      "previous_sibling": "node_9_1642254804641"
+    },
+    {
+      "type": "standard",
       "title": "HELLO",
       "parent": "node_6_1641931257545",
       "metadata": {
@@ -1764,7 +1880,7 @@
           {
             "values": [
               {
-                "text": "Glad to know that! We are always looking to grow and expand our team. 💼\nStay tuned for our job opportunities.🍀"
+                "text": "Glad to know that! We are always looking to grow and expand our team. 💼Stay tuned for our job opportunities.🍀"
               }
             ],
             "response_type": "text",
@@ -1784,7 +1900,7 @@
           {
             "values": [
               {
-                "text": "Our founders have an incredible history...\n\nThey've built SkipTheDishes into one of Canada's top 10 brands, and together we're ready to revolutionize the financial market. 🚀🚀\n\nI am directing you to the section ➜ **Our founders** of our website where you can meet our directors."
+                "text": "Our founders have an incredible history...They've built SkipTheDishes into one of Canada's top 10 brands, and together we're ready to revolutionize the financial market. 🚀🚀I am directing you to the section ➜ **Our founders** of our website where you can meet our directors."
               }
             ],
             "response_type": "text",
@@ -1804,7 +1920,7 @@
           {
             "values": [
               {
-                "text": "Sorry, I'm still learning and I can get things wrong. 👶📚\n\nSee below the topics that I have already learned and can help you on:"
+                "text": "Sorry, I'm still learning and I can get things wrong. 👶📚See below the topics that I have already learned and can help you on:"
               }
             ],
             "response_type": "text",
@@ -1893,7 +2009,7 @@
           {
             "values": [
               {
-                "text": "Au vu de notre objectif de révolutionner le marché financier, nos valeurs ne sont pas négociables, ce qui implique **l'intégrité** et **l'exclusivité** de nos clients.  \n\nDe plus, nous cherchons à **renforcer** et à construire une **communauté** de manière significative pour nos partenaires et nos clients."
+                "text": "Au vu de notre objectif de révolutionner le marché financier, nos valeurs ne sont pas négociables, ce qui implique **l'intégrité** et **l'exclusivité** de nos clients.  De plus, nous cherchons à **renforcer** et à construire une **communauté** de manière significative pour nos partenaires et nos clients."
               }
             ],
             "response_type": "text",
@@ -1913,7 +2029,7 @@
           {
             "values": [
               {
-                "text": "In view of our objective of revolutionizing the financial market, our values are non-negotiable, which involves the **integrity* and **exclusivity** of our customers.  \n\nIn addition, we seek to **strengthen** and build a **community** in a meaningful way for our partners and our customers."
+                "text": "In view of our objective of revolutionizing the financial market, our values are non-negotiable, which involves the **integrity* and **exclusivity** of our customers.  In addition, we seek to **strengthen** and build a **community** in a meaningful way for our partners and our customers."
               }
             ],
             "response_type": "text",
@@ -1933,7 +2049,7 @@
           {
             "values": [
               {
-                "text": "Grâce à la technologie, nous réinventons le monde des dépenses, de l’épargne et des récompenses afin de simplifier les finances, de créer des expériences fructueuses et de bâtir une communauté pour la population canadienne. 🍁\n\nJe vous redirige vers la section ➜ **Neo en bref** pour que vous puissiez en savoir un peu plus sur nous."
+                "text": "Grâce à la technologie, nous réinventons le monde des dépenses, de l’épargne et des récompenses afin de simplifier les finances, de créer des expériences fructueuses et de bâtir une communauté pour la population canadienne. 🍁Je vous redirige vers la section ➜ **Neo en bref** pour que vous puissiez en savoir un peu plus sur nous."
               }
             ],
             "response_type": "text",
@@ -1953,7 +2069,7 @@
           {
             "values": [
               {
-                "text": "We’re reimagining spending, savings, and rewards by using technology to simplify finances, create rewarding experiences, and build a community for all Canadians. 🍁\n\nI'll redirect you to the section ➜ **Get to know us** so you can get to know a little more about us."
+                "text": "We’re reimagining spending, savings, and rewards by using technology to simplify finances, create rewarding experiences, and build a community for all Canadians. 🍁I'll redirect you to the section ➜ **Get to know us** so you can get to know a little more about us."
               }
             ],
             "response_type": "text",
@@ -1973,7 +2089,7 @@
           {
             "values": [
               {
-                "text": "Nous comprenons, les mots \"récompenses\" et \"cashback\" ont été tellement galvaudés que même nous roulons des yeux. 💰💸\n\nNos clients ont plusieurs bénéfices et avantages.\n\nJe vais vous diriger vers la section **Pourquoi choisir Neo?** du site afin que vous puissiez en apprendre un peu plus sur pourquoi être Neo."
+                "text": "Nous comprenons, les mots \"récompenses\" et \"cashback\" ont été tellement galvaudés que même nous roulons des yeux. 💰💸Nos clients ont plusieurs bénéfices et avantages.Je vais vous diriger vers la section **Pourquoi choisir Neo?** du site afin que vous puissiez en apprendre un peu plus sur pourquoi être Neo."
               }
             ],
             "response_type": "text",
@@ -2007,7 +2123,7 @@
           {
             "values": [
               {
-                "text": "Agréable! 🤓💻\n\nsur le projet, vous pouvez trouver plus de détails sur sa mise en œuvre et le code source du projet **sur ce lien**."
+                "text": "Agréable! 🤓💻sur le projet, vous pouvez trouver plus de détails sur sa mise en œuvre et le code source du projet **sur ce lien**."
               }
             ],
             "response_type": "text",
@@ -2047,7 +2163,7 @@
           {
             "values": [
               {
-                "text": "We get it, the words “rewards” and “cashback” have been so overused that even we roll our eyes. 💰💸\n\nOur customers have several benefits and advantages.\n\nI'll direct you to the section ➜ **Why Neo?** of the site so you can learn a little more about why being Neo."
+                "text": "We get it, the words “rewards” and “cashback” have been so overused that even we roll our eyes. 💰💸Our customers have several benefits and advantages.I'll direct you to the section ➜ **Why Neo?** of the site so you can learn a little more about why being Neo."
               }
             ],
             "response_type": "text",
@@ -2067,7 +2183,7 @@
           {
             "values": [
               {
-                "text": "Eh bien, je suis un assistant virtuel interactif et je peux vous aider à naviguer sur ce site pour en savoir un peu plus sur Neo Financial.\n\nVous pouvez me demander:"
+                "text": "Eh bien, je suis un assistant virtuel interactif et je peux vous aider à naviguer sur ce site pour en savoir un peu plus sur Neo Financial.Vous pouvez me demander:"
               }
             ],
             "response_type": "text",
@@ -2086,7 +2202,7 @@
           {
             "values": [
               {
-                "text": "Well, I'm an interactive virtual assistant, and I can help you navigate this site to learn a little more about Neo Financial.\n\nYou can ask me about:"
+                "text": "Well, I'm an interactive virtual assistant, and I can help you navigate this site to learn a little more about Neo Financial.You can ask me about:"
               }
             ],
             "response_type": "text",
@@ -2143,6 +2259,40 @@
       "parent": "Anything else",
       "conditions": "$language == \"FR\"",
       "dialog_node": "response_3_1642324504626"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "De rien! si tu as besoin de quoi que ce soit, tu peux me demander."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_8_1642625750571",
+      "conditions": "$language == \"FR\"",
+      "dialog_node": "response_3_1642625767291"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "You're welcome! if you need anything, you can ask me."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1642625750571",
+      "conditions": "anything_else",
+      "dialog_node": "response_3_1642625770039",
+      "previous_sibling": "response_3_1642625767291"
     },
     {
       "type": "response_condition",
@@ -2234,7 +2384,7 @@
                 "text": "Hello! 🖤😃"
               },
               {
-                "text": "Hi!"
+                "text": "Hi! 🖤😃"
               }
             ],
             "response_type": "text",
@@ -2254,7 +2404,7 @@
           {
             "values": [
               {
-                "text": "La carte Neo, en plus d'être belle, présente de nombreux avantages et avantages. 💳\n\nPour postuler c'est très simple et rapide. 🖤🖤"
+                "text": "La carte Neo, en plus d'être belle, présente de nombreux avantages et avantages. 💳Pour postuler c'est très simple et rapide. 🖤🖤"
               }
             ],
             "response_type": "text",
@@ -2363,7 +2513,7 @@
           {
             "values": [
               {
-                "text": "The Neo card, besides being beautiful, has many benefits and advantages. 💳\n\nTo apply is very quick and simple. 🖤🖤"
+                "text": "The Neo card, besides being beautiful, has many benefits and advantages. 💳To apply is very quick and simple. 🖤🖤"
               }
             ],
             "response_type": "text",
@@ -2383,7 +2533,7 @@
           {
             "values": [
               {
-                "text": "Neo was made in Canada for all of Canada 🍁\nwith technological innovation in the financial sector full of advantages and rewards."
+                "text": "Neo was made in Canada for all of Canada 🍁with technological innovation in the financial sector full of advantages and rewards."
               }
             ],
             "response_type": "text",
@@ -2429,7 +2579,7 @@
           {
             "values": [
               {
-                "text": "Content de le savoir! Nous cherchons toujours à grandir et à agrandir notre équipe. 💼\nRestez à l'affût de nos opportunités d'emploi.🍀"
+                "text": "Content de le savoir! Nous cherchons toujours à grandir et à agrandir notre équipe. 💼Restez à l'affût de nos opportunités d'emploi.🍀"
               }
             ],
             "response_type": "text",
@@ -2447,7 +2597,7 @@
       "output": {
         "text": {
           "values": [
-            "Sorry, I'm still learning and I can get things wrong. 👶📚\n\nI'll try to refer you again, if it doesn't work, let me know and I'll try again."
+            "Sorry, I'm still learning and I can get things wrong. 👶📚I'll try to refer you again, if it doesn't work, let me know and I'll try again."
           ],
           "selection_policy": "sequential"
         }
@@ -2498,7 +2648,7 @@
           {
             "values": [
               {
-                "text": "Nice! 🤓💻\n\nabout the project, you can find more details on how it was implemented and the project's source code at this **link below**."
+                "text": "Nice! 🤓💻about the project, you can find more details on how it was implemented and the project's source code at this **link below**."
               }
             ],
             "response_type": "text",
@@ -2538,7 +2688,7 @@
           {
             "values": [
               {
-                "text": "Nos fondateurs ont une histoire incroyable...\n\nIls ont fait de SkipTheDishes l'une des 10 meilleures marques au Canada, et ensemble, nous sommes prêts à révolutionner le marché financier. 🚀🚀\n\nJe vous dirige vers la section ➜ **Nos fondateurs** de notre site Web où vous pourrez rencontrer nos administrateurs."
+                "text": "Nos fondateurs ont une histoire incroyable...Ils ont fait de SkipTheDishes l'une des 10 meilleures marques au Canada, et ensemble, nous sommes prêts à révolutionner le marché financier. 🚀🚀Je vous dirige vers la section ➜ **Nos fondateurs** de notre site Web où vous pourrez rencontrer nos administrateurs."
               }
             ],
             "response_type": "text",
@@ -2571,7 +2721,7 @@
           {
             "values": [
               {
-                "text": "Je suis désolé, j'apprends et j'évolue encore et je peux faire des erreurs.👶📚\n\nJe vais essayer de vous référer à nouveau, si ça ne marche pas, faites le moi savoir et je réessaierai."
+                "text": "Je suis désolé, j'apprends et j'évolue encore et je peux faire des erreurs.👶📚Je vais essayer de vous référer à nouveau, si ça ne marche pas, faites le moi savoir et je réessaierai."
               }
             ],
             "response_type": "text",
@@ -2602,6 +2752,12 @@
       "parent": "node_9_1642254804641",
       "dialog_node": "slot_3_1642254830497",
       "previous_sibling": "response_5_1642254837708"
+    },
+    {
+      "type": "slot",
+      "parent": "node_8_1642625750571",
+      "dialog_node": "slot_6_1642625757618",
+      "previous_sibling": "response_3_1642625770039"
     },
     {
       "type": "standard",

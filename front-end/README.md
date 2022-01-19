@@ -3,7 +3,7 @@
 [![license](https://img.shields.io/github/license/DAVFoundation/captain-n3m0.svg?style=flat-square)](https://github.com/matheusicaro/challenge-interactive-webpage-by-virtual-assistant/blob/main/LICENSE)
 
 - [Intro](#intro)
-- [> Project Screen Shot](#project-screen-shot)
+- **[Project Screen Shot](#project-screen-shot)**
 - [Installation and Setup Instructions](#installation-and-setup-instructions))
 - [Folder Structure](#folder-structure)
 - [Project Specifications](#project-specifications)
