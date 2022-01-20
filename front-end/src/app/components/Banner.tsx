@@ -24,8 +24,10 @@ type Props = {
 const Banner: React.FC<Props> = (props) => {
   const { repository } = packageJSON;
 
+  const isSafari = navigator.userAgent.indexOf('Safari') !== -1 && navigator.userAgent.indexOf('Chrome') === -1;
+
   return (
-    <Container>
+    <Container isSafari={isSafari}>
       <p className="banner-contrast">{DESCRIPTION[props.language]}</p>
       <p className="banner-topics">
         - Front-end: <span style={{ color: FRONT_END[0] }}>{FRONT_END[1]}</span>
@@ -45,7 +47,7 @@ const Banner: React.FC<Props> = (props) => {
 
 export default Banner;
 
-const Container = styled.section`
+const Container = styled.section<{ isSafari: boolean }>`
   padding: 40px 5vw;
   padding-top: 60px;
   border: none;
@@ -71,7 +73,7 @@ const Container = styled.section`
   }
 
   & p {
-    border-right: 0.15em solid;
+    border-right: ${({ isSafari }) => (isSafari ? 'none' : '0.15em solid')};
     font-family: 'Courier';
     font-size: 20px;
     white-space: nowrap;
@@ -82,7 +84,7 @@ const Container = styled.section`
   & p {
     width: 100%;
     max-width: fit-content;
-    opacity: 0;
+    opacity: ${({ isSafari }) => (isSafari ? 1 : 0)};
 
     -webkit-animation: type 2s steps(40, end), blink 0.2s step-end infinite alternate;
     animation: type 2s steps(40, end), blink 0.2s step-end infinite alternate;

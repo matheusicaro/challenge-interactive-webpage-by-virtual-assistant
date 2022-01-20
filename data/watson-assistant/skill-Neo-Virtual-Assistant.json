@@ -526,6 +526,23 @@
       "description": "examples of how to apply for jobs at Neo in FRENCH"
     },
     {
+      "intent": "language",
+      "examples": [
+        {
+          "text": "english language"
+        },
+        {
+          "text": "french language"
+        },
+        {
+          "text": "parler en français or english"
+        },
+        {
+          "text": "talk in french or english"
+        }
+      ]
+    },
+    {
       "intent": "new_card_EN",
       "examples": [
         {
@@ -1615,6 +1632,9 @@
     {
       "type": "standard",
       "title": "Enter if it has 40% of confidence in hit the question",
+      "output": {
+        "generic": []
+      },
       "parent": "node_4_1640973993025",
       "next_step": {
         "behavior": "skip_user_input"
@@ -1738,6 +1758,31 @@
     },
     {
       "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "**English**: I can only converse in 2 languages at the moment, in English or French. We are talking in **<? $language == 'EN' ? 'English' : 'French' ?>**, but if you want to change to <? $language == 'EN' ? 'French' : 'English' ?>, *just click on the button right next to the button (widget) to start the Chat*.\n\n**French**: Je ne peux converser que dans 2 langues pour le moment, en English ou en French. Nous parlons en **<? $language == 'EN' ? 'English' : 'French' ?>**, mais si vous voulez changer en <? $language == 'EN' ? 'French' : 'English' ?>, *cliquez simplement sur le bouton juste à côté du bouton (widget) pour lancer le Chat*."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1641931257545",
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#language",
+      "dialog_node": "node_7_1642681588548",
+      "previous_sibling": "node_9_1642254804641"
+    },
+    {
+      "type": "standard",
       "title": "4) CLEAR auxiliary variables",
       "output": {
         "generic": [],
@@ -1810,7 +1855,7 @@
       },
       "conditions": "#thank_EN || #thank_FR",
       "dialog_node": "node_8_1642625750571",
-      "previous_sibling": "node_9_1642254804641"
+      "previous_sibling": "node_7_1642681588548"
     },
     {
       "type": "standard",
@@ -2358,6 +2403,26 @@
       "conditions": "@credit_card && $language == \"FR\"",
       "dialog_node": "response_4_1642331077959",
       "previous_sibling": "response_5_1642330725116"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "you can chat with me in_ **French** _or_ **English**_, just change the language at the bottom of the Chat"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1642681588548",
+      "disabled": true,
+      "conditions": "anything_else",
+      "dialog_node": "response_4_1642681681097"
     },
     {
       "type": "response_condition",
