@@ -24,7 +24,7 @@ This is the **back-end** service responsible for integrating with external servi
 
 ## Project Screen Shot
 
-### :white_check_mark: [ ONLINE ] - Access the API Documentation [online here](http://neo-service.matheusicaro.com/)
+### :white_check_mark: [ ONLINE ] - Access the API Documentation [online here](https://challenge-neointeractive-webpg.herokuapp.com/)
 
 <br>
 
