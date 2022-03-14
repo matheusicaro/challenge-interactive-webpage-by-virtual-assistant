@@ -2,22 +2,22 @@
   "profile": {
     "pt": {
       "kind": "Open Source",
-      "name": "Seu sistema de geolocalização de IP na web",
+      "name": "Webpage interativa por Assistente Virtual",
       "intro": "Projeto full-stack para construir uma Aplicação Web com um assistente virtual capaz de interagir com o usuário e controlar a aplicação web de forma interativa, podendo direcionar o usuário automaticamente para seções específicas do site."
     },
     "fr": {
       "kind": "Open Source",
-      "name": "Votre système Web de géolocalisation IP",
+      "name": "Webpage interactive pour Assistente Virtual",
       "intro": "Projet full-stack visant à créer une application Web avec un assistant virtuel capable d'interagir avec l'utilisateur et de contrôler l'application Web de manière interactive, en pouvant diriger automatiquement l'utilisateur vers des sections spécifiques du site."
     },
     "en": {
       "kind": "Open Source",
-      "name": "Your IP geolocation Web system",
+      "name": "Interactive Webpage by Virtual Assistant",
       "intro": "Full-stack project to build a Web Application with a virtual assistant able to interact with the user and control the web application interactively, being able to direct the user automatically to specific sections of the site."
     },
     "es": {
       "kind": "Open Source",
-      "name": "Su sistema web de geolocalización IP",
+      "name": "Webpage interactiva por Asistente Virtual",
       "intro": "Proyecto full-stack para construir una Aplicación Web con un asistente virtual capaz de interactuar con el usuario y controlar la aplicación web de manera interactiva, pudiendo dirigir automáticamente al usuario a secciones específicas del sitio."
     }
   },
