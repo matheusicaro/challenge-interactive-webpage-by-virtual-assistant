@@ -4,8 +4,9 @@
 
 <br>
 
-- [Challenge](#challenge)
 - [Intro](#intro)
+- [Challenge](#challenge)
+- **[Project Screen Shot](#project-screen-shot)**
 - [New features created](#new-features-created)
   - [Interactive web page (controlled by a chatbot)](#interactive-web-page-controlled-by-a-chatbot)
   - [Virtual assistant (multilingual in English and French)](#virtual-assistant-multilingual-in-english-and-french)
@@ -16,12 +17,6 @@
   - [Architecture](#architecture)
   - [Technologies used (stack)](#technologies-used)
 
-## Challenge
-
-The aim of this project is to recreate sections of Neo Financial's official website with improvement on existing features and development of new features with a focus on innovation.
-
-All images and content are property of **[Neo Financial](https://www.neofinancial.com/)** and were taken from the **[official website](https://www.neofinancial.com/)** for the period December 25, 2021 to date.
-
 ## Intro:
 
 Neo Interactive Webpage by Virtual Assistant - is a Web application that was developed in honor of **[Neo Financial](https://www.neofinancial.com/)**. <br>
@@ -31,12 +26,22 @@ The Virtual Assistant is able to interact with the user and control the web appl
 
 > _got lost on the site?_ <br> > _don't know where to find information?_ <br> > _...ask Neo's virtual assistant that it will take you to the desired session._ 😉🖤
 
+## Challenge
+
+The aim of this project is to recreate sections of Neo Financial's official website with improvement on existing features and development of new features with a focus on innovation.
+
+All images and content are property of **[Neo Financial](https://www.neofinancial.com/)** and were taken from the **[official website](https://www.neofinancial.com/)** for the period December 25, 2021 to date.
+
+## Project Screen Shot
+
 ### :white_check_mark: [ ONLINE ] - Access the application at: [www.neo-together-with.matheusicaro.com](https://neo-together-with.matheusicaro.com/)
 
 ![web-screen](https://github.com/matheusicaro/challenge-interactive-webpage-by-virtual-assistant/blob/main/data/images/interactive-web-screen-shot.gif)
 
 <br>
 <br>
+
+---
 
 ## New features created
 
