@@ -21,6 +21,7 @@
       "intro": "Proyecto full-stack para construir una Aplicación Web con un asistente virtual capaz de interactuar con el usuario y controlar la aplicación web de manera interactiva, pudiendo dirigir automáticamente al usuario a secciones específicas del sitio."
     }
   },
+          "tags": ["Node.js", "React", "TypeScript", "GraphQL", "Material-UI", "Styled-components", "Apollo", "JavaScript", "Amazon AWS", "AWS-Route-53", "AWS-CloudFront", "AWS-S3 Bucket", "AWS-Elastic-Beanstalk", "AWS-CodeDeploy", "AWS-CodePipeline", "AWS-CodeCommit", "AWS-EC2-Instance", "MongoDB", "IBM-Watson", "Watson Assistant", "Chatbot", "Full-stack", "Back-end", "Front-end"],
   "stack": {
     "frontend": [
       {
